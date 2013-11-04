@@ -1,0 +1,10 @@
+[Tue Aug 13 16:18:29 2013] [error] [client 127.0.0.1] File does not exist: /var/www/services.net/favicon.ico
+[Tue Aug 13 16:18:29 2013] [error] [client 127.0.0.1] File does not exist: /var/www/services.net/favicon.ico
+[Wed Aug 14 15:04:08 2013] [error] [client 127.0.0.1] File does not exist: /var/www/services.net/favicon.ico
+[Wed Aug 14 15:04:08 2013] [error] [client 127.0.0.1] File does not exist: /var/www/services.net/favicon.ico
+[Fri Oct 18 16:46:16 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_EXIT, expecting ',' or ';' in /var/www/services.net/protected/modules/user/models/User.php on line 123, referer: http://services.net/admin/user/main/admin
+[Fri Oct 18 16:46:17 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_EXIT, expecting ',' or ';' in /var/www/services.net/protected/modules/user/models/User.php on line 123, referer: http://services.net/admin/user/main/admin
+[Fri Oct 18 16:46:17 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_EXIT, expecting ',' or ';' in /var/www/services.net/protected/modules/user/models/User.php on line 123, referer: http://services.net/admin/user/main/admin
+[Fri Oct 18 16:46:18 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_EXIT, expecting ',' or ';' in /var/www/services.net/protected/modules/user/models/User.php on line 123, referer: http://services.net/admin/user/main/admin
+[Fri Oct 18 16:46:18 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_EXIT, expecting ',' or ';' in /var/www/services.net/protected/modules/user/models/User.php on line 123, referer: http://services.net/admin/user/main/admin
+[Fri Oct 18 16:46:18 2013] [error] [client 127.0.0.1] PHP Parse error:  syntax error, unexpected T_EXIT, expecting ',' or ';' in /var/www/services.net/protected/modules/user/models/User.php on line 123, referer: http://services.net/admin/user/main/admin
