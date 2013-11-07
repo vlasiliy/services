@@ -189,7 +189,18 @@
                         <?php echo $form->labelEx($model,'date_create'); ?>
                     </td>
                     <td>
-                        <?php echo $form->textField($model,'date_create'); ?>
+                        <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                                $this->widget('CJuiDateTimePicker',
+                                        array(
+                                            'model'=>$model,
+                                            'attribute'=> 'date_create',
+                                            'mode'=>'datetime',
+                                            'options'=>array(
+                                                'dateFormat'=>'yy-mm-dd',
+                                                'timeFormat' => 'hh:mm:ss',
+                                            )
+                                ));
+                        ?>
                         <?php echo $form->error($model,'date_create'); ?>
                     </td>
                 </tr>
@@ -198,7 +209,18 @@
                         <?php echo $form->labelEx($model,'date_update'); ?>
                     </td>
                     <td>
-                        <?php echo $form->textField($model,'date_update'); ?>
+                        <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                                $this->widget('CJuiDateTimePicker',
+                                        array(
+                                            'model'=>$model,
+                                            'attribute'=> 'date_update',
+                                            'mode'=>'datetime',
+                                            'options'=>array(
+                                                'dateFormat'=>'yy-mm-dd',
+                                                'timeFormat' => 'hh:mm:ss',
+                                            )
+                                ));
+                        ?>
                         <?php echo $form->error($model,'date_update'); ?>
                     </td>
                 </tr>
@@ -207,7 +229,18 @@
                         <?php echo $form->labelEx($model,'date_last_visit'); ?>
                     </td>
                     <td>
-                        <?php echo $form->textField($model,'date_last_visit'); ?>
+                        <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                                $this->widget('CJuiDateTimePicker',
+                                        array(
+                                            'model'=>$model,
+                                            'attribute'=> 'date_last_visit',
+                                            'mode'=>'datetime',
+                                            'options'=>array(
+                                                'dateFormat'=>'yy-mm-dd',
+                                                'timeFormat' => 'hh:mm:ss',
+                                            )
+                                ));
+                        ?>
                         <?php echo $form->error($model,'date_last_visit'); ?>
                     </td>
                 </tr>

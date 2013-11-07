@@ -1,0 +1,464 @@
+2013/11/06 21:53:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/11/07 15:55:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/11/07 15:55:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/11/07 21:26:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 21:29:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 21:30:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 21:30:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 22:09:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2013/11/07 23:33:04 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 04:Oct:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 04:O...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 04:O...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 04:O...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 04:O...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 04:O...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:33:58 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 04:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 04:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 04:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 04:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 04:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 04:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:34:20 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 16:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 16:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 16:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 16:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 16:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 16:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:34:21 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 16:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 16:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 16:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 16:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 16:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 16:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:34:22 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 16:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 16:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 16:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 16:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 16:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 16:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:34:27 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 16:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 16:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 16:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 16:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 16:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 16:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:34:28 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 16:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 16:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 16:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 16:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 16:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 16:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:34:29 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 16:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 16:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 16:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 16:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 16:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 16:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:34:29 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "User.2013-10-18 16:18:52".' in /var/www/services.net/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/services.net/framework/db/ar/CActiveRecord.php(145): CComponent->__get('2013-10-18 16:1...')
+#1 /var/www/services.net/framework/web/helpers/CHtml.php(2529): CActiveRecord->__get('2013-10-18 16:1...')
+#2 /var/www/services.net/framework/web/helpers/CHtml.php(2252): CHtml::resolveValue(Object(User), '2013-10-18 16:1...')
+#3 /var/www/services.net/framework/web/helpers/CHtml.php(1434): CHtml::activeInputField('text', Object(User), '2013-10-18 16:1...', Array)
+#4 /var/www/services.net/protected/extensions/CJuiDateTimePicker/CJuiDateTimePicker.php(38): CHtml::activeTextField(Object(User), '2013-10-18 16:1...', Array)
+#5 /var/www/services.net/framework/web/CBaseController.php(173): CJuiDateTimePicker->run()
+#6 /var/www/services.net/protected/modules/user/views/admin/main/_form.php(201): CBaseController->widget('CJuiDateTimePic...', Array)
+#7 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#8 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#9 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#10 /var/www/services.net/protected/modules/user/views/admin/main/update.php(27): CController->renderPartial('_form', Array)
+#11 /var/www/services.net/framework/web/CBaseController.php(126): require('/var/www/servic...')
+#12 /var/www/services.net/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/servic...', Array, true)
+#13 /var/www/services.net/framework/web/CController.php(869): CBaseController->renderFile('/var/www/servic...', Array, true)
+#14 /var/www/services.net/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#15 /var/www/services.net/protected/modules/user/controllers/admin/MainController.php(61): CController->render('update', Array)
+#16 [internal function]: MainController->actionUpdate('2')
+#17 /var/www/services.net/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(MainController), Array)
+#18 /var/www/services.net/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(MainController), Object(ReflectionMethod), Array)
+#19 /var/www/services.net/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#20 /var/www/services.net/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 /var/www/services.net/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#22 /var/www/services.net/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 /var/www/services.net/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 /var/www/services.net/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 /var/www/services.net/framework/web/CController.php(291): CFilterChain->run()
+#26 /var/www/services.net/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 /var/www/services.net/framework/web/CWebApplication.php(282): CController->run('update')
+#28 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin/main...')
+#29 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#30 /var/www/services.net/index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/admin/user/main/update?id=2
+HTTP_REFERER=http://services.net/admin/user/main/admin
+---
+2013/11/07 23:35:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 23:38:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 23:39:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 23:42:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 23:42:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 23:43:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
+2013/11/07 23:44:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png".' in /var/www/services.net/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/services.net/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/e974e835...')
+#1 /var/www/services.net/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /var/www/services.net/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/e974e835/jui/css/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png
+HTTP_REFERER=http://services.net/assets/e974e835/jui/css/base/jquery-ui.css
+---
