@@ -184,6 +184,28 @@
                         <?php echo $form->error($model,'lng'); ?>
                     </td>
                 </tr>
+                <tr class="even">
+                    <td class="label">
+                    </td>
+                    <td>
+                        <?php
+                            Yii::import('application.extensions.EGMap.*');
+
+                            $gMap = new EGMap();
+                            $gMap->zoom = 10;
+                            $mapTypeControlOptions = array(
+                              'position'=> EGMapControlPosition::LEFT_BOTTOM,
+                              'style'=>EGMap::MAPTYPECONTROL_STYLE_DROPDOWN_MENU
+                            );
+
+                            $gMap->mapTypeControlOptions= $mapTypeControlOptions;
+
+                            $gMap->setCenter(39.721089311812094, 2.91165944519042);
+                            
+                            $gMap->renderMap();
+                        ?>
+                    </td>
+                </tr>
                 <tr class="odd">
                     <td class="label">
                         <?php echo $form->labelEx($model,'date_create'); ?>
