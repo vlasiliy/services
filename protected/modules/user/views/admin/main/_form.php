@@ -188,21 +188,98 @@
                     <td class="label">
                     </td>
                     <td>
+                        <script>var marker;</script>
                         <?php
                             Yii::import('application.extensions.EGMap.*');
-
+                            
                             $gMap = new EGMap();
-                            $gMap->zoom = 10;
+                            $gMap->setWidth(500);
+                            $gMap->setHeight(500);
+                            $gMap->zoom = 6;
                             $mapTypeControlOptions = array(
-                              'position'=> EGMapControlPosition::LEFT_BOTTOM,
-                              'style'=>EGMap::MAPTYPECONTROL_STYLE_DROPDOWN_MENU
+                              'position' => EGMapControlPosition::RIGHT_TOP,
+                              'style' => EGMap::MAPTYPECONTROL_STYLE_HORIZONTAL_BAR
                             );
 
-                            $gMap->mapTypeControlOptions= $mapTypeControlOptions;
+                            $gMap->mapTypeId = EGMap::TYPE_ROADMAP;
+                            $gMap->mapTypeControlOptions = $mapTypeControlOptions;
 
-                            $gMap->setCenter(39.721089311812094, 2.91165944519042);
+                            // Preparing InfoWindow with information about our marker.
+                            $info_window_a = new EGMapInfoWindow("<div class='gmaps-label' style='color: #000;'>Hi! I'm your marker!</div>");
+
+                            // Setting up an icon for marker.
+                            $icon = new EGMapMarkerImage("/img/symbol_blank.png");
+
+                            $icon->setSize(32, 37);
+                            //$icon->setAnchor(16, 16.5);
+                            $icon->setOrigin(0, 0);
+
+                            // Saving coordinates after user dragged our marker.
+                            $dragevent = new EGMapEvent('dragend', "function (event) {
+//                                                                        $.ajax({
+//                                                                            'type':'POST',
+//                                                                            'url':'".$this->createUrl('/')."',
+//                                                                            'data':({'lat': event.latLng.lat(), 'lng': event.latLng.lng()}),
+//                                                                            'cache':false,
+//                                                                        });
+                                                                          $('#User_lat').val(event.latLng.lat());
+                                                                          $('#User_lng').val(event.latLng.lng());
+                                                                    }",
+                                                        false,
+                                                        EGMapEvent::TYPE_EVENT_DEFAULT
+                            );
                             
-                            $gMap->renderMap();
+                            $rightclickevent = new EGMapEvent('rightclick',
+                                    'function (event) {'.
+                                        'marker.setVisible(false);'.
+                                    '}',
+                                    false,
+                                    EGMapEvent::TYPE_EVENT_DOM
+                            );
+                            
+                            // If we have already created marker - show it
+                            if (isset($map))
+                            {
+
+                                $marker = new EGMapMarker($map->lat, $map->lng, array('title' => Yii::t('catalog', $items->type->name),
+                                        'icon'=>$icon, 'draggable'=>true), 'marker', array('dragevent'=>$dragevent));
+                                $marker->addHtmlInfoWindow($info_window_a);
+                                $gMap->addMarker($marker);
+                                $gMap->setCenter($map->lat, $map->lng);
+                                $gMap->zoom = 16;
+
+                            // If we don't have marker in database - make sure user can create one
+                            }
+                            else
+                            {
+                                //$gMap->setCenter(38.348850, -0.477551);
+                                //geocode
+                                $sample_address = 'Столица Украины, Киев';
+                                $geocoded_address = new EGMapGeocodedAddress($sample_address);
+                                $geocoded_address->geocode($gMap->getGMapClient());
+                                $gMap->setCenter($geocoded_address->getLat(), $geocoded_address->getLng());
+
+                                // Setting up new event for user click on map, so marker will be created on place and respectful event added.
+                                $gMap->addEvent(new EGMapEvent('click',
+                                        'function (event) {marker = new google.maps.Marker({position: event.latLng, map: '.$gMap->getJsName().
+                                        ', draggable: true, icon: '.$icon->toJs().'}); '.$gMap->getJsName().
+                                        '.setCenter(event.latLng); var dragevent = '.$dragevent->toJs('marker').';var rightclickevent = '.$rightclickevent->toJs('marker').';'.
+                                        'marker.setVisible(true);'.
+                                        '$("#User_lat").val(event.latLng.lat());$("#User_lng").val(event.latLng.lng());'.
+//                                         $.ajax({'.
+//                                          '"type":"POST",'.
+//                                         '"url":"'.$this->createUrl('/').'",'.
+//                                        '"data":({"lat": event.latLng.lat(), "lng": event.latLng.lng()}),'.
+//                                       '"cache":false,'.
+//                                        '});'
+                                        '}',
+                                        false,
+                                        EGMapEvent::TYPE_EVENT_DEFAULT_ONCE)
+                                );
+                                
+
+                            }
+                            $gMap->renderMap(array(), Yii::app()->language);
                         ?>
                     </td>
                 </tr>
