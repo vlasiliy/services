@@ -168,32 +168,21 @@
                 </tr>
                 <tr class="odd">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'lat'); ?>
+                        <label><?php echo Yii::t('UserModule.user','In map')?></label>
+                        <br /><br />
+                        <p><?php echo Yii::t('UserModule.user','To add a marker - click on the map.')?></p>
+                        <p><?php echo Yii::t('UserModule.user','To change the position of the marker - drag.')?></p>
+                        <p><?php echo Yii::t('UserModule.user','To delete a marker - click the right mouse button.')?></p>
                     </td>
                     <td>
-                        <?php echo $form->textField($model,'lat'); ?>
-                        <?php echo $form->error($model,'lat'); ?>
-                    </td>
-                </tr>
-                <tr class="even">
-                    <td class="label">
-                        <?php echo $form->labelEx($model,'lng'); ?>
-                    </td>
-                    <td>
-                        <?php echo $form->textField($model,'lng'); ?>
-                        <?php echo $form->error($model,'lng'); ?>
-                    </td>
-                </tr>
-                <tr class="even">
-                    <td class="label">
-                    </td>
-                    <td>
-                        <script>var marker;</script>
+                        <?php echo $form->hiddenField($model,'lat'); ?>
+                        <?php echo $form->hiddenField($model,'lng'); ?>
+                        <script>var markers = [];</script>
                         <?php
                             Yii::import('application.extensions.EGMap.*');
                             
                             $gMap = new EGMap();
-                            $gMap->setWidth(500);
+                            $gMap->setWidth(600);
                             $gMap->setHeight(500);
                             $gMap->zoom = 6;
                             $mapTypeControlOptions = array(
@@ -216,12 +205,6 @@
 
                             // Saving coordinates after user dragged our marker.
                             $dragevent = new EGMapEvent('dragend', "function (event) {
-//                                                                        $.ajax({
-//                                                                            'type':'POST',
-//                                                                            'url':'".$this->createUrl('/')."',
-//                                                                            'data':({'lat': event.latLng.lat(), 'lng': event.latLng.lng()}),
-//                                                                            'cache':false,
-//                                                                        });
                                                                           $('#User_lat').val(event.latLng.lat());
                                                                           $('#User_lng').val(event.latLng.lng());
                                                                     }",
@@ -231,23 +214,33 @@
                             
                             $rightclickevent = new EGMapEvent('rightclick',
                                     'function (event) {'.
-                                        'marker.setVisible(false);'.
+                                        'markers[0].setMap(null);'.
+                                        'markers.length = 0;'.
+                                        '$("#User_lat").val(0);$("#User_lng").val(0);'.
                                     '}',
                                     false,
-                                    EGMapEvent::TYPE_EVENT_DOM
+                                    EGMapEvent::TYPE_EVENT_DEFAULT
                             );
                             
                             // If we have already created marker - show it
-                            if (isset($map))
+                            if($model->lat != 0 && $model->lng != 0)
                             {
 
-                                $marker = new EGMapMarker($map->lat, $map->lng, array('title' => Yii::t('catalog', $items->type->name),
-                                        'icon'=>$icon, 'draggable'=>true), 'marker', array('dragevent'=>$dragevent));
+                                $marker = new EGMapMarker($model->lat, $model->lng, array('title' => 'hello',
+                                        'icon'=>$icon, 'draggable'=>true), 'marker', array('dragevent'=>$dragevent, 'rightclickevent' => $rightclickevent));
                                 $marker->addHtmlInfoWindow($info_window_a);
                                 $gMap->addMarker($marker);
-                                $gMap->setCenter($map->lat, $map->lng);
+                                $gMap->setCenter($model->lat, $model->lng);
                                 $gMap->zoom = 16;
-
+                                ?>
+                        
+                                <script>
+                                    $(document).ready(function(){
+                                        markers.push(marker);
+                                    });
+                                </script>
+                                
+                                <?php
                             // If we don't have marker in database - make sure user can create one
                             }
                             else
@@ -261,20 +254,18 @@
 
                                 // Setting up new event for user click on map, so marker will be created on place and respectful event added.
                                 $gMap->addEvent(new EGMapEvent('click',
-                                        'function (event) {marker = new google.maps.Marker({position: event.latLng, map: '.$gMap->getJsName().
-                                        ', draggable: true, icon: '.$icon->toJs().'}); '.$gMap->getJsName().
-                                        '.setCenter(event.latLng); var dragevent = '.$dragevent->toJs('marker').';var rightclickevent = '.$rightclickevent->toJs('marker').';'.
-                                        'marker.setVisible(true);'.
-                                        '$("#User_lat").val(event.latLng.lat());$("#User_lng").val(event.latLng.lng());'.
-//                                         $.ajax({'.
-//                                          '"type":"POST",'.
-//                                         '"url":"'.$this->createUrl('/').'",'.
-//                                        '"data":({"lat": event.latLng.lat(), "lng": event.latLng.lng()}),'.
-//                                       '"cache":false,'.
-//                                        '});'
+                                        'function (event) {'.
+                                            'if(markers.length == 0){'.
+                                                'var marker = new google.maps.Marker({position: event.latLng, map: '.$gMap->getJsName().
+                                                ', draggable: true, icon: '.$icon->toJs().'}); '.$gMap->getJsName().
+                                                '.setCenter(event.latLng); var dragevent = '.$dragevent->toJs('marker').';var rightclickevent = '.$rightclickevent->toJs('marker').';'.
+
+                                                'markers.push(marker);'.
+                                                '$("#User_lat").val(event.latLng.lat());$("#User_lng").val(event.latLng.lng());'.
+                                            '}'.
                                         '}',
                                         false,
-                                        EGMapEvent::TYPE_EVENT_DEFAULT_ONCE)
+                                        EGMapEvent::TYPE_EVENT_DEFAULT)
                                 );
                                 
 
@@ -283,7 +274,7 @@
                         ?>
                     </td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="label">
                         <?php echo $form->labelEx($model,'date_create'); ?>
                     </td>
@@ -303,7 +294,7 @@
                         <?php echo $form->error($model,'date_create'); ?>
                     </td>
                 </tr>
-                <tr class="even">
+                <tr class="odd">
                     <td class="label">
                         <?php echo $form->labelEx($model,'date_update'); ?>
                     </td>
@@ -323,7 +314,7 @@
                         <?php echo $form->error($model,'date_update'); ?>
                     </td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="label">
                         <?php echo $form->labelEx($model,'date_last_visit'); ?>
                     </td>

@@ -33,6 +33,10 @@ return array(
     'Ban' => 'Забанен',
     'male' => 'мужской',
     'women' => 'женский',
+    'In map' => 'На карте',
+    'To add a marker - click on the map.' => 'Для добавления маркера - кликните по карте.',
+    'To change the position of the marker - drag.' => 'Для изменения положения маркера - перетащите его.',
+    'To delete a marker - click the right mouse button.' => 'Для удаления маркера - кликните по нему правой кнопкой мыши.',
     //
     'Users' => 'Пользователи',
     'Management' => 'Управление',
