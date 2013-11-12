@@ -179,6 +179,8 @@
                         <?php echo $form->hiddenField($model,'lng'); ?>
                         <script>var markers = [];</script>
                         <?php
+                            $afterInit = array();
+                        
                             Yii::import('application.extensions.EGMap.*');
                             
                             $gMap = new EGMap();
@@ -225,22 +227,15 @@
                             // If we have already created marker - show it
                             if($model->lat != 0 && $model->lng != 0)
                             {
-
                                 $marker = new EGMapMarker($model->lat, $model->lng, array('title' => 'hello',
                                         'icon'=>$icon, 'draggable'=>true), 'marker', array('dragevent'=>$dragevent, 'rightclickevent' => $rightclickevent));
                                 $marker->addHtmlInfoWindow($info_window_a);
                                 $gMap->addMarker($marker);
                                 $gMap->setCenter($model->lat, $model->lng);
                                 $gMap->zoom = 16;
-                                ?>
-                        
-                                <script>
-                                    $(document).ready(function(){
-                                        markers.push(marker);
-                                    });
-                                </script>
-                                
-                                <?php
+                                $afterInit = array('var markers = [];markers.push(marker);alert(markers.lenght);');
+                                //$afterInit = array('alert(1);');
+                               
                             // If we don't have marker in database - make sure user can create one
                             }
                             else
@@ -270,7 +265,7 @@
                                 
 
                             }
-                            $gMap->renderMap(array(), Yii::app()->language);
+                            $gMap->renderMap($afterInit, Yii::app()->language);
                         ?>
                     </td>
                 </tr>

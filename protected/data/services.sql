@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Ноя 05 2013 г., 16:38
+-- Время создания: Ноя 12 2013 г., 17:36
 -- Версия сервера: 5.5.34-0ubuntu0.12.04.1
 -- Версия PHP: 5.3.10-1ubuntu3.8
 
@@ -155,8 +155,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `site` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `skype` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `icq` int(10) unsigned NOT NULL,
-  `lat` float NOT NULL,
-  `lng` float NOT NULL,
+  `lat` double(20,17) NOT NULL,
+  `lng` double(20,17) NOT NULL,
   `date_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_update` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_last_visit` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`) VALUES
-(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', 0, 0, 0, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-05 10:34:43', 0),
-(2, 'moder', 'anliko.v@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '0965349865', '', '', 'anli_v', 0, 0, 0, '2013-10-18 13:18:52', '0000-00-00 00:00:00', '2013-10-27 12:30:00', 0);
+(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', 0, 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-12 12:20:54', 0),
+(2, 'moder', 'anliko.v@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '0965349865', '', '', 'anli_v', 0, 50.41131829510666000, 30.51013190299295300, '2013-10-18 13:18:52', '0000-00-00 00:00:00', '2013-10-27 12:30:00', 0);
 
 -- --------------------------------------------------------
 
