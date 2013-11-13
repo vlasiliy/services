@@ -61,14 +61,16 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, password, nick, name, surname, sex, company, city, postcode, address, tel1, tel2, site, skype, icq, lat, lng, date_create', 'required'),
+			array('email, nick, name, surname, sex, city, postcode, address, tel1, tel2, site, skype, icq, lat, lng, date_create', 'required'),
+			array('password', 'required', 'on'=>'create'),
 			array('lat, lng', 'numerical'),
 			array('email, company', 'length', 'max'=>128),
+                        array('email', 'email'),
 			array('password, name, skype', 'length', 'max'=>32),
 			array('nick, postcode, tel1, tel2', 'length', 'max'=>16),
 			array('surname, city, address, site', 'length', 'max'=>64),
 			array('sex', 'length', 'max'=>1),
-			array('icq', 'length', 'max'=>10),
+			array('icq', 'length', 'max'=>12),
                         array('ban', 'length', 'max'=>1),
 			array('role, date_update, date_last_visit, ban', 'safe'),
 			// The following rule is used by search().
@@ -86,8 +88,8 @@ class User extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'projects' => array(self::HAS_MANY, 'Project', 'user_id'),
-			'userCategories' => array(self::HAS_MANY, 'UserCategory', 'user_id'),
-			'userRegions' => array(self::HAS_MANY, 'UserRegion', 'user_id'),
+			'categories' => array(self::MANY_MANY, 'Category', 'user_category(user_id, category_id)'),
+			'regions' => array(self::MANY_MANY, 'Region', 'user_region(user_id, region_id)'),
 		);
 	}
 

@@ -42,7 +42,7 @@
                 </tr>
                 <tr class="odd">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'password'); ?>
+                        <?php echo $form->label($model,'password'); ?>
                     </td>
                     <td>
                         <?php echo $form->passwordField($model,'password',array('size'=>32,'maxlength'=>32, 'value' => '')); ?>
@@ -87,7 +87,7 @@
                 </tr>
                 <tr class="even">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'company'); ?>
+                        <?php echo $form->label($model,'company'); ?>
                     </td>
                     <td>
                         <?php echo $form->textField($model,'company',array('size'=>32,'maxlength'=>128)); ?>
@@ -119,6 +119,16 @@
                     <td>
                         <?php echo $form->textField($model,'address',array('size'=>32,'maxlength'=>64)); ?>
                         <?php echo $form->error($model,'address'); ?>
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->label($model,'regions'); ?>
+                    </td>
+                    <td>
+                        <?php //echo $form->checkBoxList($model, 'regions', CHtml::listData(Region::model()->findAll(), 'id', 'name')); ?>
+                        <?php echo $form->checkBoxList($model, 'regions', array('Область 1' => 'Область 1','Область 2' => 'Область 2')); ?>
+                        <?php echo $form->error($model,'regions'); ?>
                     </td>
                 </tr>
                 <tr class="even">
@@ -196,7 +206,7 @@
                             $gMap->mapTypeControlOptions = $mapTypeControlOptions;
 
                             // Preparing InfoWindow with information about our marker.
-                            $info_window_a = new EGMapInfoWindow("<div class='gmaps-label' style='color: #000;'>Hi! I'm your marker!</div>");
+                            //$info_window_a = new EGMapInfoWindow("<div class='gmaps-label' style='color: #000;'>Hi! I'm your marker!</div>");
 
                             // Setting up an icon for marker.
                             $icon = new EGMapMarkerImage("/img/symbol_blank.png");
@@ -224,17 +234,31 @@
                                     EGMapEvent::TYPE_EVENT_DEFAULT
                             );
                             
+                            $clickevent = new EGMapEvent('click',
+                                        'function (event) {'.
+                                            'if(markers.length == 0){'.
+                                                'var defMarker = new google.maps.Marker({position: event.latLng, map: '.$gMap->getJsName().
+                                                ', draggable: true, icon: '.$icon->toJs().'}); '.$gMap->getJsName().
+                                                '.setCenter(event.latLng); var dragevent = '.$dragevent->toJs('defMarker').';var rightclickevent = '.$rightclickevent->toJs('defMarker').';'.
+
+                                                'markers.push(defMarker);'.
+                                                '$("#User_lat").val(event.latLng.lat());$("#User_lng").val(event.latLng.lng());'.
+                                            '}'.
+                                        '}',
+                                        false,
+                                        EGMapEvent::TYPE_EVENT_DEFAULT);
+                            
                             // If we have already created marker - show it
                             if($model->lat != 0 && $model->lng != 0)
                             {
                                 $marker = new EGMapMarker($model->lat, $model->lng, array('title' => 'hello',
-                                        'icon'=>$icon, 'draggable'=>true), 'marker', array('dragevent'=>$dragevent, 'rightclickevent' => $rightclickevent));
-                                $marker->addHtmlInfoWindow($info_window_a);
+                                        'icon'=>$icon, 'draggable'=>true), 'defMarker', array('dragevent'=>$dragevent, 'rightclickevent' => $rightclickevent));
+                                //$marker->addHtmlInfoWindow($info_window_a);
                                 $gMap->addMarker($marker);
                                 $gMap->setCenter($model->lat, $model->lng);
                                 $gMap->zoom = 16;
-                                $afterInit = array('var markers = [];markers.push(marker);alert(markers.lenght);');
-                                //$afterInit = array('alert(1);');
+                                $gMap->addEvent($clickevent);
+                                $afterInit = array('markers.push(defMarker);');
                                
                             // If we don't have marker in database - make sure user can create one
                             }
@@ -248,20 +272,7 @@
                                 $gMap->setCenter($geocoded_address->getLat(), $geocoded_address->getLng());
 
                                 // Setting up new event for user click on map, so marker will be created on place and respectful event added.
-                                $gMap->addEvent(new EGMapEvent('click',
-                                        'function (event) {'.
-                                            'if(markers.length == 0){'.
-                                                'var marker = new google.maps.Marker({position: event.latLng, map: '.$gMap->getJsName().
-                                                ', draggable: true, icon: '.$icon->toJs().'}); '.$gMap->getJsName().
-                                                '.setCenter(event.latLng); var dragevent = '.$dragevent->toJs('marker').';var rightclickevent = '.$rightclickevent->toJs('marker').';'.
-
-                                                'markers.push(marker);'.
-                                                '$("#User_lat").val(event.latLng.lat());$("#User_lng").val(event.latLng.lng());'.
-                                            '}'.
-                                        '}',
-                                        false,
-                                        EGMapEvent::TYPE_EVENT_DEFAULT)
-                                );
+                                $gMap->addEvent($clickevent);
                                 
 
                             }
@@ -327,6 +338,15 @@
                                 ));
                         ?>
                         <?php echo $form->error($model,'date_last_visit'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->label($model,'ban'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->checkBox($model, 'ban'); ?>
+                        <?php echo $form->error($model,'ban'); ?>
                     </td>
                 </tr>
             </table>

@@ -34,6 +34,7 @@ class MainController extends BackendController
 
 		$this->render('create',array(
 			'model'=>$model,
+                        'regions'=>Region::model()->findAll(),
 		));
 	}
 
@@ -56,6 +57,8 @@ class MainController extends BackendController
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+                //print_r(CHtml::listData(Region::model()->findAll(), 'id', 'name'));die;
+                
 		$this->render('update',array(
 			'model'=>$model,
 		));
@@ -110,7 +113,8 @@ class MainController extends BackendController
 	 */
 	public function loadModel($id)
 	{
-		$model=User::model()->findByPk($id);
+		$model=User::model()->with('regions')->findByPk($id);
+                //echo '<pre>';print_r($model);die;
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
