@@ -126,8 +126,7 @@
                         <?php echo $form->label($model,'regions'); ?>
                     </td>
                     <td>
-                        <?php //echo $form->checkBoxList($model, 'regions', CHtml::listData(Region::model()->findAll(), 'id', 'name')); ?>
-                        <?php echo $form->checkBoxList($model, 'regions', array('Область 1' => 'Область 1','Область 2' => 'Область 2')); ?>
+                        <?php echo $form->checkBoxList($model, 'regionsArray', CHtml::listData(Region::model()->findAll(), 'id', 'name')); ?>
                         <?php echo $form->error($model,'regions'); ?>
                     </td>
                 </tr>

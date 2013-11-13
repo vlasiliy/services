@@ -93,6 +93,45 @@ class User extends CActiveRecord
 		);
 	}
 
+        public function behaviors()
+        {
+            return array(
+                'DMultiplyListBehavior'=>array(
+                     'class'=>'DMultiplyListBehavior',
+                     'attribute'=>'regionsArray',
+                     'relation'=>'regions',
+                     'relationPk'=>'id',
+                ),
+            );
+        }
+
+        protected function afterSave()
+        {
+            $this->refreshRegions();
+            parent::afterSave();
+        }
+
+        protected function refreshRegions()
+        {
+            $regions = $this->regionsArray;
+
+            UserRegion::model()->deleteAllByAttributes(array('post_id'=>$this->id));
+
+            if (is_array($regions))
+            {
+                foreach ($regions as $id)
+                {
+                    if (Region::model()->exists('id=:id', array(':id'=>$id)))
+                    {
+                        $userReg = new UserRegion();
+                        $userReg->user_id = $this->id;
+                        $userReg->region_id = $id;
+                        $userReg->save();
+                    }
+                }
+            }
+        }
+        
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
