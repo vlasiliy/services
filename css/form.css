@@ -171,3 +171,11 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 div.crtUpdFrm input, div.crtUpdFrm select, div.crtUpdFrm textarea {
     margin: 0;
 }
+div.form .checkBoxList label {
+    float: none;
+    display: inline;
+    padding: 0;
+}
+div.form .checkBoxList input {
+    margin-right: 5px;
+}

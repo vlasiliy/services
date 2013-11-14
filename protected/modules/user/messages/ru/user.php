@@ -31,6 +31,15 @@ return array(
     'Date update' => 'Дата обновления',
     'Date last visit' => 'Дата последнего визита',
     'Ban' => 'Забанен',
+    'Regions' => 'Регионы',
+    'Subscription to announcements from the tape' => 'Подписка на объявления из ленты.',
+    'Subscription to our Newsletter' => 'Подписка на новости сайта',
+    
+    //errors
+    'Do not use a space in the Password' => 'Не используйте пробел в поле Пароль',
+    'In the Skype using letters, numbers and underscores.' => 'В Skype используйте латинские буквы, цифры и символ подчеркивания.',
+    'In the Nick using letters, numbers and underscores. Nick must start with a letter.' => 'В Нике используйте латинские буквы, цифры и символ подчеркивания. Ник должен начинаться с буквы.',
+    
     'male' => 'мужской',
     'women' => 'женский',
     'In map' => 'На карте',

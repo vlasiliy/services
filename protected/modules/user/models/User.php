@@ -61,18 +61,25 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, nick, name, surname, sex, city, postcode, address, tel1, tel2, site, skype, icq, lat, lng, date_create', 'required'),
+                        array('email, nick, name, surname, company, password, tel1, tel2, site, skype, icq', 'filter', 'filter'=>'trim'),
+			array('email, nick, name, surname, sex, ban, ad, news, city, postcode, address, tel1, lat, lng', 'required'),
+//			array('name, surname', 'match', 'pattern' => '/^[a-zA-Z]{1}[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Nick using letters, numbers and underscores. Nick must start with a letter.'),
 			array('password', 'required', 'on'=>'create'),
+                        array('password', 'length', 'min' => 6),
+                        array('password', 'match', 'pattern' => '/^[\S]+$/', 'message' => Yii::t('UserModule.user', 'Do not use a space in the Password')),
 			array('lat, lng', 'numerical'),
 			array('email, company', 'length', 'max'=>128),
                         array('email', 'email'),
 			array('password, name, skype', 'length', 'max'=>32),
 			array('nick, postcode, tel1, tel2', 'length', 'max'=>16),
+			array('nick', 'match', 'pattern' => '/^[a-zA-Z]{1}[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Nick using letters, numbers and underscores. Nick must start with a letter.')),
 			array('surname, city, address, site', 'length', 'max'=>64),
-			array('sex', 'length', 'max'=>1),
+			array('sex, ban, ad, news', 'length', 'max'=>1),
+                        array('tel1, tel2, icq', 'numerical', 'integerOnly' => true),
+                        array('site', 'url'),
+                        array('skype', 'match', 'pattern' => '/^[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Skype using letters, numbers and underscores.')),
 			array('icq', 'length', 'max'=>12),
-                        array('ban', 'length', 'max'=>1),
-			array('role, date_update, date_last_visit, ban', 'safe'),
+			array('role, date_update, date_last_visit, tel2, site, skype, icq, date_create', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, role, email, password, nick, name, surname, sex, company, city, postcode, address, tel1, tel2, site, skype, icq, lat, lng, date_create, date_update, date_last_visit, ban', 'safe', 'on'=>'search'),
@@ -115,7 +122,7 @@ class User extends CActiveRecord
         {
             $regions = $this->regionsArray;
 
-            UserRegion::model()->deleteAllByAttributes(array('post_id'=>$this->id));
+            UserRegion::model()->deleteAllByAttributes(array('user_id'=>$this->id));
 
             if (is_array($regions))
             {
@@ -161,6 +168,9 @@ class User extends CActiveRecord
 			'date_update' => Yii::t('UserModule.user', 'Date update'),
 			'date_last_visit' => Yii::t('UserModule.user', 'Date last visit'),
 			'ban' => Yii::t('UserModule.user', 'Ban'),
+                        'regions' => Yii::t('UserModule.user', 'Regions'),
+                        'ad' => Yii::t('UserModule.user', 'Subscription to announcements from the tape'),
+                        'news' => Yii::t('UserModule.user', 'Subscription to our Newsletter'),
 		);
 	}
         

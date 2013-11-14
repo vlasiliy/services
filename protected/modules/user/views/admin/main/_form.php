@@ -78,7 +78,7 @@
                 </tr>
                 <tr class="odd">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'sex'); ?>
+                        <?php echo $form->label($model,'sex'); ?>
                     </td>
                     <td>
                         <?php echo $form->dropDownList($model,'sex', array('1' => Yii::t("UserModule.user", 'male'), '0' => Yii::t("UserModule.user", 'women'))); ?> 
@@ -126,7 +126,7 @@
                         <?php echo $form->label($model,'regions'); ?>
                     </td>
                     <td>
-                        <?php echo $form->checkBoxList($model, 'regionsArray', CHtml::listData(Region::model()->findAll(), 'id', 'name')); ?>
+                        <?php echo $form->checkBoxList($model, 'regionsArray', CHtml::listData(Region::model()->findAll(), 'id', 'name'), array('template' => '<div class="checkBoxList">{input}{label}</div>', 'separator'=>false)); ?>
                         <?php echo $form->error($model,'regions'); ?>
                     </td>
                 </tr>
@@ -141,7 +141,7 @@
                 </tr>
                 <tr class="odd">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'tel2'); ?>
+                        <?php echo $form->label($model,'tel2'); ?>
                     </td>
                     <td>
                         <?php echo $form->textField($model,'tel2',array('size'=>16,'maxlength'=>16)); ?>
@@ -150,7 +150,7 @@
                 </tr>
                 <tr class="even">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'site'); ?>                        
+                        <?php echo $form->label($model,'site'); ?>                        
                     </td>
                     <td>
                         <?php echo $form->textField($model,'site',array('size'=>32,'maxlength'=>64)); ?>
@@ -159,7 +159,7 @@
                 </tr>
                 <tr class="odd">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'skype'); ?>
+                        <?php echo $form->label($model,'skype'); ?>
                     </td>
                     <td>
                         <?php echo $form->textField($model,'skype',array('size'=>32,'maxlength'=>32)); ?>
@@ -168,7 +168,7 @@
                 </tr>
                 <tr class="even">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'icq'); ?>
+                        <?php echo $form->label($model,'icq'); ?>
                     </td>
                     <td>
                         <?php echo $form->textField($model,'icq',array('size'=>10,'maxlength'=>10)); ?>
@@ -346,6 +346,24 @@
                     <td>
                         <?php echo $form->checkBox($model, 'ban'); ?>
                         <?php echo $form->error($model,'ban'); ?>
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->label($model,'ad'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->checkBox($model, 'ad'); ?>
+                        <?php echo $form->error($model,'ad'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->label($model,'news'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->checkBox($model, 'news'); ?>
+                        <?php echo $form->error($model,'news'); ?>
                     </td>
                 </tr>
             </table>

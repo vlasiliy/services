@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Ноя 12 2013 г., 17:36
+-- Время создания: Ноя 14 2013 г., 18:04
 -- Версия сервера: 5.5.34-0ubuntu0.12.04.1
 -- Версия PHP: 5.3.10-1ubuntu3.8
 
@@ -114,7 +114,38 @@ CREATE TABLE IF NOT EXISTS `region` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
+
+--
+-- Дамп данных таблицы `region`
+--
+
+INSERT INTO `region` (`id`, `name`) VALUES
+(1, 'Автономная Республика Крым'),
+(2, 'Винницкая область'),
+(3, 'Волынская область'),
+(4, 'Днепропетровская область'),
+(5, 'Донецкая область'),
+(6, 'Житомирская область'),
+(7, 'Закарпатская область'),
+(8, 'Запорожская область'),
+(9, 'Ивано-Франковская область'),
+(10, 'Киевская область'),
+(11, 'Кировоградская область'),
+(12, 'Луганская область'),
+(13, 'Львовская область'),
+(14, 'Николаевская область'),
+(15, 'Одесская область'),
+(16, 'Полтавская область'),
+(17, 'Ровненская область'),
+(18, 'Сумская область'),
+(19, 'Тернопольская область'),
+(20, 'Харьковская область'),
+(21, 'Херсонская область'),
+(22, 'Хмельницкая область'),
+(23, 'Черкасская область'),
+(24, 'Черниговская область'),
+(25, 'Черновицкая область');
 
 -- --------------------------------------------------------
 
@@ -154,13 +185,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `tel2` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `site` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `skype` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `icq` int(10) unsigned NOT NULL,
+  `icq` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
   `lat` double(20,17) NOT NULL,
   `lng` double(20,17) NOT NULL,
   `date_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_update` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_last_visit` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `ban` int(1) unsigned NOT NULL DEFAULT '0',
+  `ad` int(1) unsigned NOT NULL DEFAULT '0',
+  `news` int(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
@@ -168,9 +201,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`) VALUES
-(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', 0, 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-12 12:20:54', 0),
-(2, 'moder', 'anliko.v@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '0965349865', '', '', 'anli_v', 0, 50.41131829510666000, 30.51013190299295300, '2013-10-18 13:18:52', '0000-00-00 00:00:00', '2013-10-27 12:30:00', 0);
+INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`, `ad`, `news`) VALUES
+(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-13 12:45:03', 0, 0, 0),
+(2, 'user', 'anliko.v@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44588815366918000, 30.50958473235391500, '2013-10-18 13:18:52', '0000-00-00 00:00:00', '2013-10-27 12:30:00', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -210,6 +243,14 @@ CREATE TABLE IF NOT EXISTS `user_region` (
   KEY `user_id` (`user_id`),
   KEY `region_id` (`region_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `user_region`
+--
+
+INSERT INTO `user_region` (`user_id`, `region_id`) VALUES
+(2, 1),
+(2, 6);
 
 -- --------------------------------------------------------
 

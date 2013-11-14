@@ -27,6 +27,7 @@ class MainController extends BackendController
 
 		if(isset($_POST['User']))
 		{
+                        $_POST['User']['password'] = md5($_POST['User']['password']);
 			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -52,9 +53,17 @@ class MainController extends BackendController
 
 		if(isset($_POST['User']))
 		{
+                        if($_POST['User']['password'] != '')
+                        {
+                            $_POST['User']['password'] = md5($_POST['User']['password']);
+                        }
+                        else
+                        {
+                            $_POST['User']['password'] = $model->password;
+                        }
 			$model->attributes=$_POST['User'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('update','id'=>$model->id));
 		}
 
                 //print_r(CHtml::listData(Region::model()->findAll(), 'id', 'name'));die;
