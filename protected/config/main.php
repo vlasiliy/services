@@ -17,7 +17,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
                 'application.modules.user.*',
-                //'application.modules.user.models.*',
+                'application.modules.user.models.*',
 	),
 
 	'modules'=>array(

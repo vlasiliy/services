@@ -123,7 +123,25 @@
                 </tr>
                 <tr class="even">
                     <td class="label">
-                        <?php echo $form->label($model,'regions'); ?>
+                        <?php echo $form->labelEx($model,'regionsArray'); ?>
+                        <br />
+                        <br />
+                        <p>
+                            <a href="/" id="selectAll"><?php echo Yii::t('app','Select all');?></a> | 
+                            <a href="/" id="unselectAll"><?php echo Yii::t('app','Unselect all');?></a>
+                        </p>
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('#selectAll').click(function() {
+                                    $('#User_regionsArray input').attr("checked","checked");
+                                    return false;
+                                });
+                                $('#unselectAll').click(function() {
+                                    $('#User_regionsArray input').removeAttr("checked");
+                                    return false;
+                                });
+                            });
+                        </script>
                     </td>
                     <td>
                         <?php echo $form->checkBoxList($model, 'regionsArray', CHtml::listData(Region::model()->findAll(), 'id', 'name'), array('template' => '<div class="checkBoxList">{input}{label}</div>', 'separator'=>false)); ?>

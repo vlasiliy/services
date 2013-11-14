@@ -62,8 +62,9 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
                         array('email, nick, name, surname, company, password, tel1, tel2, site, skype, icq', 'filter', 'filter'=>'trim'),
-			array('email, nick, name, surname, sex, ban, ad, news, city, postcode, address, tel1, lat, lng', 'required'),
-//			array('name, surname', 'match', 'pattern' => '/^[a-zA-Z]{1}[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Nick using letters, numbers and underscores. Nick must start with a letter.'),
+			array('email, nick, name, surname, sex, ban, ad, news, city, postcode, address, tel1, lat, lng, regionsArray', 'required'),
+			array('name', 'match', 'pattern' => Yii::t('app','/^[a-zA-Z\-\']+$/'), 'message' => Yii::t('UserModule.user', 'Іncorrect input in Name.')),
+			array('surname', 'match', 'pattern' => Yii::t('app','/^[a-zA-Z\-\']+$/'), 'message' => Yii::t('UserModule.user', 'Іncorrect input in Surname.')),
 			array('password', 'required', 'on'=>'create'),
                         array('password', 'length', 'min' => 6),
                         array('password', 'match', 'pattern' => '/^[\S]+$/', 'message' => Yii::t('UserModule.user', 'Do not use a space in the Password')),
@@ -168,7 +169,7 @@ class User extends CActiveRecord
 			'date_update' => Yii::t('UserModule.user', 'Date update'),
 			'date_last_visit' => Yii::t('UserModule.user', 'Date last visit'),
 			'ban' => Yii::t('UserModule.user', 'Ban'),
-                        'regions' => Yii::t('UserModule.user', 'Regions'),
+                        'regionsArray' => Yii::t('UserModule.user', 'Regions'),
                         'ad' => Yii::t('UserModule.user', 'Subscription to announcements from the tape'),
                         'news' => Yii::t('UserModule.user', 'Subscription to our Newsletter'),
 		);

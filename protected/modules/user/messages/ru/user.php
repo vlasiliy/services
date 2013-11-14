@@ -39,6 +39,8 @@ return array(
     'Do not use a space in the Password' => 'Не используйте пробел в поле Пароль',
     'In the Skype using letters, numbers and underscores.' => 'В Skype используйте латинские буквы, цифры и символ подчеркивания.',
     'In the Nick using letters, numbers and underscores. Nick must start with a letter.' => 'В Нике используйте латинские буквы, цифры и символ подчеркивания. Ник должен начинаться с буквы.',
+    'Іncorrect input in Name.' => 'Некорректный ввод в Имени.',
+    'Іncorrect input in Surname.' => 'Некорректный ввод в Фамилии.',
     
     'male' => 'мужской',
     'women' => 'женский',

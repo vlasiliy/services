@@ -61,6 +61,7 @@ class MainController extends BackendController
                         {
                             $_POST['User']['password'] = $model->password;
                         }
+                        $_POST['User']['date_update'] = date('Y-m-d H:i:s');
 			$model->attributes=$_POST['User'];
 			if($model->save())
 				$this->redirect(array('update','id'=>$model->id));
