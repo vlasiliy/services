@@ -125,27 +125,74 @@
                     <td class="label">
                         <?php echo $form->labelEx($model,'regionsArray'); ?>
                         <br />
-                        <br />
+                        <br />                        
+                        <?php echo CHtml::link('Выбрать регион', '#', array('onclick'=>'$("#regionsDialog").dialog("open"); return false;'));?>
+                    </td>
+                    <td>
+                        <div id="listRegions"></div>
+                        
+                        <?php $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+                                'id' => 'regionsDialog',
+                                'options' => array(
+                                    'open' => 'js:function(event, ui) {'.
+                                            '$("#regionsDialog").parent().find(".ui-dialog-titlebar-close").hide();'.
+                                            'chLR();'.
+                                        '}',
+                                    'title' => 'Выбрать регион',
+                                    'autoOpen' => false,
+                                    'modal' => true,
+                                    'resizable'=> false,
+                                    'height' => 400,
+                                    'closeOnEscape' => false,
+                                    'buttons' => array(
+                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");chLR();}'),
+                                        ),
+                                    'closeText' => '',
+                                ),
+                            ));
+                        ?>
+                        
                         <p>
                             <a href="/" id="selectAll"><?php echo Yii::t('app','Select all');?></a> | 
                             <a href="/" id="unselectAll"><?php echo Yii::t('app','Unselect all');?></a>
                         </p>
-                        <script type="text/javascript">
-                            $(document).ready(function() {
-                                $('#selectAll').click(function() {
-                                    $('#User_regionsArray input').attr("checked","checked");
-                                    return false;
-                                });
-                                $('#unselectAll').click(function() {
-                                    $('#User_regionsArray input').removeAttr("checked");
-                                    return false;
-                                });
-                            });
-                        </script>
-                    </td>
-                    <td>
-                        <?php echo $form->checkBoxList($model, 'regionsArray', CHtml::listData(Region::model()->findAll(), 'id', 'name'), array('template' => '<div class="checkBoxList">{input}{label}</div>', 'separator'=>false)); ?>
-                        <?php echo $form->error($model,'regions'); ?>
+                        
+                        <?php
+                            echo $form->checkBoxList($model, 'regionsArray', CHtml::listData(Region::model()->findAll(), 'id', 'name'), array('template' => '<div class="checkBoxList">{input}{label}</div>', 'separator'=>false));
+                            $this->endWidget('zii.widgets.jui.CJuiDialog');
+                            
+                            Yii::app()->clientScript->registerScript(
+                                    'checkListRegions',
+                                    '
+                                        $("#selectAll").click(function() {
+                                            $("#User_regionsArray input").attr("checked","checked");
+                                            return false;
+                                        });
+                                        $("#unselectAll").click(function() {
+                                            $("#User_regionsArray input").removeAttr("checked");
+                                            return false;
+                                        });                                        
+
+                                        function chLR()
+                                        {
+                                            var res = "";
+                                            $("#regionsDialog input").each(function(i){
+                                                if($(this).prop("checked"))
+                                                {
+                                                    res = res + $("label[for="+$(this).attr(\'id\')+"]").html()+"<br />";
+                                                }
+                                            });
+                                            $("#listRegions").html(res);
+                                        }
+                                        chLR();
+                                        
+                                    ',
+                                    CClientScript::POS_READY
+                            );
+                            
+                            echo $form->error($model,'regions'); 
+                        ?>
+                        
                     </td>
                 </tr>
                 <tr class="even">
@@ -391,7 +438,7 @@
                     <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')); ?>
             </div>
 
-    <?php $this->endWidget(); ?>
+    <?php $this->endWidget('CActiveForm'); ?>
 
     </div><!-- form -->
 
