@@ -53,8 +53,6 @@ class MainController extends BackendController
 
 		if(isset($_POST['User']))
 		{
-                        print($_POST['User']);die;
-                    
                         if($_POST['User']['password'] != '')
                         {
                             $_POST['User']['password'] = md5($_POST['User']['password']);
