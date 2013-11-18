@@ -294,7 +294,7 @@
                                     'function (event) {'.
                                         'markers[0].setMap(null);'.
                                         'markers.length = 0;'.
-                                        '$("#User_lat").val(0);$("#User_lng").val(0);'.
+                                        '$("#User_lat").val("");$("#User_lng").val("");'.
                                     '}',
                                     false,
                                     EGMapEvent::TYPE_EVENT_DEFAULT

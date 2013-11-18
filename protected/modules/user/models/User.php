@@ -62,30 +62,59 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
                         array('email, nick, name, surname, company, password, tel1, tel2, site, skype, icq', 'filter', 'filter'=>'trim'),
-			array('email, nick, name, surname, sex, ban, ad, news, city, postcode, address, tel1, lat, lng, regionsArray', 'required'),
+                        array('email, nick', 'filter', 'filter' => 'strtolower'),
+                    
+			array('email, nick, name, surname, sex, ban, ad, news, city, address, tel1, regionsArray', 'required'),
 			array('name', 'match', 'pattern' => Yii::t('app','/^[a-zA-Z\-\']+$/'), 'message' => Yii::t('UserModule.user', 'Іncorrect input in Name.')),
 			array('surname', 'match', 'pattern' => Yii::t('app','/^[a-zA-Z\-\']+$/'), 'message' => Yii::t('UserModule.user', 'Іncorrect input in Surname.')),
-			array('password', 'required', 'on'=>'create'),
+                    
+			array('password', 'required', 'on' => 'create'),
                         array('password', 'length', 'min' => 6),
                         array('password', 'match', 'pattern' => '/^[\S]+$/', 'message' => Yii::t('UserModule.user', 'Do not use a space in the Password')),
+                    
 			array('lat, lng', 'numerical'),
+                    
 			array('email, company', 'length', 'max'=>128),
                         array('email', 'email'),
+                        array('email', 'unique', 'on' => 'create'),
+                        array('email', 'checkEmailUpdate', 'on' => 'update'),
+                    
 			array('password, name, skype', 'length', 'max'=>32),
+                    
 			array('nick, postcode, tel1, tel2', 'length', 'max'=>16),
 			array('nick', 'match', 'pattern' => '/^[a-zA-Z]{1}[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Nick using letters, numbers and underscores. Nick must start with a letter.')),
+                        array('nick', 'unique', 'on' => 'create'),
+                        array('email', 'checkNickUpdate', 'on' => 'update'),
+                    
 			array('surname, city, address, site', 'length', 'max'=>64),
 			array('sex, ban, ad, news', 'length', 'max'=>1),
                         array('tel1, tel2, icq', 'numerical', 'integerOnly' => true),
                         array('site', 'url'),
                         array('skype', 'match', 'pattern' => '/^[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Skype using letters, numbers and underscores.')),
 			array('icq', 'length', 'max'=>12),
-			array('role, date_update, date_last_visit, tel2, site, skype, icq, date_create', 'safe'),
+			array('role, date_update, date_last_visit, tel2, site, skype, icq, date_create, lat, lng, postcode', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, role, email, password, nick, name, surname, sex, company, city, postcode, address, tel1, tel2, site, skype, icq, lat, lng, date_create, date_update, date_last_visit, ban', 'safe', 'on'=>'search'),
 		);
 	}
+        
+        public function checkEmailUpdate()
+        {
+            $this->checkUpdate('email');
+        }
+        
+        public function checkNickUpdate()
+        {
+            $this->checkUpdate('nick');
+        }
+        
+        private function checkUpdate($nameField)
+        {
+            $model = User::model()->findByPk($this->id);
+            if (User::model()->count("id != ".$model->id." AND ".$nameField." = '". $this->{$nameField}."'") > 0)
+                $this->addError($nameField, Yii::t('UserModule.user', ucfirst($nameField).' in use.'));
+        }
 
 	/**
 	 * @return array relational rules.
@@ -105,7 +134,7 @@ class User extends CActiveRecord
         {
             return array(
                 'DMultiplyListBehavior'=>array(
-                     'class'=>'DMultiplyListBehavior',
+                     'class'=>'ext.behaviors.DMultiplyListBehavior',
                      'attribute'=>'regionsArray',
                      'relation'=>'regions',
                      'relationPk'=>'id',

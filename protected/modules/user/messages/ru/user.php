@@ -41,6 +41,8 @@ return array(
     'In the Nick using letters, numbers and underscores. Nick must start with a letter.' => 'В Нике используйте латинские буквы, цифры и символ подчеркивания. Ник должен начинаться с буквы.',
     'Іncorrect input in Name.' => 'Некорректный ввод в Имени.',
     'Іncorrect input in Surname.' => 'Некорректный ввод в Фамилии.',
+    'Email in use.' => 'Email уже занят.',
+    'Nick in use.' => 'Ник уже занят.',
     
     'male' => 'мужской',
     'women' => 'женский',
@@ -55,6 +57,7 @@ return array(
     'View User' => 'Просмотр данных пользователя',
     'Update User' => 'Редактирование данных пользователя',
     'Create' => 'Добавить',
+    'Create User' => 'Добавить пользователя',
     
 );
 ?> 

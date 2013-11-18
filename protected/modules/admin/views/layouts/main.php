@@ -23,10 +23,10 @@
                 </ul>
             </li>
             <li>
-                <a href="/admin/category/admin"><img src="/img/admin/category.png" alt="Категории" /> Категории </a>
+                <a href="/admin/category/admin"><img src="/img/admin/category.png" alt="Категории" /><?php echo Yii::t('CategoryModule.category', 'Categories');?></a>
                 <ul class="submenu">
-                    <li><a href="/">Все</a></li>
-                    <li><a href="/">Добавить категорию</a></li>
+                    <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Management'), $this->createUrl('/admin/category/main/admin'));?></li>
+                    <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Create'), $this->createUrl('/admin/category/main/create'));?></li>
                     <li><a href="/">Группы</a></li>
                     <li><a href="/">Добавить группу</a></li>
                 </ul>

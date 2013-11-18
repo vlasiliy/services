@@ -3,16 +3,14 @@
 /* @var $model User */
 
 $this->breadcrumbs=array(
-	'Users'=>array('index'),
-	'Create',
+	Yii::t('UserModule.user', 'Users') => array('admin'),
+	Yii::t('UserModule.user', 'Create'),
 );
 
-$this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Manage User', 'url'=>array('admin')),
-);
+$url = CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview');
+Yii::app()->clientScript->registerCssFile($url.'/styles.css');
 ?>
 
-<h1>Create User</h1>
+<h3><?php echo Yii::t('UserModule.user', 'Create User');?></h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -2,8 +2,7 @@
 
 class MainController extends BackendController
 {
-
-        /**
+	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
@@ -20,24 +19,20 @@ class MainController extends BackendController
 	 */
 	public function actionCreate()
 	{
-		$model=new User;
+		$model=new Category;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['User']))
+		if(isset($_POST['Category']))
 		{
-                        if($_POST['User']['password'] != '')
-                            $_POST['User']['password'] = md5($_POST['User']['password']);
-			$model->attributes=$_POST['User'];
-                        $model->scenario = 'create';
+			$model->attributes=$_POST['Category'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-                        'regions'=>Region::model()->findAll(),
 		));
 	}
 
@@ -53,25 +48,13 @@ class MainController extends BackendController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['User']))
+		if(isset($_POST['Category']))
 		{
-                        if($_POST['User']['password'] != '')
-                        {
-                            $_POST['User']['password'] = md5($_POST['User']['password']);
-                        }
-                        else
-                        {
-                            $_POST['User']['password'] = $model->password;
-                        }
-                        $_POST['User']['date_update'] = date('Y-m-d H:i:s');
-			$model->attributes=$_POST['User'];
-                        $model->scenario = 'update';
+			$model->attributes=$_POST['Category'];
 			if($model->save())
-				$this->redirect(array('update','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
-                //print_r(CHtml::listData(Region::model()->findAll(), 'id', 'name'));die;
-                
 		$this->render('update',array(
 			'model'=>$model,
 		));
@@ -96,7 +79,7 @@ class MainController extends BackendController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('User');
+		$dataProvider=new CActiveDataProvider('Category');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -107,12 +90,12 @@ class MainController extends BackendController
 	 */
 	public function actionAdmin()
 	{
-		$model=new User('search');
+		$model=new Category('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
+		if(isset($_GET['Category']))
+			$model->attributes=$_GET['Category'];
 
-                $this->render('admin',array(
+		$this->render('admin',array(
 			'model'=>$model,
 		));
 	}
@@ -121,13 +104,12 @@ class MainController extends BackendController
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return User the loaded model
+	 * @return Category the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=User::model()->with('regions')->findByPk($id);
-                //echo '<pre>';print_r($model);die;
+		$model=Category::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -135,11 +117,11 @@ class MainController extends BackendController
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param User $model the model to be validated
+	 * @param Category $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='category-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

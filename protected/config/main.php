@@ -18,12 +18,14 @@ return array(
 		'application.components.*',
                 'application.modules.user.*',
                 'application.modules.user.models.*',
+                'application.modules.category.*',
 	),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
                 'user',
                 'admin',
+                'category',
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'337778',
