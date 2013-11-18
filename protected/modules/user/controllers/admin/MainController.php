@@ -21,7 +21,7 @@ class MainController extends BackendController
 	public function actionCreate()
 	{
 		$model=new User;
-
+                
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -30,9 +30,15 @@ class MainController extends BackendController
                         if($_POST['User']['password'] != '')
                             $_POST['User']['password'] = md5($_POST['User']['password']);
 			$model->attributes=$_POST['User'];
+                        if($_POST['User']['date_create'] == '')
+                            $model->date_create = null;
                         $model->scenario = 'create';
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        {
+                            $model->date_update = $model->date_create;
+                            $model->save(false, array('date_update'));
+                            $this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
 		$this->render('create',array(

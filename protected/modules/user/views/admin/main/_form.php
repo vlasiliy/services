@@ -346,49 +346,51 @@
                         ?>
                     </td>
                 </tr>
+                <?php if(!$model->isNewRecord):?>
+                    <tr class="odd">
+                        <td class="label">
+                            <?php echo $form->label($model,'date_create'); ?>
+                        </td>
+                        <td>
+                            <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                                    $this->widget('CJuiDateTimePicker',
+                                            array(
+                                                'model'=>$model,
+                                                'attribute'=> 'date_create',
+                                                'mode'=>'datetime',
+                                                'options'=>array(
+                                                    'dateFormat'=>'yy-mm-dd',
+                                                    'timeFormat' => 'hh:mm:ss',
+                                                )
+                                    ));
+                            ?>
+                            <?php echo $form->error($model,'date_create'); ?>
+                        </td>
+                    </tr>
+                    <tr class="even">
+                        <td class="label">
+                            <?php echo $form->label($model,'date_update'); ?>
+                        </td>
+                        <td>
+                            <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                                    $this->widget('CJuiDateTimePicker',
+                                            array(
+                                                'model'=>$model,
+                                                'attribute'=> 'date_update',
+                                                'mode'=>'datetime',
+                                                'options'=>array(
+                                                    'dateFormat'=>'yy-mm-dd',
+                                                    'timeFormat' => 'hh:mm:ss',
+                                                )
+                                    ));
+                            ?>
+                            <?php echo $form->error($model,'date_update'); ?>
+                        </td>
+                    </tr>
+                <?php endif;?>    
                 <tr class="odd">
                     <td class="label">
-                        <?php echo $form->labelEx($model,'date_create'); ?>
-                    </td>
-                    <td>
-                        <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
-                                $this->widget('CJuiDateTimePicker',
-                                        array(
-                                            'model'=>$model,
-                                            'attribute'=> 'date_create',
-                                            'mode'=>'datetime',
-                                            'options'=>array(
-                                                'dateFormat'=>'yy-mm-dd',
-                                                'timeFormat' => 'hh:mm:ss',
-                                            )
-                                ));
-                        ?>
-                        <?php echo $form->error($model,'date_create'); ?>
-                    </td>
-                </tr>
-                <tr class="even">
-                    <td class="label">
-                        <?php echo $form->labelEx($model,'date_update'); ?>
-                    </td>
-                    <td>
-                        <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
-                                $this->widget('CJuiDateTimePicker',
-                                        array(
-                                            'model'=>$model,
-                                            'attribute'=> 'date_update',
-                                            'mode'=>'datetime',
-                                            'options'=>array(
-                                                'dateFormat'=>'yy-mm-dd',
-                                                'timeFormat' => 'hh:mm:ss',
-                                            )
-                                ));
-                        ?>
-                        <?php echo $form->error($model,'date_update'); ?>
-                    </td>
-                </tr>
-                <tr class="odd">
-                    <td class="label">
-                        <?php echo $form->labelEx($model,'date_last_visit'); ?>
+                        <?php echo $form->label($model,'date_last_visit'); ?>
                     </td>
                     <td>
                         <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
