@@ -19,7 +19,7 @@ class MainController extends BackendController
 	 */
 	public function actionCreate()
 	{
-		$model=new Category;
+		$model = new Category;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -27,7 +27,16 @@ class MainController extends BackendController
 		if(isset($_POST['Category']))
 		{
 			$model->attributes=$_POST['Category'];
-			if($model->save())
+                        if($_POST['isRoot'])
+                        {
+                            $flag = $model->saveNode();
+                        }
+                        else
+                        {
+                            $root = Category::model()->findByPk($_POST['parent']);
+                            $flag = $model->appendTo($root);
+                        }
+			if($flag)
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
@@ -59,7 +68,7 @@ class MainController extends BackendController
 			'model'=>$model,
 		));
 	}
-
+        
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -67,7 +76,7 @@ class MainController extends BackendController
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$this->loadModel($id)->deleteNode();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

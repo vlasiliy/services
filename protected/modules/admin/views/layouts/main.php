@@ -23,7 +23,7 @@
                 </ul>
             </li>
             <li>
-                <a href="/admin/category/admin"><img src="/img/admin/category.png" alt="Категории" /><?php echo Yii::t('CategoryModule.category', 'Categories');?></a>
+                <a href="<?php echo $this->createUrl('/admin/category/main/admin');?>"><img src="/img/admin/category.png" alt="Категории" /><?php echo Yii::t('CategoryModule.category', 'Categories');?></a>
                 <ul class="submenu">
                     <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Management'), $this->createUrl('/admin/category/main/admin'));?></li>
                     <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Create'), $this->createUrl('/admin/category/main/create'));?></li>

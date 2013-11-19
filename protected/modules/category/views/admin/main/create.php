@@ -3,16 +3,14 @@
 /* @var $model Category */
 
 $this->breadcrumbs=array(
-	'Categories'=>array('index'),
-	'Create',
+	Yii::t('CategoryModule.category', 'Categories') => array('admin'),
+	Yii::t('CategoryModule.category', 'Create'),
 );
 
-$this->menu=array(
-	array('label'=>'List Category', 'url'=>array('index')),
-	array('label'=>'Manage Category', 'url'=>array('admin')),
-);
+$url = CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview');
+Yii::app()->clientScript->registerCssFile($url.'/styles.css');
 ?>
 
-<h1>Create Category</h1>
+<h3><?php echo Yii::t('CategoryModule.category', 'Create Category');?></h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

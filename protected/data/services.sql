@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Ноя 14 2013 г., 18:04
+-- Время создания: Ноя 19 2013 г., 17:51
 -- Версия сервера: 5.5.34-0ubuntu0.12.04.1
 -- Версия PHP: 5.3.10-1ubuntu3.8
 
@@ -30,16 +30,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `root` int(10) unsigned NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `left` int(10) unsigned NOT NULL,
-  `right` int(10) unsigned NOT NULL,
+  `url` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `lft` int(10) unsigned NOT NULL,
+  `rgt` int(10) unsigned NOT NULL,
   `level` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `left` (`left`),
-  KEY `right` (`right`),
+  KEY `left` (`lft`),
+  KEY `right` (`rgt`),
   KEY `level` (`level`),
-  KEY `id` (`id`),
   KEY `root` (`root`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -195,15 +195,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ad` int(1) unsigned NOT NULL DEFAULT '0',
   `news` int(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Дамп данных таблицы `user`
 --
 
 INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`, `ad`, `news`) VALUES
-(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-13 12:45:03', 0, 0, 0),
-(2, 'user', 'anliko.v@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44588815366918000, 30.50958473235391500, '2013-10-18 13:18:52', '0000-00-00 00:00:00', '2013-10-27 12:30:00', 0, 1, 0);
+(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-19 08:14:28', 0, 0, 0),
+(2, 'user', 'anli_v@mail.ru', 'b8811d34d454be08f90008373a16c4b7', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44588815366918000, 30.50958473235391500, '2013-10-18 13:18:52', '2013-11-18 15:44:42', '2013-10-27 12:30:00', 0, 1, 0),
+(3, 'provider', 'test@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'test', 'Тест', 'Тестов', 1, '', 'TestCity', '', 'ул. Тестова 15', '0965349865', '', '', '', '', 51.23663988545725000, 33.19478441029787000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -249,8 +250,13 @@ CREATE TABLE IF NOT EXISTS `user_region` (
 --
 
 INSERT INTO `user_region` (`user_id`, `region_id`) VALUES
-(2, 1),
-(2, 6);
+(2, 2),
+(2, 4),
+(2, 5),
+(2, 8),
+(2, 10),
+(3, 3),
+(3, 7);
 
 -- --------------------------------------------------------
 

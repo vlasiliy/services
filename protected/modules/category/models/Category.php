@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $root
  * @property string $name
+ * @property string $url
  * @property string $lft
  * @property string $rgt
  * @property integer $level
@@ -34,8 +35,9 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>64),
+			array('name, url', 'required'),
+			array('name, url', 'length', 'max'=>64),
+                        array('url', 'match', 'pattern' => '/^[a-z0\-]+$/', 'message' => Yii::t('CategoryModule.category', 'In the Url using letters and hyphen.')),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, root, name, lft, rgt, level', 'safe', 'on'=>'search'),
@@ -77,11 +79,9 @@ class Category extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'root' => 'Root',
-			'name' => 'Name',
-			'lft' => 'Lft',
-			'rgt' => 'Rgt',
-			'level' => 'Level',
+			'root' => Yii::t('CategoryModule.category', 'Root'),
+			'name' => Yii::t('CategoryModule.category', 'Name'),
+			'url' => 'Url',
 		);
 	}
 
