@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/form.css" />
     <link rel="stylesheet" href="/css/admin.css" />
     
+    <?php Yii::app()->getClientScript()->registerCoreScript('jquery');?>
+    
     <title><?php echo $this->pageTitle;?></title>
 </head>
 <body>

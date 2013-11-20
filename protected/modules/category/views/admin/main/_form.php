@@ -2,8 +2,6 @@
 /* @var $this MainController */
 /* @var $model Category */
 /* @var $form CActiveForm */
-$parent = array();
-$parent['id'] = 0;
 ?>
 
 <div id="contentController">
@@ -30,7 +28,11 @@ $parent['id'] = 0;
                     </td>
                     <td>
                         <?php echo CHtml::dropDownList('isRoot', 0, array(0 => 'Нет', 1 => 'Да'));?>
-                        <?php echo CHtml::dropDownList('parent', '', CHtml::listData(Category::model()->findAll(array('order'=>'lft')), 'id', 'name'));?>
+                        <?php echo CHtml::decode(
+                                CHtml::dropDownList('parent', '', 
+                                        CHtml::listData(CTree::tree(Category::model()->findAll(array('order'=>'root, lft'))), 'id', 'name')
+                                )
+                        );?>
                     </td>
                 </tr>
                 <tr class="even">
@@ -53,9 +55,6 @@ $parent['id'] = 0;
                 </tr>
             </table>    
 
-
-
-
             <div class="row buttons">
                     <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
             </div>
@@ -64,3 +63,25 @@ $parent['id'] = 0;
 
     </div><!-- form -->
 </div>
+
+<script type="text/javascript">
+    function edParent()
+    {
+        if($("#isRoot").val() == 1)
+        {
+            $("#parent").prop('disabled', true);
+        }
+        else
+        {
+            $("#parent").prop('disabled', false);
+        }
+    }
+    
+    
+    $(document).ready(function(){
+        edParent();
+        $("#isRoot").click(function(){
+            edParent();
+        });
+    });
+</script>

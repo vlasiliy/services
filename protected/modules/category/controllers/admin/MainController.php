@@ -103,7 +103,7 @@ class MainController extends BackendController
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Category']))
 			$model->attributes=$_GET['Category'];
-
+                
 		$this->render('admin',array(
 			'model'=>$model,
 		));
