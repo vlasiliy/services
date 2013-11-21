@@ -47,7 +47,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id',
 		'root',
-		'name',
+		array(
+                        'name' => 'name',
+                        'value' => 'CTree::shiftTitle($data->name, $data->level)',
+                        'type' => 'raw',
+                    ),
 		'lft',
 		'rgt',
 		'level',

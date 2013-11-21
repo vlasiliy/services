@@ -109,7 +109,13 @@ class Category extends CActiveRecord
 		$criteria->compare('lft',$this->lft,true);
 		$criteria->compare('rgt',$this->rgt,true);
 		$criteria->compare('level',$this->level);
+                $criteria->order = 'root, lft';
 
+//                echo "<pre>";
+//                print_r(new CActiveDataProvider($this, array(
+//			'criteria'=>$criteria,
+//		)));die;
+                
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

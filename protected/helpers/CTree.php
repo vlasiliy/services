@@ -12,21 +12,36 @@
  * @author vlasiliy
  */
 class CTree {
+    
     public static function tree($data, $nameFieldTitle = 'name', $nameFieldLevel = 'level', $firstSymbol = '' ,$separator = '&nbsp;&nbsp;&nbsp;')
     {
         foreach($data as $key => $item)
         {
-            $level = $item->{$nameFieldLevel};
-            if($level > 1)
-            {       
-                $sep = $firstSymbol.$separator;
-                for($i = 1;$i < ($level - 1);$i++)
-                {
-                    $sep .= $separator;
-                }
-                $item->{$nameFieldTitle} = $sep.$item->{$nameFieldTitle};
-            }
+            $item->{$nameFieldTitle} = self::getPrefix($item->{$nameFieldLevel}, $firstSymbol, $separator).$item->{$nameFieldTitle};
         }
         return $data;
     }
+    
+    public static function shiftTitle($data, $level, $firstSymbol = '', $separator = '&nbsp;&nbsp;&nbsp;')
+    {
+        return self::getPrefix($level, $firstSymbol, $separator).$data;
+    }
+    
+    private function getPrefix($level, $firstSymbol, $separator)
+    {
+        $prefix = '';
+        if($level > 1)
+        {       
+            if($level > 2)
+            {
+                $countSimbols = strlen(html_entity_decode($firstSymbol.$separator));
+                $space = '';
+                for($i = 1;$i <= $countSimbols;$i++)$space .= '&ensp;';
+                for($i = 3;$i <= $level;$i++)$prefix .= $space;
+            }
+            $prefix = $prefix.$firstSymbol.$separator;
+        }
+        return $prefix;
+    }
+    
 }
