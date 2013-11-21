@@ -34,10 +34,11 @@ class MainController extends BackendController
                         else
                         {
                             $root = Category::model()->findByPk($_POST['parent']);
+                            $model->scenario = 'create';
                             $flag = $model->appendTo($root);
                         }
 			if($flag)
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array(

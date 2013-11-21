@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.5deb1.precise~ppa.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Ноя 20 2013 г., 17:50
--- Версия сервера: 5.5.34-0ubuntu0.12.04.1
+-- Время создания: Ноя 22 2013 г., 00:00
+-- Версия сервера: 5.5.34
 -- Версия PHP: 5.3.10-1ubuntu3.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -39,23 +39,41 @@ CREATE TABLE IF NOT EXISTS `category` (
   KEY `right` (`rgt`),
   KEY `level` (`level`),
   KEY `root` (`root`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
 
 --
 -- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`id`, `root`, `name`, `url`, `lft`, `rgt`, `level`) VALUES
-(1, 1, 'Организация мероприятий', 'organization-of-events', 1, 8, 1),
-(2, 2, 'Представления, цирк, шоу', 'submissions-circus-show', 1, 2, 1),
+(1, 1, 'Организация мероприятий', 'organization-of-events', 1, 32, 1),
+(2, 2, 'Представления, цирк, шоу', 'submissions-circus-show', 1, 4, 1),
 (3, 3, 'Живопись, скульптура, графика', 'painting-sculpture-graphics', 1, 2, 1),
 (4, 4, 'Музыка, танцы', 'music-dance', 1, 2, 1),
 (5, 1, 'Организаторы выставок', 'trade-show-organizers', 2, 3, 2),
 (6, 1, 'Организаторы свадеб', 'organizers-of-weddings', 4, 5, 2),
 (7, 7, 'Архитектура', 'architecture', 1, 2, 1),
-(8, 1, 'Дизайн', 'design', 6, 7, 2),
 (9, 9, 'Фото, видео', 'photo-video', 1, 2, 1),
-(10, 10, 'Декоративно-прикладное искусство', 'arts-and-crafts', 1, 2, 1);
+(10, 10, 'Декоративно-прикладное искусство', 'arts-and-crafts', 1, 2, 1),
+(12, 12, 'Театр, кино', 'theater-cinema', 1, 2, 1),
+(13, 13, 'Мода, стиль', 'fashion-style', 1, 2, 1),
+(14, 14, 'Литература', 'literature', 1, 2, 1),
+(15, 15, 'Искусствоведение', 'arts', 1, 2, 1),
+(16, 16, 'Дизайн', 'design', 1, 2, 1),
+(17, 1, 'Организаторы детских праздников', 'organizers-of-children-s-holidays', 6, 7, 2),
+(18, 1, 'Организаторы корпоративных праздников', 'organizers-of-corporate-holidays', 8, 9, 2),
+(19, 1, 'Организаторы новогодних мероприятий', 'organizers-of-christmas-events', 10, 11, 2),
+(20, 1, 'Организаторы шоу', 'organizers-of-the-show', 12, 13, 2),
+(21, 1, 'Организаторы вечеринок и дискотек', 'organisers-of-parties-and-discos', 14, 15, 2),
+(22, 1, 'Организаторы выпускных вечеров', 'organizers-of-graduation-parties', 16, 17, 2),
+(23, 1, 'Тимбилдинг', 'teambuilding', 18, 19, 2),
+(24, 1, 'Оформление праздничных мероприятий (общее)', 'making-of-events-general', 20, 21, 2),
+(25, 1, 'Оформление воздушными шарами', 'decoration-with-balloons', 22, 23, 2),
+(26, 1, 'Световое оформление и пиротехника', 'lighting-design-and-pyrotechnics', 24, 25, 2),
+(27, 1, 'Кейтеринг', 'catering', 26, 27, 2),
+(28, 1, 'Флористика', 'floristics', 28, 29, 2),
+(29, 1, 'Организация мероприятий (другие)', 'organisation-of-events-other', 30, 31, 2),
+(31, 2, 'Ведущие, конферансье, тамада', 'entertainer-toastmaster', 2, 3, 2);
 
 -- --------------------------------------------------------
 

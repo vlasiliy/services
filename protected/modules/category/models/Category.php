@@ -38,6 +38,7 @@ class Category extends CActiveRecord
 			array('name, url', 'required'),
 			array('name, url', 'length', 'max'=>64),
                         array('url', 'match', 'pattern' => '/^[a-z0\-]+$/', 'message' => Yii::t('CategoryModule.category', 'In the Url using letters and hyphen.')),
+                        array('url', 'unique', 'on' => 'create'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, root, name, lft, rgt, level', 'safe', 'on'=>'search'),
@@ -111,13 +112,9 @@ class Category extends CActiveRecord
 		$criteria->compare('level',$this->level);
                 $criteria->order = 'root, lft';
 
-//                echo "<pre>";
-//                print_r(new CActiveDataProvider($this, array(
-//			'criteria'=>$criteria,
-//		)));die;
-                
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => false,
 		));
 	}
 

@@ -3,13 +3,8 @@
 /* @var $model Category */
 
 $this->breadcrumbs=array(
-	'Categories'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List Category', 'url'=>array('index')),
-	array('label'=>'Create Category', 'url'=>array('create')),
+	Yii::t('CategoryModule.category', 'Categories') => array('admin'),
+	Yii::t('CategoryModule.category', 'Management'),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,35 +21,28 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Categories</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
+<h3>
+    <?php echo Yii::t('CategoryModule.category', 'Management of categories');?>
+    <?php echo CHtml::link(Yii::t('CategoryModule.category', 'Create Category'), $this->createUrl('/admin/category/main/create'), array('class' => 'butLink'));?>
+</h3>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'category-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'root',
+	'dataProvider' => $model->search(),
+        'enableSorting' => false,
+        'filter' => $model,
+	'columns' => array(
+                array(
+                    'name' => 'id',
+                    'filter' => false,
+                    'htmlOptions' => array(
+                        'width' => '30',
+                    ),
+                ),
 		array(
                         'name' => 'name',
                         'value' => 'CTree::shiftTitle($data->name, $data->level)',
                         'type' => 'raw',
-                    ),
-		'lft',
-		'rgt',
-		'level',
+                ),
 		array(
 			'class'=>'CButtonColumn',
 		),

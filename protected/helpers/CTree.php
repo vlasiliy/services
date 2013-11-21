@@ -13,7 +13,7 @@
  */
 class CTree {
     
-    public static function tree($data, $nameFieldTitle = 'name', $nameFieldLevel = 'level', $firstSymbol = '' ,$separator = '&nbsp;&nbsp;&nbsp;')
+    public static function tree($data, $nameFieldTitle = 'name', $nameFieldLevel = 'level', $firstSymbol = '' ,$separator = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
     {
         foreach($data as $key => $item)
         {
@@ -22,7 +22,7 @@ class CTree {
         return $data;
     }
     
-    public static function shiftTitle($data, $level, $firstSymbol = '', $separator = '&nbsp;&nbsp;&nbsp;')
+    public static function shiftTitle($data, $level, $firstSymbol = '', $separator = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
     {
         return self::getPrefix($level, $firstSymbol, $separator).$data;
     }
