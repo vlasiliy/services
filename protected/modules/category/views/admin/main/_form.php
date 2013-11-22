@@ -22,19 +22,21 @@
             <?php echo $form->errorSummary($model); ?>
             
             <table class="detail-view">
+                <?php if($model->isNewRecord):?>
                 <tr class="odd">
                     <td class="label">
                         <?php echo $form->label($model, 'root'); ?>
                     </td>
                     <td>
-                        <?php echo CHtml::dropDownList('isRoot', 0, array(0 => 'Нет', 1 => 'Да'));?>
+                        <?php echo CHtml::dropDownList('isRoot', $isRoot, array(0 => 'Нет', 1 => 'Да'));?>
                         <?php echo CHtml::decode(
-                                CHtml::dropDownList('parent', '', 
+                                CHtml::dropDownList('parent', $parent, 
                                         CHtml::listData(CTree::tree(Category::model()->findAll(array('order'=>'root, lft'))), 'id', 'name')
                                 )
                         );?>
                     </td>
                 </tr>
+                <?php endif;?>
                 <tr class="even">
                     <td class="label">
                         <?php echo $form->labelEx($model,'name'); ?>

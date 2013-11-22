@@ -10,6 +10,7 @@ return array(
     'Management of categories' => 'Управление категориями',
     'Create' => 'Добавить',
     'Create Category' => 'Добавить категорию',
+    'Update Category' => 'Редатирование категории',
     
 );
 ?> 

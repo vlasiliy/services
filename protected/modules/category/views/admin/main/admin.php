@@ -19,6 +19,8 @@ $('.search-form form').submit(function(){
 	return false;
 });
 ");
+
+$url = CHtml::asset(Yii::getPathOfAlias('ext.assets.adminIcon'));
 ?>
 
 <h3>
@@ -32,11 +34,11 @@ $('.search-form form').submit(function(){
         'filter' => $model,
 	'columns' => array(
                 array(
-                    'name' => 'id',
-                    'filter' => false,
-                    'htmlOptions' => array(
-                        'width' => '30',
-                    ),
+                        'name' => 'id',
+                        'filter' => false,
+                        'htmlOptions' => array(
+                            'width' => '30',
+                         ),
                 ),
 		array(
                         'name' => 'name',
@@ -44,7 +46,34 @@ $('.search-form form').submit(function(){
                         'type' => 'raw',
                 ),
 		array(
-			'class'=>'CButtonColumn',
+                        'class' => 'CButtonColumn',
+                        'htmlOptions' => array(
+                            'width' => '30',
+                         ),
+                        'template' => '{up}{down}',
+                        'buttons' => array(
+                            'up' => array(
+                                'label' => Yii::t("app", "Up"),
+                                'imageUrl' => $url.'/up.png',
+                                'url' => '"#"',
+                                'visible' => '$data->level > 1',
+                                'click' => 'function(){alert("Going up!");}',
+                            ),
+                            'down' => array(
+                                'label' => Yii::t("app", "Down"),
+                                'imageUrl' => $url.'/down.png',
+                                'url' => '"#"',
+                                'visible' => '$data->level > 1',
+                                'click' => 'function(){alert("Going down!");}',
+                            ),
+                        ),
+		),
+		array(
+                        'class' => 'CButtonColumn',
+                        'htmlOptions' => array(
+                            'width' => '30',
+                         ),
+                        'template' => '{delete}{update}',
 		),
 	),
 )); ?>

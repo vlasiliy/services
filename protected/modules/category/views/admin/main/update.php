@@ -3,19 +3,16 @@
 /* @var $model Category */
 
 $this->breadcrumbs=array(
-	'Categories'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('CategoryModule.category', 'Categories') => array('admin'),
+	$model->name,
 );
 
-$this->menu=array(
-	array('label'=>'List Category', 'url'=>array('index')),
-	array('label'=>'Create Category', 'url'=>array('create')),
-	array('label'=>'View Category', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Category', 'url'=>array('admin')),
-);
+Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview').'/styles.css');
 ?>
 
-<h1>Update Category <?php echo $model->id; ?></h1>
+<h3>
+    <?php echo Yii::t('CategoryModule.category', 'Update Category').' - '.$model->name;?>
+    <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/category/main/admin'), array('class' => 'butLink'));?>
+</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

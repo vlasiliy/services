@@ -128,4 +128,12 @@ class Category extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function getMinRoot()
+        {
+            $criteria = new CDbCriteria;
+            $criteria->select='id, MIN(root)';
+            $row = $this->model()->find($criteria);
+            return $row->id;
+        }
 }

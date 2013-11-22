@@ -7,6 +7,9 @@ return array(
     'Save' => 'Сохранить',
     'Select all' => 'Отметить все',
     'Unselect all' => 'Сбросить все',
+    'Back' => 'Назад',
+    'Up' => 'Вверх',
+    'Down' => 'Вниз',
     
     //simbols for name and surname
     '/^[a-zA-Z\-\']+$/' => '/^[а-яА-Я\-\']+$/u',

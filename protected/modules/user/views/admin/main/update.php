@@ -7,10 +7,7 @@ $this->breadcrumbs=array(
 	$model->name.' '.$model->surname,
 );
 
-$url = CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview');
-Yii::app()->clientScript->registerCssFile($url.'/styles.css');
-//Yii::app()->clientScript->registerScriptFile('http://maps.googleapis.com/maps/api/js?key='.Yii::app()->params['googleMapsApiKey'].'&sensor=true');
-
+Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview').'/styles.css');
 /*
 $this->menu=array(
 	array('label'=>'List User', 'url'=>array('index')),
@@ -22,6 +19,9 @@ $this->menu=array(
  */
 ?>
 
-<h3><?php echo Yii::t('UserModule.user', 'Update User').' '.$model->name.' '.$model->surname; ?></h3>
+<h3>
+    <?php echo Yii::t('UserModule.user', 'Update User').' - '.$model->name.' '.$model->surname; ?>
+    <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/user/main/admin'), array('class' => 'butLink'));?>
+</h3>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

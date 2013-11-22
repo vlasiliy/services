@@ -19,7 +19,10 @@ $this->menu=array(
  */
 ?>
 
-<h3><?php echo Yii::t('UserModule.user', 'View User').' '.$model->name.' '.$model->surname; ?></h3>
+<h3>
+    <?php echo Yii::t('UserModule.user', 'View User').' - '.$model->name.' '.$model->surname; ?>
+    <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/user/main/admin'), array('class' => 'butLink'));?>
+</h3>
  
 <div id="contentController">
 

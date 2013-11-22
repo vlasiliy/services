@@ -5,14 +5,15 @@ class MainController extends BackendController
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
-	 */
+
 	public function actionView($id)
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
-
+	 */
+    
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -20,9 +21,8 @@ class MainController extends BackendController
 	public function actionCreate()
 	{
 		$model = new Category;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+                $isRoot = (isset($_POST['isRoot'])) ? $_POST['isRoot'] : 0;
+                $parent = (isset($_POST['parent'])) ? $_POST['parent'] : Category::model()->getMinRoot();
 
 		if(isset($_POST['Category']))
 		{
@@ -42,7 +42,9 @@ class MainController extends BackendController
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+			'model' => $model,
+                        'isRoot' => $isRoot,
+                        'parent' => $parent,
 		));
 	}
 
@@ -55,14 +57,11 @@ class MainController extends BackendController
 	{
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['Category']))
 		{
 			$model->attributes=$_POST['Category'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->saveNode())
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
