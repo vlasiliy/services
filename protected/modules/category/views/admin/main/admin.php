@@ -23,10 +23,10 @@ $('.search-form form').submit(function(){
 $url = CHtml::asset(Yii::getPathOfAlias('ext.assets.adminIcon'));
 ?>
 
-<h3>
+<h5>
     <?php echo Yii::t('CategoryModule.category', 'Management of categories');?>
     <?php echo CHtml::link(Yii::t('CategoryModule.category', 'Create Category'), $this->createUrl('/admin/category/main/create'), array('class' => 'butLink'));?>
-</h3>
+</h5>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'category-grid',
 	'dataProvider' => $model->search(),

@@ -29,10 +29,10 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h3>
+<h5>
     <?php echo Yii::t('UserModule.user', 'Management of users');?>
     <?php echo CHtml::link(Yii::t('UserModule.user', 'Create User'), $this->createUrl('/admin/user/main/create'), array('class' => 'butLink'));?>
-</h3>
+</h5>
 
 <div id="contentController">
     <p>

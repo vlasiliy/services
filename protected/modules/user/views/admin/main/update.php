@@ -19,9 +19,13 @@ $this->menu=array(
  */
 ?>
 
-<h3>
+<h5>
     <?php echo Yii::t('UserModule.user', 'Update User').' - '.$model->name.' '.$model->surname; ?>
     <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/user/main/admin'), array('class' => 'butLink'));?>
-</h3>
+</h5>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<?php $this->renderPartial('_links'); ?>
+
+<div class="clr"></div>

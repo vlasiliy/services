@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div id="contentController">
+<div id="contentController" class="leftContent">
 
     <div class="form crtUpdFrm">
 
