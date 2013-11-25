@@ -136,4 +136,9 @@ class MainController extends BackendController
 			Yii::app()->end();
 		}
 	}
+        
+        public function move($id, $way)
+        {
+            return "error";
+        }
 }

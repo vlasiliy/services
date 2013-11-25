@@ -32,6 +32,7 @@ $url = CHtml::asset(Yii::getPathOfAlias('ext.assets.adminIcon'));
 	'dataProvider' => $model->search(),
         'enableSorting' => false,
         'filter' => $model,
+        'rowHtmlOptionsExpression' => 'array("id"=>"cat$data->id")',
 	'columns' => array(
                 array(
                         'name' => 'id',
@@ -57,7 +58,25 @@ $url = CHtml::asset(Yii::getPathOfAlias('ext.assets.adminIcon'));
                                 'imageUrl' => $url.'/up.png',
                                 'url' => '"#"',
                                 'visible' => '$data->level > 1',
-                                'click' => 'function(){alert("Going up!");}',
+                                'click' => 'function(){'.
+                                               '$.ajax({
+                                                    type: "GET",
+                                                    url: "/admin/category/main/move?id='.$data->id.'&way=up",
+                                                    success: function(html){
+                                                        if(html == "ok")
+                                                        {
+                                                            tmp = $("#cat1").html();
+                                                            $("#cat1").html($("#cat16").html());
+                                                            $("#cat16").html(tmp);
+                                                        }
+                                                        else
+                                                        {
+                                                            alert("Ошибка удаления!");
+                                                        }
+                                                    }
+                                                });'.
+                                                'return false;'.
+                                           '}',
                             ),
                             'down' => array(
                                 'label' => Yii::t("app", "Down"),
@@ -76,4 +95,5 @@ $url = CHtml::asset(Yii::getPathOfAlias('ext.assets.adminIcon'));
                         'template' => '{delete}{update}',
 		),
 	),
-)); ?>
+)); 
+?>
