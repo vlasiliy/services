@@ -56,34 +56,28 @@ $url = CHtml::asset(Yii::getPathOfAlias('ext.assets.adminIcon'));
                             'up' => array(
                                 'label' => Yii::t("app", "Up"),
                                 'imageUrl' => $url.'/up.png',
-                                'url' => '"#"',
+                                'url'=>'Yii::app()->createUrl("/admin/category/main/move", array("id"=>$data->id, "way" => "up"))',
+                                'options' => array(
+                                    'ajax' => array(
+                                        'type' => 'get',
+                                        'url'=>'js:$(this).attr("href")',
+                                        'success' => 'js:function(data) {$.fn.yiiGridView.update("category-grid");}',
+                                    )
+                                ),
                                 'visible' => '$data->level > 1',
-                                'click' => 'function(){'.
-                                               '$.ajax({
-                                                    type: "GET",
-                                                    url: "/admin/category/main/move?id='.$data->id.'&way=up",
-                                                    success: function(html){
-                                                        if(html == "ok")
-                                                        {
-                                                            tmp = $("#cat1").html();
-                                                            $("#cat1").html($("#cat16").html());
-                                                            $("#cat16").html(tmp);
-                                                        }
-                                                        else
-                                                        {
-                                                            alert("Ошибка удаления!");
-                                                        }
-                                                    }
-                                                });'.
-                                                'return false;'.
-                                           '}',
                             ),
                             'down' => array(
                                 'label' => Yii::t("app", "Down"),
                                 'imageUrl' => $url.'/down.png',
-                                'url' => '"#"',
+                                'url'=>'Yii::app()->createUrl("/admin/category/main/move", array("id"=>$data->id, "way" => "down"))',
+                                'options' => array(
+                                    'ajax' => array(
+                                        'type' => 'get',
+                                        'url'=>'js:$(this).attr("href")',
+                                        'success' => 'js:function(data) {$.fn.yiiGridView.update("category-grid");}',
+                                    )
+                                ),
                                 'visible' => '$data->level > 1',
-                                'click' => 'function(){alert("Going down!");}',
                             ),
                         ),
 		),

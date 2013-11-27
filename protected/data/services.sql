@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Ноя 22 2013 г., 00:00
+-- Время создания: Ноя 27 2013 г., 23:35
 -- Версия сервера: 5.5.34
 -- Версия PHP: 5.3.10-1ubuntu3.8
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   KEY `right` (`rgt`),
   KEY `level` (`level`),
   KEY `root` (`root`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=49 ;
 
 --
 -- Дамп данных таблицы `category`
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`id`, `root`, `name`, `url`, `lft`, `rgt`, `level`) VALUES
 (1, 1, 'Организация мероприятий', 'organization-of-events', 1, 32, 1),
-(2, 2, 'Представления, цирк, шоу', 'submissions-circus-show', 1, 4, 1),
+(2, 2, 'Представления, цирк, шоу', 'submissions-circus-show', 1, 34, 1),
 (3, 3, 'Живопись, скульптура, графика', 'painting-sculpture-graphics', 1, 2, 1),
 (4, 4, 'Музыка, танцы', 'music-dance', 1, 2, 1),
 (5, 1, 'Организаторы выставок', 'trade-show-organizers', 2, 3, 2),
@@ -73,7 +73,22 @@ INSERT INTO `category` (`id`, `root`, `name`, `url`, `lft`, `rgt`, `level`) VALU
 (27, 1, 'Кейтеринг', 'catering', 26, 27, 2),
 (28, 1, 'Флористика', 'floristics', 28, 29, 2),
 (29, 1, 'Организация мероприятий (другие)', 'organisation-of-events-other', 30, 31, 2),
-(31, 2, 'Ведущие, конферансье, тамада', 'entertainer-toastmaster', 2, 3, 2);
+(31, 2, 'Ведущие, конферансье, тамада', 'entertainer-toastmaster', 2, 3, 2),
+(32, 2, 'Аниматоры', 'animators', 4, 5, 2),
+(33, 2, 'Оригинальный жанр', 'ingenious-genre', 6, 7, 2),
+(34, 2, 'Фокусники', 'magicians', 8, 9, 2),
+(36, 2, 'Клоуны', 'clowns', 10, 11, 2),
+(37, 2, 'Ростовые куклы', 'mascots', 12, 13, 2),
+(38, 2, 'Кукловоды', 'puppeteers', 14, 15, 2),
+(39, 2, 'Дрессировщики', 'trainers', 16, 17, 2),
+(40, 2, 'Акробаты', 'acrobats', 18, 19, 2),
+(41, 2, 'Ходулисты', 'stilts', 20, 21, 2),
+(42, 2, 'Мимы, живые статуи', 'mimes-living-statues', 22, 23, 2),
+(43, 2, 'Бодибилдеры', 'bodybuilders', 24, 25, 2),
+(44, 2, 'Стриптиз', 'striptease', 26, 27, 2),
+(46, 2, 'Бармены (флейринг)', 'bartenders-flaring', 28, 29, 2),
+(47, 2, 'Деды Морозы и Снегурочки', 'santas-and-snow-maiden', 30, 31, 2),
+(48, 2, 'Представления, шоу, цирк (другие)', 'presentation-show-circus-other', 32, 33, 2);
 
 -- --------------------------------------------------------
 
@@ -236,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`, `ad`, `news`) VALUES
-(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-20 14:23:21', 0, 0, 0),
+(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-11-27 20:01:14', 0, 0, 0),
 (2, 'user', 'anli_v@mail.ru', 'b8811d34d454be08f90008373a16c4b7', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44588815366918000, 30.50958473235391500, '2013-10-18 13:18:52', '2013-11-18 15:44:42', '2013-10-27 12:30:00', 0, 1, 0),
 (3, 'provider', 'test@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'test', 'Тест', 'Тестов', 1, '', 'TestCity', '', 'ул. Тестова 15', '0965349865', '', '', '', '', 51.23663988545725000, 33.19478441029787000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 1);
 

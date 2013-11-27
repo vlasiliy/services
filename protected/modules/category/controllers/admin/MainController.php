@@ -137,8 +137,23 @@ class MainController extends BackendController
 		}
 	}
         
-        public function move($id, $way)
+        public function actionMove($id, $way)
         {
-            return "error";
+            $category = Category::model()->findByPk($id);
+            if($way == 'up')
+                $neighbor = $category->prev()->find();
+            else
+                $neighbor = $category->next()->find();
+
+            if(!empty($neighbor))
+            {
+                if($way == 'up')
+                    $category->moveBefore($neighbor);
+                else
+                    $category->moveAfter($neighbor);
+                echo "ok";
+            }
+            else
+                echo "error";
         }
 }
