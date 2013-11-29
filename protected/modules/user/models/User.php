@@ -123,6 +123,8 @@ class User extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
+                Yii::import('application.modules.category.models.Category');
+            
 		return array(
 			'projects' => array(self::HAS_MANY, 'Project', 'user_id'),
 			'categories' => array(self::MANY_MANY, 'Category', 'user_category(user_id, category_id)'),

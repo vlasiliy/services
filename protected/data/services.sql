@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 4.0.9deb1.precise~ppa.1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Ноя 27 2013 г., 23:35
--- Версия сервера: 5.5.34
+-- Время создания: Ноя 29 2013 г., 16:49
+-- Версия сервера: 5.5.34-0ubuntu0.12.04.1
 -- Версия PHP: 5.3.10-1ubuntu3.8
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -280,6 +280,14 @@ CREATE TABLE IF NOT EXISTS `user_category` (
   KEY `user_id` (`user_id`),
   KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `user_category`
+--
+
+INSERT INTO `user_category` (`user_id`, `category_id`, `begin_year`, `area_​​operations`, `awards`, `agent`, `services`, `description`, `tags`, `price`, `currency`, `unit`, `price_description`, `scheme_work`) VALUES
+(2, 6, 2005, '', '', '', '', '', '', 0, 'UAH', '', '', ''),
+(2, 17, 2007, '', '', '', '', '', '', 0, 'UAH', '', '', '');
 
 -- --------------------------------------------------------
 

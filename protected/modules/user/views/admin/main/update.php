@@ -24,8 +24,8 @@ $this->menu=array(
     <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/user/main/admin'), array('class' => 'butLink'));?>
 </h5>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_links', array('model'=>$model)); ?>
 
-<?php $this->renderPartial('_links'); ?>
+<?php $this->renderPartial('_form', array('model'=>$model)); ?>
 
 <div class="clr"></div>

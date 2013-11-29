@@ -55,6 +55,9 @@ class MainController extends BackendController
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+                
+                //echo "<pre>";
+                //print_r($model);die;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -132,7 +135,7 @@ class MainController extends BackendController
 	 */
 	public function loadModel($id)
 	{
-		$model=User::model()->with('regions')->findByPk($id);
+		$model=User::model()->with('regions')->with('categories')->findByPk($id);
                 //echo '<pre>';print_r($model);die;
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');

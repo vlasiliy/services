@@ -140,14 +140,13 @@ input, select, textarea {
     border: solid 1px #cccccc;
     margin: 0 5px;
 }
-.leftContent {
-    float:left;
-    width: 80%;
+#contentController.leftContent {
+    margin-right: 325px;
 }
 .rightContent {
     float: right;
     padding: 0 10px;
-    width: 15%;
+    width: 300px;
 }
 h5 .butLink {
     position: absolute;
