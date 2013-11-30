@@ -2,7 +2,7 @@
     <h6>Дополнительно</h6>
     <ul>
         <li>
-            <a href="/"><?php echo Yii::t('CategoryModule.ctegory', 'Categories');?></a>
+            <?php echo CHtml::link(Yii::t('CategoryModule.category', 'Categories'), $this->createUrl('/admin/user/main/categories?id='.$model->id));?>
             <ul>
                 <?php foreach($model->categories as $cat):?>
                     <li><?php echo $cat->name;?></li>

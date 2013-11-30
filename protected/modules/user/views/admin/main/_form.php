@@ -260,8 +260,8 @@
                             Yii::import('application.extensions.EGMap.*');
                             
                             $gMap = new EGMap();
-                            $gMap->setWidth(600);
-                            $gMap->setHeight(500);
+                            $gMap->setWidth(420);
+                            $gMap->setHeight(420);
                             $gMap->zoom = 6;
                             $mapTypeControlOptions = array(
                               'position' => EGMapControlPosition::RIGHT_TOP,

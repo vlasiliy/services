@@ -125,7 +125,51 @@ class MainController extends BackendController
 			'model'=>$model,
 		));
 	}
+        
+	/**
+	 * Manages user categories.
+	 */
+	public function actionCategories($id)
+	{
+            
+            $categories = new Category('search');
+            $categories->unsetAttributes();  // clear any default values
+            if(isset($_GET['Category']))
+                    $categories->attributes=$_GET['Category'];
+            
+            $this->render('categories',array(
+                'categories' => $categories,
+                'model' => $this->loadModel($id),
+            ));
+	}
 
+	/**
+	 * Ajax method on/off user categories.
+	 */
+	public function actionCheckCategory($user = 0, $category = 0)
+	{
+            if(Yii::app()->request->isAjaxRequest)
+            {
+                $condition = 'user_id = '.$user.' AND category_id = '.$category;
+                $model = UserCategory::model()->find($condition);
+                if(empty($model))
+                {
+                    $model = new UserCategory;
+                    $model->user_id = $user;
+                    $model->category_id = $category;
+                    $model->save(false);
+                }
+                else
+                {
+                    $model->deleteAll($condition);
+                }
+            }
+            
+            echo "ok";
+	}
+
+        
+        
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
