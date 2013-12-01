@@ -10,6 +10,9 @@ return array(
     'Back' => 'Назад',
     'Up' => 'Вверх',
     'Down' => 'Вниз',
+    'Attention' => 'Внимание',
+    'Yes' => 'Да',
+    'Cancel' => 'Отменить',
     
     //simbols for name and surname
     '/^[a-zA-Z\-\']+$/' => '/^[а-яА-Я\-\']+$/u',

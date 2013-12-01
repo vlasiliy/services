@@ -41,12 +41,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                                        'cat'.$data->id, 
                                                        in_array($data->id, $selectCats) ? true : false,
                                                        array(
-                                                           'onclick' => ''
-                                                           . '$.ajax({'
-                                                           . 'type: "GET",'
-                                                           . 'url: "'.Yii::app()->createUrl("/admin/user/main/checkCategory", array("user" => $model->id, "category" => $data->id)).'",'
-                                                           . 'success: function(data) {$.fn.yiiGridView.update("category-grid");},'
-                                                           .'});'
+                                                           'onmousedown' => 
+                                                               'if($(this).prop("checked"))'
+                                                               . '{'
+                                                               .    '$("#warning").dialog("open");idCat = '.$data->id.';return false;'
+                                                               . '}'
                                                        )
                                                  )
                                                : '';
@@ -57,3 +56,41 @@ $this->widget('zii.widgets.grid.CGridView', array(
 ));?>
     
 </div>
+
+<?php 
+$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+    'id' => 'warning',
+    'options' => array(
+        'title' => Yii::t('app', 'Attention'),
+        'autoOpen' => false,
+        'modal' => true,
+        'resizable'=> false,
+        'closeOnEscape' => false,
+        'width' => 400,
+        'buttons' => array(
+                array(
+                    'text' => Yii::t('app', 'Yes'),
+                    'click' => 'js:function(){$(this).dialog("close");checkCategory();}',
+                ),
+                array('text' => Yii::t('app', 'Cancel'), 'click'=> 'js:function(){$(this).dialog("close");}'),
+            ),
+    ),
+));
+?>
+<div id="warning">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>При деактивации категории будут удалены все проекты пользователя, которые относятся к этой категории. Вы уверены в своих действиях?</p>
+</div>
+<?php $this->endWidget('zii.widgets.jui.CJuiDialog');?>
+
+<script type="text/javascript">
+    var idCat = 0;
+    
+    function checkCategory()
+    {
+        $.ajax({
+            type: "GET",
+            url: "/admin/user/main/checkCategory/user/<?php echo $model->id;?>/category/"+idCat,
+            success: function(data) {$.fn.yiiGridView.update("category-grid");}
+        });
+    }
+</script>
