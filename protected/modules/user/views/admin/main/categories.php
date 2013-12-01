@@ -42,9 +42,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                                        in_array($data->id, $selectCats) ? true : false,
                                                        array(
                                                            'onmousedown' => 
-                                                               'if($(this).prop("checked"))'
+                                                                 'idCat = '.$data->id.';'
+                                                               . 'if($(this).prop("checked"))'
                                                                . '{'
-                                                               .    '$("#warning").dialog("open");idCat = '.$data->id.';return false;'
+                                                               .    '$("#warning").dialog("open");return false;'
+                                                               . '}'
+                                                               . 'else'
+                                                               . '{'
+                                                               .    'checkCategory();'
                                                                . '}'
                                                        )
                                                  )
