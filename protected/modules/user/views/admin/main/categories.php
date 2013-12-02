@@ -35,7 +35,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                         'type' => 'raw',
                 ),
 		array(
-                        'value' => function($data) use($selectCats, $model) {
+                        'value' => function($data) use($selectCats) {
                                         return ($data->level > 1)
                                                ? CHtml::checkBox(
                                                        'cat'.$data->id, 
@@ -56,7 +56,23 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                                : '';
                         },
                         'type' => 'raw',
+                        'htmlOptions'=>array('width'=>'30px'),
                 ),
+		array(
+                        'class' => 'CButtonColumn',
+                        'htmlOptions' => array(
+                            'width' => '30px',
+                         ),
+                        'template' => '{update}',
+                        'buttons' => array(
+                            'update' => array(
+                                'visible' => function($row, $data) use ($selectCats) {                                       
+                                    return ($data->level > 1 && in_array($data->id, $selectCats)) ? true : false;
+                                },     
+                                'url'=>'Yii::app()->createUrl("/admin/user/main", array("category" => $data->id, "user" => '.$model->id.'))',
+                            ),
+                         ),
+		),
 	),
 ));?>
     
