@@ -53,9 +53,32 @@ return array(
     'Management of users' => 'Управление пользователями',
     'View User' => 'Просмотр данных пользователя',
     'Update User' => 'Редактирование данных пользователя',
+    'Update user category' => 'Редактирование данных категории',
     'Editing user categories' => 'Редактирование категорий пользователя',
     'Create' => 'Добавить',
     'Create User' => 'Добавить пользователя',
     
+    //category fields
+    'Experience' => 'Опыт работы',
+    'Area operations' => 'Регион деятельности',
+    'Awards' => 'Награды',
+    'Agent' => 'Агент',
+    'Service' => 'Услуга',
+    'Description' => 'Детальное описание',
+    'Tags' => 'Ключевые слова',
+    'Price' => 'Стоимость работы',
+    'Currency' => 'Валюта',
+    'Unit' => 'За что оплата',
+    'Price Description' => 'Стоимость работы<br />(детально)',
+    'Scheme Work' => 'Схема работы',
+    
+    //Experience
+    '1 year' => '1 год',
+    '2 years' => '2 года',
+    '3 years' => '3 года',
+    '4 years' => '4 года',
+    '5 years' => '5 лет',
+    'more than 5 years' => 'более 5 лет',
+    'more than 10 years' => 'более 10 лет',
 );
 ?> 

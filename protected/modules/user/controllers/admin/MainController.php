@@ -142,6 +142,26 @@ class MainController extends BackendController
                 'model' => $this->loadModel($id),
             ));
 	}
+        
+	/**
+	 * Manages user categories.
+	 */
+	public function actionCategory($id, $user_id)
+	{
+            
+            $category = UserCategory::model()->find('user_id = '.$user_id.' AND category_id = '.$id);
+            $category->begin_year = UserCategory::model()->getExperience($category->begin_year);
+
+            if(isset($_POST['UserCategory']))
+            {
+                
+            }
+            
+            $this->render('category',array(
+                'category' => $category,
+                'model' => $this->loadModel($user_id),
+            ));
+	}
 
 	/**
 	 * Ajax method on/off user categories.

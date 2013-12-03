@@ -69,7 +69,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
                                 'visible' => function($row, $data) use ($selectCats) {                                       
                                     return ($data->level > 1 && in_array($data->id, $selectCats)) ? true : false;
                                 },     
-                                'url'=>'Yii::app()->createUrl("/admin/user/main", array("category" => $data->id, "user" => '.$model->id.'))',
+                                'url'=>'Yii::app()->createUrl("/admin/user/main/category", array("id" => $data->id, "user_id" => '.$model->id.'))',
                             ),
                          ),
 		),
