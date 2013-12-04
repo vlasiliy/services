@@ -13,15 +13,7 @@ $this->breadcrumbs=array(
 );
 
 Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview').'/styles.css');
-/*
-$this->menu=array(
-	array('label'=>'List User', 'url'=>array('index')),
-	array('label'=>'Create User', 'url'=>array('create')),
-	array('label'=>'View User', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage User', 'url'=>array('admin')),
-);
- * 
- */
+
 ?>
 
 <h5>
@@ -66,8 +58,26 @@ $this->menu=array(
                         <?php echo $form->labelEx($category, 'awards'); ?>
                     </td>
                     <td>
-                        <?php echo $form->textArea($category, 'awards', array('maxlength' => 256)); ?>
+                        <?php echo $form->textArea($category, 'awards', array('maxlength' => 256, 'cols' => 50, 'rows' => 6)); ?>
                         <?php echo $form->error($category, 'awards'); ?>
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->labelEx($category, 'agent'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($category, 'agent',array('size'=>32,'maxlength'=>32)); ?>
+                        <?php echo $form->error($category, 'agent'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->labelEx($category, 'service'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($category, 'service',array('size'=>32,'maxlength'=>128)); ?>
+                        <?php echo $form->error($category, 'service'); ?>
                     </td>
                 </tr>
             </table>
