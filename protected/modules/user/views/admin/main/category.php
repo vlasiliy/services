@@ -54,11 +54,20 @@ $this->menu=array(
                 </tr>
                 <tr class="even">
                     <td class="label">
-                        <?php //echo $form->labelEx($model,'email'); ?>
+                        <?php echo $form->labelEx($category, 'area_operations'); ?>
                     </td>
                     <td>
-                        <?php //echo $form->textField($model,'email',array('size'=>32,'maxlength'=>128)); ?>
-                        <?php //echo $form->error($model,'email'); ?>
+                        <?php echo $form->textField($category, 'area_operations',array('size'=>32,'maxlength'=>128)); ?>
+                        <?php echo $form->error($category, 'area_operations'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->labelEx($category, 'awards'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textArea($category, 'awards', array('maxlength' => 256)); ?>
+                        <?php echo $form->error($category, 'awards'); ?>
                     </td>
                 </tr>
             </table>
