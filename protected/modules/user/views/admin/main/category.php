@@ -55,7 +55,7 @@ Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.
                 </tr>
                 <tr class="odd">
                     <td class="label">
-                        <?php echo $form->labelEx($category, 'awards'); ?>
+                        <?php echo $form->label($category, 'awards'); ?>
                     </td>
                     <td>
                         <?php echo $form->textArea($category, 'awards', array('maxlength' => 256, 'cols' => 50, 'rows' => 6)); ?>
@@ -64,7 +64,7 @@ Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.
                 </tr>
                 <tr class="even">
                     <td class="label">
-                        <?php echo $form->labelEx($category, 'agent'); ?>
+                        <?php echo $form->label($category, 'agent'); ?>
                     </td>
                     <td>
                         <?php echo $form->textField($category, 'agent',array('size'=>32,'maxlength'=>32)); ?>
@@ -82,15 +82,77 @@ Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.
                 </tr>
                 <tr class="even">
                     <td class="label">
-                        <?php echo $form->labelEx($category, 'description'); ?>
+                        <?php echo $form->label($category, 'description'); ?>
                     </td>
                     <td>
                         <?php $this->widget('ext.editMe.widgets.ExtEditMe', array(
-                            'model'=>$category,
-                            'attribute'=>'description',
-                            //'optionName'=>'optionValue',
+                            'model' => $category,
+                            'attribute' => 'description',
+                            'toolbar' => Yii::app()->params['toolBarAdminUserData'],
                         ));?>
                         <?php echo $form->error($category, 'description'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->label($category, 'tags'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($category, 'tags',array('size'=>32,'maxlength'=>128)); ?>
+                        <?php echo $form->error($category, 'tags'); ?>
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->label($category, 'price'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($category, 'price', array('size'=>32, 'maxlength'=>10, 'value'=> $category->price == 0 ? '' : $category->price)); ?>
+                        <?php echo $form->error($category, 'price'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->label($category, 'currency'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->dropDownList($category, 'currency', Yii::app()->params['currency']); ?>
+                        <?php echo $form->error($category, 'currency'); ?>
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->label($category, 'unit'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($category, 'unit', array('size'=>32, 'maxlength'=>32)); ?>
+                        <?php echo $form->error($category, 'unit'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->label($category, 'price_description'); ?>
+                    </td>
+                    <td>
+                        <?php $this->widget('ext.editMe.widgets.ExtEditMe', array(
+                            'model' => $category,
+                            'attribute' => 'price_description',
+                            'toolbar' => Yii::app()->params['toolBarAdminUserData'],
+                        ));?>
+                        <?php echo $form->error($category, 'price_description'); ?>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->label($category, 'scheme_work'); ?>
+                    </td>
+                    <td>
+                        <?php $this->widget('ext.editMe.widgets.ExtEditMe', array(
+                            'model' => $category,
+                            'attribute' => 'scheme_work',
+                            'toolbar' => Yii::app()->params['toolBarAdminUserData'],
+                        ));?>
+                        <?php echo $form->error($category, 'scheme_work'); ?>
                     </td>
                 </tr>
             </table>

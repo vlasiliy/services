@@ -25,6 +25,10 @@
  */
 class UserCategory extends CActiveRecord
 {
+        public function primaryKey(){
+            return array('user_id', 'category_id');
+        }    
+        
         public $arrExperience = array(
             0 => '-',
             1 => '1 year',
@@ -87,13 +91,13 @@ class UserCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, category_id, begin_year, area_operations, awards, agent, service, description, tags, price, unit, price_description, scheme_work', 'required'),
+			array('begin_year, area_operations, service', 'required'),
 			array('user_id, category_id, price', 'length', 'max'=>10),
 			array('begin_year', 'length', 'max'=>4),
 			array('area_operations, service, tags', 'length', 'max'=>128),
 			array('awards', 'length', 'max'=>256),
 			array('agent, unit', 'length', 'max'=>32),
-			array('currency', 'safe'),
+			array('currency, user_id, category_id, awards, agent, description, tags, price, unit, price_description, scheme_work', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('user_id, category_id, begin_year, area_operations, awards, agent, service, description, tags, price, currency, unit, price_description, scheme_work', 'safe', 'on'=>'search'),

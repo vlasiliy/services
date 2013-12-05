@@ -106,5 +106,27 @@ return array(
                 'frontendLanguage'=>'ru',
                 'backendLanguage'=>'ru',
                 'googleMapsApiKey'=>'AIzaSyCTrL3tqXz5w20hqgoO2eiIqcAWiY6oUJ4',
+                'currency' => array('UAH', 'USD', 'EUR'),
+                'toolBarAdminUserData' => array(
+                    array(
+                        'Bold', 'Italic', 'Underline', '-', 'RemoveFormat',
+                    ),
+                    array(
+                        'NumberedList', 'BulletedList', '-', 'JustifyLeft',
+                        'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Table',
+                    ),
+                    array(
+                            'Source',
+                    ),
+                ),
+                'toolBarUserData' => array(
+                    array(
+                        'Bold', 'Italic', 'Underline', '-', 'RemoveFormat',
+                    ),
+                    array(
+                        'NumberedList', 'BulletedList', '-', 'JustifyLeft',
+                        'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Table',
+                    ),
+                ),
 	),
 );
