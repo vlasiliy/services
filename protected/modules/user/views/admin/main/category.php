@@ -80,6 +80,19 @@ Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.
                         <?php echo $form->error($category, 'service'); ?>
                     </td>
                 </tr>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->labelEx($category, 'description'); ?>
+                    </td>
+                    <td>
+                        <?php $this->widget('ext.editMe.widgets.ExtEditMe', array(
+                            'model'=>$category,
+                            'attribute'=>'description',
+                            //'optionName'=>'optionValue',
+                        ));?>
+                        <?php echo $form->error($category, 'description'); ?>
+                    </td>
+                </tr>
             </table>
 
 
