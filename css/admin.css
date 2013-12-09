@@ -172,3 +172,9 @@ h5 .butLink {
     color: #111111;
     border-color: #333333;
 }
+#avatar {
+    border: solid 1px #ccc;
+}
+.qq-upload-list, .qq-upload-drop-area {
+    display: none;
+}

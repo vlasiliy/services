@@ -22,6 +22,34 @@
             <?php echo $form->errorSummary($model); ?>
 
             <table class="detail-view">
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->labelEx($model,'avatar'); ?>
+                    </td>
+                    <td>
+                        <?php $arrImg = glob(Yii::getPathOfAlias('webroot').'/user/'.$model->nick.'/avatar/*.*');?>
+                        <img src="<?php echo ($model->avatar == '' || count($arrImg) == 0) ? '/img/no_avatar.png' : $arrImg[0]; ?>" id="avatar" />
+                        <?php $this->widget('application.extensions.EAjaxUpload.EAjaxUpload',
+                        array(
+                                'id'=>'uploadFile',
+                                'config'=>array(
+                                       'action' => Yii::app()->createUrl('/admin/user/main/upload'),
+                                       'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                                       'sizeLimit' => 2*1024*1024,// maximum file size in bytes
+                                       'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
+                                       //'onComplete'=>"js:function(id, fileName, responseJSON){ showCrop(fileName); }",
+                                       //'messages'=>array(
+                                       //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                       //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                       //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                       //                  'emptyError'=>"{file} is empty, please select files again without it.",
+                                       //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                       //                 ),
+                                       //'showMessage'=>"js:function(message){ alert(message); }"
+                                      )
+                        )); ?>
+                    </td>
+                </tr>
                 <tr class="odd">
                     <td class="label">
                         <?php echo $form->labelEx($model,'role'); ?>

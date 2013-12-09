@@ -12,6 +12,7 @@ return array(
     'Role' => 'Роль',
     'Password' => 'Пароль',
     'Nick' => 'Ник',
+    'Avatar' => 'Аватар',
     'Name' => 'Имя',
     'Surname' => 'Фамилия',
     'Sex' => 'Пол',

@@ -9,6 +9,7 @@
  * @property string $email
  * @property string $password
  * @property string $nick
+ * @property string $avatar
  * @property string $name
  * @property string $surname
  * @property string $sex
@@ -92,7 +93,7 @@ class User extends CActiveRecord
                         array('site', 'url'),
                         array('skype', 'match', 'pattern' => '/^[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Skype using letters, numbers and underscores.')),
 			array('icq', 'length', 'max'=>12),
-			array('role, date_update, date_last_visit, tel2, site, skype, icq, date_create, lat, lng, postcode', 'safe'),
+			array('role, date_update, date_last_visit, tel2, site, skype, icq, date_create, lat, lng, postcode, avatar', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, role, email, password, nick, name, surname, sex, company, city, postcode, address, tel1, tel2, site, skype, icq, lat, lng, date_create, date_update, date_last_visit, ban', 'safe', 'on'=>'search'),
@@ -182,6 +183,7 @@ class User extends CActiveRecord
 			'email' => 'Email',
 			'password' => Yii::t('UserModule.user', 'Password'),
 			'nick' => Yii::t('UserModule.user', 'Nick'),
+			'avatar' => Yii::t('UserModule.user', 'Avatar'),
 			'name' => Yii::t('UserModule.user', 'Name'),
 			'surname' => Yii::t('UserModule.user', 'Surname'),
 			'sex' => Yii::t('UserModule.user', 'Sex'),

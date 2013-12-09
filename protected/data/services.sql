@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 04 2013 г., 17:50
+-- Время создания: Дек 09 2013 г., 17:50
 -- Версия сервера: 5.5.34-0ubuntu0.12.04.1
 -- Версия PHP: 5.3.10-1ubuntu3.8
 
@@ -223,6 +223,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `nick` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `avatar` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `sex` int(1) unsigned NOT NULL COMMENT '0 - жен., 1 - муж.',
@@ -250,10 +251,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`, `ad`, `news`) VALUES
-(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-12-04 15:20:53', 0, 0, 0),
-(2, 'user', 'anli_v@mail.ru', 'b8811d34d454be08f90008373a16c4b7', 'anli', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44588815366918000, 30.50958473235391500, '2013-10-18 13:18:52', '2013-11-29 21:51:58', '2013-10-27 12:30:00', 0, 1, 0),
-(3, 'provider', 'test@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'test', 'Тест', 'Тестов', 1, '', 'TestCity', '', 'ул. Тестова 15', '0965349865', '', '', '', '', 51.23663988545725000, 33.19478441029787000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 1);
+INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `avatar`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`, `ad`, `news`) VALUES
+(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', '', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-12-09 12:47:54', 0, 0, 0),
+(2, 'user', 'anli_v@mail.ru', 'b8811d34d454be08f90008373a16c4b7', 'anli', '', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44588815366918000, 30.50958473235391500, '2013-10-18 13:18:52', '2013-11-29 21:51:58', '2013-10-27 12:30:00', 0, 1, 0),
+(3, 'provider', 'test@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'test', '', 'Тест', 'Тестов', 1, '', 'TestCity', '', 'ул. Тестова 15', '0965349865', '', '', '', '', 51.23663988545725000, 33.19478441029787000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -264,14 +265,14 @@ INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `name`, `surname`
 CREATE TABLE IF NOT EXISTS `user_category` (
   `user_id` int(10) unsigned NOT NULL,
   `category_id` int(10) unsigned NOT NULL,
-  `begin_year` int(4) unsigned NOT NULL,
+  `begin_year` int(4) unsigned NOT NULL DEFAULT '0',
   `area_operations` varchar(128) COLLATE utf8_unicode_ci NOT NULL COMMENT 'регион деятельности / филиалы',
   `awards` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `agent` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `service` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'детальное описание / детальная информация',
   `tags` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `price` int(10) unsigned NOT NULL,
+  `price` int(10) unsigned NOT NULL DEFAULT '0',
   `currency` set('UAH','USD','EUR','') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UAH',
   `unit` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `price_description` text COLLATE utf8_unicode_ci NOT NULL,
@@ -286,9 +287,8 @@ CREATE TABLE IF NOT EXISTS `user_category` (
 --
 
 INSERT INTO `user_category` (`user_id`, `category_id`, `begin_year`, `area_operations`, `awards`, `agent`, `service`, `description`, `tags`, `price`, `currency`, `unit`, `price_description`, `scheme_work`) VALUES
-(2, 6, 2005, '', '', '', '', '', '', 0, 'UAH', '', '', ''),
-(2, 23, 0, '', '', '', '', '', '', 0, 'UAH', '', '', ''),
-(2, 18, 0, '', '', '', '', '', '', 0, 'UAH', '', '', '');
+(2, 6, 0, '', '', '', '', '', '', 0, 'UAH', '', '', ''),
+(2, 21, 2010, 'только Смела', '', '', 'Тамада, конферансье', '', '', 0, '', '', '', '');
 
 -- --------------------------------------------------------
 

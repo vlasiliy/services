@@ -14,6 +14,12 @@ class MainController extends BackendController
 		));
 	}
 
+//        public function actionCreatefolder()
+//	{
+//            echo Yii::getPathOfAlias('webroot');die;
+//            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/test');
+//        }
+        
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -35,6 +41,7 @@ class MainController extends BackendController
                         $model->scenario = 'create';
 			if($model->save())
                         {
+                            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.$model->nick);
                             $model->date_update = $model->date_create;
                             $model->save(false, array('date_update'));
                             $this->redirect(array('view','id'=>$model->id));
@@ -94,7 +101,8 @@ class MainController extends BackendController
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
-
+                //$succ = rmdir(Yii::getPathOfAlias('webroot').'/users/'.$model->nick);
+                
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
@@ -221,4 +229,21 @@ class MainController extends BackendController
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionUpload()
+        {
+                Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+                $folder='upload/';// folder for uploaded files
+                $allowedExtensions = array("jpg");//array("jpg","jpeg","gif","exe","mov" and etc...
+                $sizeLimit = 2 * 1024 * 1024;// maximum file size in bytes
+                $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+                $result = $uploader->handleUpload($folder);
+                $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+                
+                $fileSize=filesize($folder.$result['filename']);//GETTING FILE SIZE
+                $fileName=$result['filename'];//GETTING FILE NAME
+
+                echo $return;// it's array
+        }
 }
