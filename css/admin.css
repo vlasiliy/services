@@ -174,6 +174,7 @@ h5 .butLink {
 }
 #avatar {
     border: solid 1px #ccc;
+    margin-bottom: 5px;
 }
 .qq-upload-list, .qq-upload-drop-area {
     display: none;
