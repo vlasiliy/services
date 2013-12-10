@@ -63,6 +63,8 @@ class MainController extends BackendController
 	{
 		$model=$this->loadModel($id);
                 
+                GlobalFunction::delTmpFiles('/users/'.$model->nick.'/tmp/*');
+                
                 //echo "<pre>";
                 //print_r($model);die;
 
@@ -234,7 +236,7 @@ class MainController extends BackendController
         {
                 Yii::import("ext.EAjaxUpload.qqFileUploader");
 
-                $folder = 'users/'.$nick.'/avatar/';// folder for uploaded files
+                $folder = 'users/'.$nick.'/tmp/';// folder for uploaded files
                 $allowedExtensions = array("jpg", "png", "gif");//array("jpg","jpeg","gif","exe","mov" and etc...
                 $sizeLimit = 2 * 1024 * 1024;// maximum file size in bytes
                 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
