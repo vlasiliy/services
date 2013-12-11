@@ -37,7 +37,7 @@
                                        'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                        'sizeLimit' => 2*1024*1024,// maximum file size in bytes
                                        //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
-                                       'onComplete'=>"js:function(id, fileName, responseJSON){ showCrop(fileName); }",
+                                       'onComplete'=>"js:function(id, fileName, responseJSON){ showCrop(responseJSON); }",
                                        'messages'=>array(
                                                          'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
                                                          'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
@@ -98,11 +98,19 @@
                                 <input type="hidden" id="cropWidth" />
                                 <input type="hidden" id="cropHeight" />
                                 <script type="text/javascript">
-                                    function showCrop(fileName)
+                                    function showCrop(responseJSON)
                                     {
-                                        $('#imageId').attr('src','/users/<?php echo $model->nick;?>/tmp/'+fileName);
+                                        $("#imageId").attr("src", '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
+                                        if(responseJSON.k < 1)
+                                            {minWH = $('#imageId').width();} 
+                                        else
+                                            {minWH = parseFloat($('#imageId').width())/parseFloat(responseJSON.k);}
+                                        alert(minWH);
                                         $('#imgCropDialog').dialog('open');
+                                        $("#imageId").imgAreaSelect({ show: true, x1: 0, y1: 0, x2: minWH, y2: minWH });
                                     }
+                                    
+                                    
                                 </script>
                         <?php        
                             
