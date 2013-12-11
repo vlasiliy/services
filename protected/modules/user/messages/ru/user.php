@@ -33,6 +33,8 @@ return array(
     'Subscription to announcements from the tape' => 'Подписка на объявления из ленты.',
     'Subscription to our Newsletter' => 'Подписка на новости сайта',
     
+    'Select region' => 'Выбрать регион',
+    
     //errors
     'Do not use a space in the Password' => 'Не используйте пробел в поле Пароль',
     'In the Skype using letters, numbers and underscores.' => 'В Skype используйте латинские буквы, цифры и символ подчеркивания.',

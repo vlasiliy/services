@@ -37,7 +37,7 @@
                                        'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                        'sizeLimit' => 2*1024*1024,// maximum file size in bytes
                                        //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
-                                       //'onComplete'=>"js:function(id, fileName, responseJSON){ showCrop(fileName); }",
+                                       'onComplete'=>"js:function(id, fileName, responseJSON){ showCrop(fileName); }",
                                        'messages'=>array(
                                                          'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
                                                          'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
@@ -48,6 +48,67 @@
                                        'showMessage'=>"js:function(message){ alert(message); }"
                                       )
                         )); ?>
+                        
+                        <?php 
+                        
+                            $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+                                'id' => 'imgCropDialog',
+                                'options' => array(
+                                    'open' => 'js:function(event, ui) {'.
+                                            '$("#imgCropDialog").parent().find(".ui-dialog-titlebar-close").hide();'.
+                                        '}',
+                                    'title' => Yii::t('app', 'Crop image'),
+                                    'autoOpen' => false,
+                                    'modal' => true,
+                                    'resizable'=> false,
+                                    //'height' => 400,
+                                    'draggable' => false,
+                                    'width' => 500,
+                                    'closeOnEscape' => false,
+                                    'buttons' => array(
+                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");}'),
+                                        ),
+                                ),
+                            ));
+                            
+                                //кроп рисунка
+                                $this->widget(
+                                    'ext.imgAreaSelect.JImgAreaSelect',
+                                    array(
+                                        'selector' => '#imageId',
+                                        'options' => "js:
+                                                {
+                                                    handles: true,
+                                                    aspectRatio: '1:1',
+                                                    onSelectEnd: function (img, selection) {
+                                                        $('#cropLeft').val(selection.x1);
+                                                        $('#cropTop').val(selection.y1);
+                                                        $('#cropWidth').val(selection.width);
+                                                        $('#cropHeight').val(selection.height);
+                                                     }
+                                                }
+                                                ",
+                                    )
+                                );
+                                
+                        ?>
+                                <img width="470" src="/img/no_avatar.png" id="imageId" />
+                                <input type="hidden" id="cropLeft" />
+                                <input type="hidden" id="cropTop" />
+                                <input type="hidden" id="cropWidth" />
+                                <input type="hidden" id="cropHeight" />
+                                <script type="text/javascript">
+                                    function showCrop(fileName)
+                                    {
+                                        $('#imageId').attr('src','/users/<?php echo $model->nick;?>/tmp/'+fileName);
+                                        $('#imgCropDialog').dialog('open');
+                                    }
+                                </script>
+                        <?php        
+                            
+                            $this->endWidget('zii.widgets.jui.CJuiDialog');
+                        ?>
+                        
                     </td>
                 </tr>
                 <tr class="odd">
@@ -169,7 +230,7 @@
                                             '$("#regionsDialog").parent().find(".ui-dialog-titlebar-close").hide();'.
                                             'chLR();'.
                                         '}',
-                                    'title' => 'Выбрать регион',
+                                    'title' => Yii::t('UserModule.user', 'Select region'),
                                     'autoOpen' => false,
                                     'modal' => true,
                                     'resizable'=> false,

@@ -13,6 +13,7 @@ return array(
     'Attention' => 'Внимание',
     'Yes' => 'Да',
     'Cancel' => 'Отменить',
+    'Crop image' => 'Вырезать изображение',
     
     //simbols for name and surname
     '/^[a-zA-Z\-\']+$/' => '/^[а-яА-Я\-\']+$/u',
