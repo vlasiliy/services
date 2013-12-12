@@ -66,7 +66,7 @@
                                     'width' => 500,
                                     'closeOnEscape' => false,
                                     'buttons' => array(
-                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");}'),
+                                            array('text'=>'Ok','click'=> 'js:function(){ias.cancelSelection();$(this).dialog("close");}'),
                                         ),
                                 ),
                             ));
@@ -92,12 +92,14 @@
                                 );
                                 
                         ?>
-                                <img width="470" src="/img/no_avatar.png" id="imageId" />
+                                <img width="470" src="/img/no_avatar.png" id="imageId" style="z-index: 2000;" />
                                 <input type="hidden" id="cropLeft" />
                                 <input type="hidden" id="cropTop" />
                                 <input type="hidden" id="cropWidth" />
                                 <input type="hidden" id="cropHeight" />
                                 <script type="text/javascript">
+                                    var ias = $("#imageId").imgAreaSelect({ instance: true });
+                                    
                                     function showCrop(responseJSON)
                                     {
                                         $("#imageId").attr("src", '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
@@ -105,9 +107,10 @@
                                             {minWH = $('#imageId').width();} 
                                         else
                                             {minWH = parseFloat($('#imageId').width())/parseFloat(responseJSON.k);}
-                                        alert(minWH);
                                         $('#imgCropDialog').dialog('open');
-                                        $("#imageId").imgAreaSelect({ show: true, x1: 0, y1: 0, x2: minWH, y2: minWH });
+                                        ias.setSelection(0, 0, minWH, minWH, true);
+                                        ias.update();
+                                        ias.setOptions({ show: true });
                                     }
                                     
                                     
