@@ -66,7 +66,7 @@
                                     'width' => 500,
                                     'closeOnEscape' => false,
                                     'buttons' => array(
-                                            array('text'=>'Ok','click'=> 'js:function(){ias.cancelSelection();$(this).dialog("close");}'),
+                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");}'),
                                         ),
                                 ),
                             ));
@@ -92,13 +92,13 @@
                                 );
                                 
                         ?>
-                                <img width="470" src="/img/no_avatar.png" id="imageId" style="z-index: 2000;" />
+                                <img width="470" src="/img/no_avatar.png" id="imageId" />
                                 <input type="hidden" id="cropLeft" />
                                 <input type="hidden" id="cropTop" />
                                 <input type="hidden" id="cropWidth" />
                                 <input type="hidden" id="cropHeight" />
                                 <script type="text/javascript">
-                                    var ias = $("#imageId").imgAreaSelect({ instance: true });
+                                    var ias = $("#imageId").imgAreaSelect({ instance: true, parent: '#imgCropDialog' });
                                     
                                     function showCrop(responseJSON)
                                     {
