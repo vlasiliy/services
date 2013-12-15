@@ -251,30 +251,10 @@ class MainController extends BackendController
 
                 echo $return;// it's array
         }
-//        
-//        public function actionTest()
-//        {
-//            $pp_hostname = "www.sandbox.paypal.com";
-//
-//            $auth_token = "GroBXKof0sStd0lIfQotWBKxU5uOhcZiJPFFbBgYqKF7u_XYOS60HP-Xrfe";
-//
-//            $req = 'cmd=_notify-synch';
-//            $req .= "&tx=3K332446CF3973218&at=$auth_token";
-//
-//            $ch = curl_init();
-//            curl_setopt($ch, CURLOPT_URL, "https://$pp_hostname/cgi-bin/webscr");
-//            curl_setopt($ch, CURLOPT_POST, 1);
-//            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//            curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
-//            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-//            //set cacert.pem verisign certificate path in curl using 'CURLOPT_CAINFO' field here,
-//            //if your server does not bundled with default verisign certificates.
-//            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-//            curl_setopt($ch, CURLOPT_HTTPHEADER, array("Host: $pp_hostname"));
-//            $res = curl_exec($ch);
-//            curl_close($ch);
-//
-//            echo $res;exit;
-//        }
+        
+        public function actionTest()
+        {
+            $this->render('test');
+        }
         
 }
