@@ -1,4 +1,4 @@
-<?php Yii::app()->clientScript->registerCoreScript('jquery');?>
+<?php //Yii::app()->clientScript->registerCoreScript('jquery');?>
 <?php Yii::app()->clientScript->registerScriptFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.js').'/jquery.Jcrop.min.js'));?>
 <?php Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.css').'/jquery.Jcrop.min.css'));?>
 
@@ -33,7 +33,7 @@ Yii::app()->clientScript->registerScript('crop', "
 ");
 ?>
 
-<img src="/users/test/tmp/IMG_20130824_135806.jpg" id="target" width="400" />
+<img src="/img/no_avatar.png" id="target" width="400" />
 
 <input type="hidden" id="x1" />
 <input type="hidden" id="y1" />

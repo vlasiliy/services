@@ -71,35 +71,10 @@
                                 ),
                             ));
                             
-                                //кроп рисунка
-                                $this->widget(
-                                    'ext.imgAreaSelect.JImgAreaSelect',
-                                    array(
-                                        'selector' => '#imageId',
-                                        'options' => "js:
-                                                {
-                                                    handles: true,
-                                                    aspectRatio: '1:1',
-                                                    onSelectEnd: function (img, selection) {
-                                                        $('#cropLeft').val(selection.x1);
-                                                        $('#cropTop').val(selection.y1);
-                                                        $('#cropWidth').val(selection.width);
-                                                        $('#cropHeight').val(selection.height);
-                                                     }
-                                                }
-                                                ",
-                                    )
-                                );
+
                                 
                         ?>
-                                <img width="470" src="/img/no_avatar.png" id="imageId" />
-                                <input type="hidden" id="cropLeft" />
-                                <input type="hidden" id="cropTop" />
-                                <input type="hidden" id="cropWidth" />
-                                <input type="hidden" id="cropHeight" />
                                 <script type="text/javascript">
-                                    var ias = $("#imageId").imgAreaSelect({ instance: true, parent: '#imgCropDialog' });
-                                    
                                     function showCrop(responseJSON)
                                     {
                                         $("#imageId").attr("src", '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
@@ -108,9 +83,6 @@
                                         else
                                             {minWH = parseFloat($('#imageId').width())/parseFloat(responseJSON.k);}
                                         $('#imgCropDialog').dialog('open');
-                                        ias.setSelection(0, 0, minWH, minWH, true);
-                                        ias.update();
-                                        ias.setOptions({ show: true });
                                     }
                                     
                                     
@@ -120,6 +92,23 @@
                             $this->endWidget('zii.widgets.jui.CJuiDialog');
                         ?>
                         
+                    </td>
+                </tr>
+
+                <tr class="odd">
+                    <td class="label">
+                    </td>
+                    <td>
+                        <?php
+                                //кроп рисунка
+                                $this->widget(
+                                    'ext.Jcrop.Jcrop',
+                                    array(
+                                        'idImg' => 'imageId',
+                                        'htmlWidthImg' => 470,
+                                    )
+                                );
+                        ?>
                     </td>
                 </tr>
                 <tr class="odd">
