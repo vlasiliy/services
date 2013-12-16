@@ -14,9 +14,11 @@ class Jcrop extends CWidget
 {
     public $idImg;
     
-    //public $originWidthImg;
+    public $idSetArea;
     
-    //public $originHeightImg;
+    public $idWidthImg;
+    
+    public $idHeightImg;
     
     public $htmlWidthImg;
     
@@ -24,17 +26,17 @@ class Jcrop extends CWidget
     
     public $aspectRatio = 1;
     
-    public $minWidthCrop = 50;
+    public $minWidthCrop = 135;
     
-    public $minHeightCrop = 50;
+    public $minHeightCrop = 135;
     
     
     
     public function init()
     {
 
-        $this->render('jcrop', array(
-            'option1' => '',
-        ));
+        //print_r(get_object_vars($this));die;
+        
+        $this->render('jcrop', get_object_vars($this));
     }
 }

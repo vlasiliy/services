@@ -71,44 +71,36 @@
                                 ),
                             ));
                             
-
                                 
-                        ?>
-                                <script type="text/javascript">
-                                    function showCrop(responseJSON)
-                                    {
-                                        $("#imageId").attr("src", '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
-                                        if(responseJSON.k < 1)
-                                            {minWH = $('#imageId').width();} 
-                                        else
-                                            {minWH = parseFloat($('#imageId').width())/parseFloat(responseJSON.k);}
-                                        $('#imgCropDialog').dialog('open');
-                                    }
-                                    
-                                    
-                                </script>
-                        <?php        
-                            
-                            $this->endWidget('zii.widgets.jui.CJuiDialog');
-                        ?>
-                        
-                    </td>
-                </tr>
-
-                <tr class="odd">
-                    <td class="label">
-                    </td>
-                    <td>
-                        <?php
                                 //кроп рисунка
                                 $this->widget(
                                     'ext.Jcrop.Jcrop',
                                     array(
                                         'idImg' => 'imageId',
+                                        'idWidthImg' => 'imageWidthId',
+                                        'idHeightImg' => 'imageHeightId',
                                         'htmlWidthImg' => 470,
                                     )
                                 );
+                            
+                            $this->endWidget('zii.widgets.jui.CJuiDialog');
                         ?>
+                                <script type="text/javascript">
+                                    function showCrop(responseJSON)
+                                    {
+                                        destroyCrop();
+                                        //$("#imageId").attr("src", '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
+                                        $("#imageId").load(function(){
+                                            initCrop();
+                                            $("#imageWidthId").val(responseJSON.width);
+                                            $("#imageHeightId").val(responseJSON.height);
+                                            $('#imgCropDialog').dialog('open');
+                                        }).attr('src', '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
+                                    }
+                                    
+                                    
+                                </script>
+                        
                     </td>
                 </tr>
                 <tr class="odd">

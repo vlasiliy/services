@@ -242,8 +242,8 @@ class MainController extends BackendController
                 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
                 $result = $uploader->handleUpload($folder);
                 $param = getimagesize($folder.$result['filename']);
-                $result['k'] = $param[0]/$param[1];
-                //$result['height'] = $param[1];
+                $result['width'] = $param[0];
+                $result['height'] = $param[1];
                 $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
                 
                 $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
