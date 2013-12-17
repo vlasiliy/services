@@ -10,7 +10,7 @@
 */
 .jcrop-holder {
   direction: ltr;
-  text-align: left;
+  margin: auto;
 }
 /* Selection Border */
 .jcrop-vline,
