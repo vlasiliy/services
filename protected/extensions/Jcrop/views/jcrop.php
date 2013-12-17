@@ -1,6 +1,6 @@
 <?php //Yii::app()->clientScript->registerCoreScript('jquery');?>
 <?php Yii::app()->clientScript->registerScriptFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.js').'/jquery.Jcrop.min.js'));?>
-<?php Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.css').'/jquery.Jcrop.css'));?>
+<?php Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.css').'/jquery.Jcrop.min.css'));?>
 
 <img src="/img/no_avatar.png" id="<?php echo $idImg;?>" />
 
@@ -16,25 +16,40 @@
 
 <script type="text/javascript">
     var jcrop_api;
+        alert(jcrop_api);
     
     function initCrop()
     {
-        $('#<?php echo $idImg;?>').Jcrop({
-            onChange: showCoords,
-            onSelect: showCoords,
-            aspectRatio: <?php echo $aspectRatio;?>,
-            minSize: [<?php echo $minWidthCrop;?>, <?php echo $minHeightCrop;?>],
-            <?php echo ($htmlWidthImg != '') ? 'boxWidth: '.$htmlWidthImg : '' ;?>
-        },
-        function(){
-            jcrop_api = this;
-        });
-        setSelectArea();
+        if(($('#<?php echo $idWidthImg;?>').val() < <?php echo $minWidthCrop;?>) || ($('#<?php echo $idHeightImg;?>').val() < <?php echo $minHeightCrop;?>))
+        {
+            alert('Маленький рисунок');
+            return false;
+        }
+        else
+        {
+            $('#<?php echo $idImg;?>').Jcrop({
+                onChange: showCoords,
+                onSelect: showCoords,
+                aspectRatio: <?php echo $aspectRatio;?>,
+                minSize: [<?php echo $minWidthCrop;?>, <?php echo $minHeightCrop;?>],
+                <?php echo ($htmlWidthImg != '') ? 'boxWidth: '.$htmlWidthImg : '' ;?>
+            },
+            function(){
+                jcrop_api = this;
+            });
+            jcrop_api.setSelect([0, 0 , <?php echo $minWidthCrop;?>, <?php echo $minHeightCrop;?>]);
+            return true;
+        }   
     }
     
     function destroyCrop()
     {
-        jcrop_api.destroy();
+        if(jcrop_api === undefined)
+        {}
+        else
+        {jcrop_api.destroy();jcrop_api = undefined;}
+        //if(jcrop_api != undefined)
+        //jcrop_api.disable() 
     }
     
     function showCoords(c)
@@ -46,15 +61,4 @@
         $('#w').val(c.w);
         $('#h').val(c.h);
     };
-    
-    function setSelectArea() {
-        
-        jcrop_api.setSelect([10, 10 , 200, 200]);
-    }
-
-    $('#getCrop').click(function(){
-        alert($('#x1').val());
-    });
-    
-    initCrop();
 </script>

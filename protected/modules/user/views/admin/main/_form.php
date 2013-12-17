@@ -66,7 +66,7 @@
                                     'width' => 500,
                                     'closeOnEscape' => false,
                                     'buttons' => array(
-                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");}'),
+                                            array('text'=>'Ok','click'=> 'js:function(){destroyCrop();$(this).dialog("close");}'),
                                         ),
                                 ),
                             ));
@@ -89,12 +89,15 @@
                                     function showCrop(responseJSON)
                                     {
                                         destroyCrop();
-                                        //$("#imageId").attr("src", '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
                                         $("#imageId").load(function(){
-                                            initCrop();
                                             $("#imageWidthId").val(responseJSON.width);
                                             $("#imageHeightId").val(responseJSON.height);
-                                            $('#imgCropDialog').dialog('open');
+                                            res = initCrop();
+                                            //alert(res);
+                                            if(res)
+                                            {
+                                                $('#imgCropDialog').dialog('open');
+                                            }
                                         }).attr('src', '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
                                     }
                                     
