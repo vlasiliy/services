@@ -92,7 +92,7 @@
                                         $("#imageId").load(function(){
                                             $("#imageWidthId").val(responseJSON.width);
                                             $("#imageHeightId").val(responseJSON.height);
-                                            res = initCrop();
+                                            res = initCropMy();
                                             //alert(res);
                                             if(res)
                                             {
@@ -100,8 +100,6 @@
                                             }
                                         }).attr('src', '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
                                     }
-                                    
-                                    
                                 </script>
                         
                     </td>

@@ -16,38 +16,36 @@
 
 <script type="text/javascript">
     var jcrop_api;
-        alert(jcrop_api);
     
-    function initCrop()
+    function initCropMy()
     {
+        alert(1);
         if(($('#<?php echo $idWidthImg;?>').val() < <?php echo $minWidthCrop;?>) || ($('#<?php echo $idHeightImg;?>').val() < <?php echo $minHeightCrop;?>))
         {
             alert('Маленький рисунок');
+            jcrop_api.destroy();
             return false;
         }
         else
         {
-            $('#<?php echo $idImg;?>').Jcrop({
+            jcrop_api = $.Jcrop('#<?php echo $idImg;?>');
+            jcrop_api.setOptions({
                 onChange: showCoords,
                 onSelect: showCoords,
                 aspectRatio: <?php echo $aspectRatio;?>,
                 minSize: [<?php echo $minWidthCrop;?>, <?php echo $minHeightCrop;?>],
                 <?php echo ($htmlWidthImg != '') ? 'boxWidth: '.$htmlWidthImg : '' ;?>
-            },
-            function(){
-                jcrop_api = this;
             });
             jcrop_api.setSelect([0, 0 , <?php echo $minWidthCrop;?>, <?php echo $minHeightCrop;?>]);
             return true;
         }   
-    }
+
+    }; 
     
     function destroyCrop()
     {
-        if(jcrop_api === undefined)
-        {}
-        else
-        {jcrop_api.destroy();jcrop_api = undefined;}
+        if(jcrop_api !== undefined)
+        {jcrop_api.destroy();}
         //if(jcrop_api != undefined)
         //jcrop_api.disable() 
     }
