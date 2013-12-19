@@ -3,6 +3,7 @@
 <?php Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.css').'/jquery.Jcrop.min.css'));?>
 
 <img src="/img/no_avatar.png" id="<?php echo $idImg;?>" />
+<img src="/img/no_avatar.png" id="<?php echo $idImg;?>Tmp" style="display:none;" />
 
 <input type="hidden" id="<?php echo $idWidthImg;?>" />
 <input type="hidden" id="<?php echo $idHeightImg;?>" />
@@ -14,44 +15,40 @@
 <input type="hidden" id="w" />
 <input type="hidden" id="h" />
 
-<script type="text/javascript">
+<?php Yii::app()->clientScript->registerScript('search', "
     var jcrop_api;
-        alert(jcrop_api);
+    alert(jcrop_api);
+    initCrop();
     
     function initCrop()
     {
-        if(($('#<?php echo $idWidthImg;?>').val() < <?php echo $minWidthCrop;?>) || ($('#<?php echo $idHeightImg;?>').val() < <?php echo $minHeightCrop;?>))
+        $('#".$idImg."').Jcrop({
+            onChange: showCoords,
+            onSelect: showCoords,
+            aspectRatio: ".$aspectRatio.",
+            minSize: [".$minWidthCrop.", ".$minHeightCrop."],
+            ".($htmlWidthImg != '') ? 'boxWidth: '.$htmlWidthImg : ''."
+        },
+        function(){
+            jcrop_api = this;
+        });
+        jcrop_api.setSelect([0, 0 , ".$minWidthCrop.", ".$minHeightCrop."]);
+    }
+    
+    function setImage(fullName)
+    {
+        if(($('#".$idWidthImg."').val() < ".$minWidthCrop.") || ($('#".$idHeightImg."').val() < ".$minHeightCrop."))
         {
             alert('Маленький рисунок');
-            return false;
+            return (false);
         }
         else
         {
-            $('#<?php echo $idImg;?>').Jcrop({
-                onChange: showCoords,
-                onSelect: showCoords,
-                aspectRatio: <?php echo $aspectRatio;?>,
-                minSize: [<?php echo $minWidthCrop;?>, <?php echo $minHeightCrop;?>],
-                <?php echo ($htmlWidthImg != '') ? 'boxWidth: '.$htmlWidthImg : '' ;?>
-            },
-            function(){
-                jcrop_api = this;
-            });
-            jcrop_api.setSelect([0, 0 , <?php echo $minWidthCrop;?>, <?php echo $minHeightCrop;?>]);
-            return true;
-        }   
+            jcrop_api.setImage(fullName); 
+            return (true);
+        }
     }
-    
-    function destroyCrop()
-    {
-        if(jcrop_api === undefined)
-        {}
-        else
-        {jcrop_api.destroy();jcrop_api = undefined;}
-        //if(jcrop_api != undefined)
-        //jcrop_api.disable() 
-    }
-    
+
     function showCoords(c)
     {
         $('#x1').val(c.x);
@@ -61,4 +58,17 @@
         $('#w').val(c.w);
         $('#h').val(c.h);
     };
-</script>
+    
+    function showCrop(responseJSON)
+    {
+        fullName = '/users/".$model->nick."/tmp/'+responseJSON.filename;
+        $('#imageIdTmp').load(function(){
+            $('#imageWidthId').val(responseJSON.width);
+            $('#imageHeightId').val(responseJSON.height);
+            if(setImage(fullName))
+            {
+                $('#imgCropDialog').dialog('open');
+            }
+        }).attr('src', fullName);
+    }
+");

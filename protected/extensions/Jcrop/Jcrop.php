@@ -20,6 +20,8 @@ class Jcrop extends CWidget
     
     public $idHeightImg;
     
+    public $idDialog;
+    
     public $htmlWidthImg;
     
     public $htmlHeightImg;

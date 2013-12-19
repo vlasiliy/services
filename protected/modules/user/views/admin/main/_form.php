@@ -66,7 +66,7 @@
                                     'width' => 500,
                                     'closeOnEscape' => false,
                                     'buttons' => array(
-                                            array('text'=>'Ok','click'=> 'js:function(){destroyCrop();$(this).dialog("close");}'),
+                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");}'),
                                         ),
                                 ),
                             ));
@@ -85,25 +85,6 @@
                             
                             $this->endWidget('zii.widgets.jui.CJuiDialog');
                         ?>
-                                <script type="text/javascript">
-                                    function showCrop(responseJSON)
-                                    {
-                                        destroyCrop();
-                                        $("#imageId").load(function(){
-                                            $("#imageWidthId").val(responseJSON.width);
-                                            $("#imageHeightId").val(responseJSON.height);
-                                            res = initCrop();
-                                            //alert(res);
-                                            if(res)
-                                            {
-                                                $('#imgCropDialog').dialog('open');
-                                            }
-                                        }).attr('src', '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
-                                    }
-                                    
-                                    
-                                </script>
-                        
                     </td>
                 </tr>
                 <tr class="odd">
