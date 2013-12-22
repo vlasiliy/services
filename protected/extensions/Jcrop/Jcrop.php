@@ -32,6 +32,8 @@ class Jcrop extends CWidget
     
     public $minHeightCrop = 135;
     
+    public $scriptOpenDialog;
+    
     
     
     public function run()

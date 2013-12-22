@@ -31,7 +31,6 @@
         function(){
             jcrop_api = this;
         });
-        jcrop_api.setSelect([0, 0 , ".$minWidthCrop.", ".$minHeightCrop."]);
     }
     
     function setImage(fullName)
@@ -39,12 +38,12 @@
         if(($('#".$idWidthImg."').val() < ".$minWidthCrop.") || ($('#".$idHeightImg."').val() < ".$minHeightCrop."))
         {
             alert('Маленький рисунок');
-            return (false);
         }
         else
         {
             jcrop_api.setImage(fullName); 
-            return (true);
+            jcrop_api.setSelect([0, 0 , ".$minWidthCrop.", ".$minHeightCrop."]);
+            $scriptOpenDialog;
         }
     }
 
@@ -58,8 +57,8 @@
         $('#h').val(c.h);
     };
     
-    $('#".$idWidthImg."').change(function(){
-        alert(1);
+    $('#".$idWidthImg."').on('change', function(e){
+        setImage(fullName);
     });
     
 ");

@@ -39,13 +39,14 @@
                                        //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
                                        'onComplete'=>"js:function(id, fileName, responseJSON){"
                                             ."
-                                                fullName = '/users/".$model->nick."/tmp/'+responseJSON.filename;
-                                                $('#imageId').load(function(){
-                                                    $('#imageWidthId').val(responseJSON.width);
+                                                fullName = '/users/".$model->nick."/tmp/'+responseJSON.filename+'?".md5(time())."';
+                                                im = document.getElementById('imageId');
+                                                im.onload = function(){
                                                     $('#imageHeightId').val(responseJSON.height);
-                                                        $('#imgCropDialog').dialog('open');
-                                                }).attr('src', fullName);"
-                                    
+                                                    $('#imageWidthId').val(responseJSON.width).change();                                                
+                                                }
+                                                im.src = fullName;
+                                            "
                                             ."}",
                                        'messages'=>array(
                                                          'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
@@ -89,6 +90,7 @@
                                         'idWidthImg' => 'imageWidthId',
                                         'idHeightImg' => 'imageHeightId',
                                         'htmlWidthImg' => 470,
+                                        'scriptOpenDialog' => "$('#imgCropDialog').dialog('open');",
                                     )
                                 );
                             
