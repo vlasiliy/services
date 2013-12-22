@@ -37,7 +37,16 @@
                                        'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                        'sizeLimit' => 2*1024*1024,// maximum file size in bytes
                                        //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
-                                       'onComplete'=>"js:function(id, fileName, responseJSON){ showCrop(responseJSON); }",
+                                       'onComplete'=>"js:function(id, fileName, responseJSON){"
+                                            ."
+                                                fullName = '/users/".$model->nick."/tmp/'+responseJSON.filename;
+                                                $('#imageId').load(function(){
+                                                    $('#imageWidthId').val(responseJSON.width);
+                                                    $('#imageHeightId').val(responseJSON.height);
+                                                        $('#imgCropDialog').dialog('open');
+                                                }).attr('src', fullName);"
+                                    
+                                            ."}",
                                        'messages'=>array(
                                                          'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
                                                          'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",

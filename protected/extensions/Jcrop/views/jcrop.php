@@ -1,9 +1,7 @@
-<?php //Yii::app()->clientScript->registerCoreScript('jquery');?>
 <?php Yii::app()->clientScript->registerScriptFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.js').'/jquery.Jcrop.min.js'));?>
 <?php Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.css').'/jquery.Jcrop.min.css'));?>
 
 <img src="/img/no_avatar.png" id="<?php echo $idImg;?>" />
-<img src="/img/no_avatar.png" id="<?php echo $idImg;?>Tmp" style="display:none;" />
 
 <input type="hidden" id="<?php echo $idWidthImg;?>" />
 <input type="hidden" id="<?php echo $idHeightImg;?>" />
@@ -15,9 +13,10 @@
 <input type="hidden" id="w" />
 <input type="hidden" id="h" />
 
-<?php Yii::app()->clientScript->registerScript('search', "
+<?php $hWI = ($htmlWidthImg != "") ? "boxWidth: ".$htmlWidthImg : "";?>
+
+<?php Yii::app()->clientScript->registerScript('cropScript', "
     var jcrop_api;
-    alert(jcrop_api);
     initCrop();
     
     function initCrop()
@@ -27,7 +26,7 @@
             onSelect: showCoords,
             aspectRatio: ".$aspectRatio.",
             minSize: [".$minWidthCrop.", ".$minHeightCrop."],
-            ".($htmlWidthImg != '') ? 'boxWidth: '.$htmlWidthImg : ''."
+            ".$hWI."
         },
         function(){
             jcrop_api = this;
@@ -59,16 +58,9 @@
         $('#h').val(c.h);
     };
     
-    function showCrop(responseJSON)
-    {
-        fullName = '/users/".$model->nick."/tmp/'+responseJSON.filename;
-        $('#imageIdTmp').load(function(){
-            $('#imageWidthId').val(responseJSON.width);
-            $('#imageHeightId').val(responseJSON.height);
-            if(setImage(fullName))
-            {
-                $('#imgCropDialog').dialog('open');
-            }
-        }).attr('src', fullName);
-    }
+    $('#".$idWidthImg."').change(function(){
+        alert(1);
+    });
+    
 ");
+?>
