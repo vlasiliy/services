@@ -20,6 +20,7 @@ return array(
                 'application.modules.user.*',
                 'application.modules.user.models.*',
                 'application.modules.category.*',
+                'application.components.ImageHandler.CImageHandler',
 	),
 
 	'modules'=>array(
@@ -96,6 +97,9 @@ return array(
 				*/
 			),
 		),
+                'ih'=>array(
+                    'class'=>'CImageHandler',
+                ),
 	),
 
 	// application-level parameters that can be accessed

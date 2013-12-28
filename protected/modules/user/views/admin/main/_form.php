@@ -76,7 +76,7 @@
                                     'width' => 500,
                                     'closeOnEscape' => false,
                                     'buttons' => array(
-                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");}'),
+                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");cropAjax();}'),
                                         ),
                                 ),
                             ));
@@ -96,6 +96,26 @@
                             
                             $this->endWidget('zii.widgets.jui.CJuiDialog');
                         ?>
+                        
+                        <script type="text/javascript">
+                            function cropAjax(){
+                                filename = $("#imageId").attr('src').split('/').pop().split('?').shift();
+                                dataCrop = "nick=<?php echo $model->nick;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
+                                $.ajax({
+                                  url: "/admin/user/main/cropavatar",
+                                  type: "post",
+                                  data: dataCrop,
+                                  success: function(flag){
+                                      if(flag)
+                                      {
+                                          //$('#imgCat').attr('src','<?php //echo $imgUrl.$idCategory.'.jpg?';?>'+Math.random());
+                                          //$("#forImageId").css('display','none');
+                                          alert(1);
+                                      }
+                                  }
+                                });
+                            }
+                        </script>
                     </td>
                 </tr>
                 <tr class="odd">
