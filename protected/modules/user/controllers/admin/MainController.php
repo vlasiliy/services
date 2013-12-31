@@ -262,13 +262,22 @@ class MainController extends BackendController
         
         public function actionCropAvatar()
         {
-            //echo Yii::getPathOfAlias('webroot').'/users/'.$_POST['nick'].'/tmp/'.$_POST['filename'];die;
-            Yii::app()->ih
-                ->load(Yii::getPathOfAlias('webroot').'/users/'.$_POST['nick'].'/tmp/'.$_POST['filename'])
-                ->crop($_POST['width'], $_POST['height'], $_POST['x'], $_POST['y'])
-                ->resize(135, 135)
-                ->save(Yii::getPathOfAlias('webroot').'/users/'.$_POST['nick'].'/avatar/'.$_POST['filename']);
-            echo true;
+            $user = User::model()->findByPk($_POST['userId']);
+
+            if(!empty($user))
+            {
+                $path = Yii::getPathOfAlias('webroot').'/users/'.$user->nick;
+                //echo $path;die;
+                $filename = ($user->avatar != '' && file_exists($path.'/avatar/'.$user->avatar)) ? $user->avatar : $_POST['filename'];
+                Yii::app()->ih
+                    ->load($path.'/tmp/'.$_POST['filename'])
+                    ->crop($_POST['width'], $_POST['height'], $_POST['x'], $_POST['y'])
+                    ->resize(135, 135)
+                    ->save($path.'/avatar/'.$filename);
+                $user->avatar = $filename;
+                $user->save(true, array('avatar'));
+                echo $filename;
+            }
             exit;
         }
         

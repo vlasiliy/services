@@ -27,8 +27,7 @@
                         <?php echo $form->labelEx($model,'avatar'); ?>
                     </td>
                     <td>
-                        <?php $arrImg = glob(Yii::getPathOfAlias('webroot').'/users/'.$model->nick.'/avatar/*.*');?>
-                        <img src="<?php echo ($model->avatar == '' || count($arrImg) == 0) ? '/img/no_avatar.png' : $arrImg[0]; ?>" id="avatar" />
+                        <img src="<?php echo ($model->avatar == '' || !file_exists(Yii::getPathOfAlias('webroot').'/users/'.$model->nick.'/avatar/'.$model->avatar)) ? '/img/no_avatar.png' : '/users/'.$model->nick.'/avatar/'.$model->avatar; ?>" id="avatar" />
                         <?php $this->widget('application.extensions.EAjaxUpload.EAjaxUpload',
                         array(
                                 'id'=>'uploadFile',
@@ -100,17 +99,15 @@
                         <script type="text/javascript">
                             function cropAjax(){
                                 filename = $("#imageId").attr('src').split('/').pop().split('?').shift();
-                                dataCrop = "nick=<?php echo $model->nick;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
+                                dataCrop = "userId=<?php echo $model->id;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
                                 $.ajax({
                                   url: "/admin/user/main/cropavatar",
                                   type: "post",
                                   data: dataCrop,
-                                  success: function(flag){
-                                      if(flag)
+                                  success: function(fn){
+                                      if(fn)
                                       {
-                                          //$('#imgCat').attr('src','<?php //echo $imgUrl.$idCategory.'.jpg?';?>'+Math.random());
-                                          //$("#forImageId").css('display','none');
-                                          alert(1);
+                                          $('#avatar').attr('src','/users/<?php echo $model->nick;?>/avatar/'+fn+'?'+Math.random());
                                       }
                                   }
                                 });
