@@ -37,7 +37,17 @@
                                        'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
                                        'sizeLimit' => 2*1024*1024,// maximum file size in bytes
                                        //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
-                                       'onComplete'=>"js:function(id, fileName, responseJSON){ showCrop(responseJSON); }",
+                                       'onComplete'=>"js:function(id, fileName, responseJSON){"
+                                            ."
+                                                fullName = '/users/".$model->nick."/tmp/'+responseJSON.filename+'?".md5(time())."';
+                                                im = document.getElementById('imageId');
+                                                im.onload = function(){
+                                                    $('#imageHeightId').val(responseJSON.height);
+                                                    $('#imageWidthId').val(responseJSON.width).change();                                                
+                                                }
+                                                im.src = fullName;
+                                            "
+                                            ."}",
                                        'messages'=>array(
                                                          'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
                                                          'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
@@ -66,7 +76,7 @@
                                     'width' => 500,
                                     'closeOnEscape' => false,
                                     'buttons' => array(
-                                            array('text'=>'Ok','click'=> 'js:function(){destroyCrop();$(this).dialog("close");}'),
+                                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");cropAjax();}'),
                                         ),
                                 ),
                             ));
@@ -80,30 +90,32 @@
                                         'idWidthImg' => 'imageWidthId',
                                         'idHeightImg' => 'imageHeightId',
                                         'htmlWidthImg' => 470,
+                                        'scriptOpenDialog' => "$('#imgCropDialog').dialog('open');",
                                     )
                                 );
                             
                             $this->endWidget('zii.widgets.jui.CJuiDialog');
                         ?>
-                                <script type="text/javascript">
-                                    function showCrop(responseJSON)
-                                    {
-                                        destroyCrop();
-                                        $("#imageId").load(function(){
-                                            $("#imageWidthId").val(responseJSON.width);
-                                            $("#imageHeightId").val(responseJSON.height);
-                                            res = initCrop();
-                                            //alert(res);
-                                            if(res)
-                                            {
-                                                $('#imgCropDialog').dialog('open');
-                                            }
-                                        }).attr('src', '/users/<?php echo $model->nick;?>/tmp/'+responseJSON.filename);
-                                    }
-                                    
-                                    
-                                </script>
                         
+                        <script type="text/javascript">
+                            function cropAjax(){
+                                filename = $("#imageId").attr('src').split('/').pop().split('?').shift();
+                                dataCrop = "nick=<?php echo $model->nick;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
+                                $.ajax({
+                                  url: "/admin/user/main/cropavatar",
+                                  type: "post",
+                                  data: dataCrop,
+                                  success: function(flag){
+                                      if(flag)
+                                      {
+                                          //$('#imgCat').attr('src','<?php //echo $imgUrl.$idCategory.'.jpg?';?>'+Math.random());
+                                          //$("#forImageId").css('display','none');
+                                          alert(1);
+                                      }
+                                  }
+                                });
+                            }
+                        </script>
                     </td>
                 </tr>
                 <tr class="odd">

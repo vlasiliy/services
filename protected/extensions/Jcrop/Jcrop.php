@@ -20,6 +20,8 @@ class Jcrop extends CWidget
     
     public $idHeightImg;
     
+    public $idDialog;
+    
     public $htmlWidthImg;
     
     public $htmlHeightImg;
@@ -29,6 +31,8 @@ class Jcrop extends CWidget
     public $minWidthCrop = 135;
     
     public $minHeightCrop = 135;
+    
+    public $scriptOpenDialog;
     
     
     

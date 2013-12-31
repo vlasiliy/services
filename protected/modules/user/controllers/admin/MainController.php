@@ -241,20 +241,35 @@ class MainController extends BackendController
                 $sizeLimit = 2 * 1024 * 1024;// maximum file size in bytes
                 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
                 $result = $uploader->handleUpload($folder);
-                $param = getimagesize($folder.$result['filename']);
-                $result['width'] = $param[0];
-                $result['height'] = $param[1];
+                if($result['success'] == 1)
+                {   
+                    $newName = md5(time()).substr($result['filename'],-4);
+                    if(rename($folder.$result['filename'], $folder.$newName))
+                    {
+                        $result['filename'] = $newName;
+                    }
+                    $param = getimagesize($folder.$result['filename']);
+                    $result['width'] = $param[0];
+                    $result['height'] = $param[1];
+                }
                 $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
                 
-                $fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
-                $fileName = $result['filename'];//GETTING FILE NAME
+                //$fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
+                //$fileName = $result['filename'];//GETTING FILE NAME
 
                 echo $return;// it's array
         }
         
-        public function actionTest()
+        public function actionCropAvatar()
         {
-            $this->render('test');
+            //echo Yii::getPathOfAlias('webroot').'/users/'.$_POST['nick'].'/tmp/'.$_POST['filename'];die;
+            Yii::app()->ih
+                ->load(Yii::getPathOfAlias('webroot').'/users/'.$_POST['nick'].'/tmp/'.$_POST['filename'])
+                ->crop($_POST['width'], $_POST['height'], $_POST['x'], $_POST['y'])
+                ->resize(135, 135)
+                ->save(Yii::getPathOfAlias('webroot').'/users/'.$_POST['nick'].'/avatar/'.$_POST['filename']);
+            echo true;
+            exit;
         }
         
 }
