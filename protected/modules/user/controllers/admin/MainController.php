@@ -36,15 +36,17 @@ class MainController extends BackendController
                         if($_POST['User']['password'] != '')
                             $_POST['User']['password'] = md5($_POST['User']['password']);
 			$model->attributes=$_POST['User'];
-                        if($_POST['User']['date_create'] == '')
-                            $model->date_create = null;
+                        //$model->date_create = null;
                         $model->scenario = 'create';
 			if($model->save())
                         {
-                            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.$model->nick);
+                            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.strtolower($model->nick));
+                            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.strtolower($model->nick).'/tmp');
+                            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.strtolower($model->nick).'/avatar');
                             $model->date_update = $model->date_create;
-                            $model->save(false, array('date_update'));
-                            $this->redirect(array('view','id'=>$model->id));
+                            $model->date_last_visit = $model->date_create;
+                            $model->save(false, array('date_update', 'date_last_visit'));
+                            $this->redirect(array('update','id'=>$model->id));
                         }
 		}
 

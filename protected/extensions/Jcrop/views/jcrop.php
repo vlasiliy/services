@@ -1,6 +1,3 @@
-<?php Yii::app()->clientScript->registerScriptFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.js').'/jquery.Jcrop.min.js'));?>
-<?php Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('ext.Jcrop.css').'/jquery.Jcrop.min.css'));?>
-
 <img src="/img/no_avatar.png" id="<?php echo $idImg;?>" />
 
 <input type="hidden" id="<?php echo $idWidthImg;?>" />
@@ -37,7 +34,7 @@
     {
         if(($('#".$idWidthImg."').val() < ".$minWidthCrop.") || ($('#".$idHeightImg."').val() < ".$minHeightCrop."))
         {
-            alert('Маленький рисунок');
+            alert('".Yii::t('Jcrop.jcrop','Small size picture.')."');
         }
         else
         {

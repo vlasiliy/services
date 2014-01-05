@@ -22,6 +22,7 @@
             <?php echo $form->errorSummary($model); ?>
 
             <table class="detail-view">
+                <?php if(!$model->isNewRecord):?>
                 <tr class="even">
                     <td class="label">
                         <?php echo $form->labelEx($model,'avatar'); ?>
@@ -115,6 +116,7 @@
                         </script>
                     </td>
                 </tr>
+                <?php endif;?>
                 <tr class="odd">
                     <td class="label">
                         <?php echo $form->labelEx($model,'role'); ?>
@@ -480,7 +482,6 @@
                             <?php echo $form->error($model,'date_update'); ?>
                         </td>
                     </tr>
-                <?php endif;?>    
                 <tr class="odd">
                     <td class="label">
                         <?php echo $form->label($model,'date_last_visit'); ?>
@@ -501,6 +502,7 @@
                         <?php echo $form->error($model,'date_last_visit'); ?>
                     </td>
                 </tr>
+                <?php endif;?>
                 <tr class="even">
                     <td class="label">
                         <?php echo $form->label($model,'ban'); ?>

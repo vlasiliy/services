@@ -91,6 +91,8 @@ class UserCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        array('area_operations, awards, agent, service, description, tags, price, unit, price_description, scheme_work', 'filter', 'filter'=>'trim'),
+                    
 			array('begin_year, area_operations, service', 'required'),
 			array('user_id, category_id, price', 'length', 'max'=>10),
 			array('begin_year', 'length', 'max'=>4),

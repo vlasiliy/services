@@ -85,7 +85,8 @@ class User extends CActiveRecord
 			array('nick, postcode, tel1, tel2', 'length', 'max'=>16),
 			array('nick', 'match', 'pattern' => '/^[a-zA-Z]{1}[a-zA-Z0-9_]+$/', 'message' => Yii::t('UserModule.user', 'In the Nick using letters, numbers and underscores. Nick must start with a letter.')),
                         array('nick', 'unique', 'on' => 'create'),
-                        array('email', 'checkNickUpdate', 'on' => 'update'),
+                        array('nick', 'checkNickCreate', 'on' => 'create'),
+                        array('nick', 'checkNickUpdate', 'on' => 'update'),
                     
 			array('surname, city, address, site', 'length', 'max'=>64),
 			array('sex, ban, ad, news', 'length', 'max'=>1),
@@ -104,6 +105,12 @@ class User extends CActiveRecord
         {
             $this->checkUpdate('email');
         }
+
+        public function checkNickCreate()
+        {
+            if(sizeof(glob(Yii::getPathOfAlias('webroot').'/users/'.$this->nick, GLOB_ONLYDIR)) > 0)
+                $this->addError('nick', Yii::t('UserModule.user', 'Nick in use.'));
+        }
         
         public function checkNickUpdate()
         {
@@ -113,7 +120,7 @@ class User extends CActiveRecord
         private function checkUpdate($nameField)
         {
             $model = User::model()->findByPk($this->id);
-            if (User::model()->count("id != ".$model->id." AND ".$nameField." = '". $this->{$nameField}."'") > 0)
+            if (User::model()->count("id != ".$model->id." AND LOWER(".$nameField.") = '". strtolower($this->{$nameField})."'") > 0)
                 $this->addError($nameField, Yii::t('UserModule.user', ucfirst($nameField).' in use.'));
         }
 

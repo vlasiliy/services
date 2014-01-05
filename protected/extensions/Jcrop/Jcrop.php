@@ -38,20 +38,10 @@ class Jcrop extends CWidget
     
     public function run()
     {
-
-        //print_r(get_object_vars($this));die;
-        
-//        $arr = array(
-//            'idImg' => $this->idImg,
-//            'idSetArea' => $this->idSetArea,
-//            'idWidthImg' => $this->idWidthImg,
-//            'idHeightImg' => $this->idHeightImg,
-//            'htmlWidthImg' => $this->htmlWidthImg,
-//            'htmlHeightImg' => $this->htmlHeightImg,
-//            'aspectRatio' => $this->aspectRatio,
-//            'minWidthCrop' => $this->minWidthCrop,
-//            'minHeightCrop' => $this->minHeightCrop,
-//        );
+        $assets = dirname(__FILE__).'/assets';
+        $baseUrl = Yii::app()->assetManager->publish($assets);
+        Yii::app()->clientScript->registerScriptFile($baseUrl.'/js/jquery.Jcrop.min.js');
+        Yii::app()->clientScript->registerCssFile($baseUrl.'/css/jquery.Jcrop.min.css');
         
         $this->render('jcrop', get_object_vars($this));
     }
