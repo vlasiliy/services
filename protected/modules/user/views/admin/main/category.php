@@ -18,14 +18,14 @@ Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.
 
 <h5>
     <?php echo Yii::t('UserModule.user', 'Update user category').' - '.$selectCats[$category['category_id']]; ?>
-    <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/user/main/admin'), array('class' => 'butLink'));?>
+    <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/user/main/categories/id/'.$model->id), array('class' => 'butLink'));?>
 </h5>
 
 <div id="contentController">
 
     <div class="form crtUpdFrm">
 
-    <?php $form=$this->beginWidget('CActiveForm', array(
+    <?php $form = $this->beginWidget('CActiveForm', array(
             'id'=>'user-category-form',
             'enableAjaxValidation'=>false,
     )); ?>
@@ -116,7 +116,7 @@ Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.
                         <?php echo $form->label($category, 'currency'); ?>
                     </td>
                     <td>
-                        <?php echo $form->dropDownList($category, 'currency', Yii::app()->params['currency']); ?>
+                        <?php echo $form->dropDownList($category, 'currency', array_combine(Yii::app()->params['currency'], Yii::app()->params['currency'])); ?>
                         <?php echo $form->error($category, 'currency'); ?>
                     </td>
                 </tr>

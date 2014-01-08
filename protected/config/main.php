@@ -111,6 +111,7 @@ return array(
                 'backendLanguage'=>'ru',
                 'googleMapsApiKey'=>'AIzaSyCTrL3tqXz5w20hqgoO2eiIqcAWiY6oUJ4',
                 'currency' => array('UAH', 'USD', 'EUR'),
+                'minPostcode' => 10001,
                 'toolBarAdminUserData' => array(
                     array(
                         'Bold', 'Italic', 'Underline', '-', 'RemoveFormat',

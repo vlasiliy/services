@@ -62,7 +62,8 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('email, nick, name, surname, company, password, tel1, tel2, site, skype, icq', 'filter', 'filter'=>'trim'),
+                        array('company, city, address', 'filter', 'filter' => array($obj=new CHtmlPurifier(), 'purify')),
+                        array('email, nick, name, surname, company, city, password, tel1, tel2, site, skype, icq', 'filter', 'filter'=>'trim'),
                         array('email, nick', 'filter', 'filter' => 'strtolower'),
                     
 			array('email, nick, name, surname, sex, ban, ad, news, city, address, tel1, regionsArray', 'required'),
@@ -88,6 +89,7 @@ class User extends CActiveRecord
                         array('nick', 'checkNickCreate', 'on' => 'create'),
                         array('nick', 'checkNickUpdate', 'on' => 'update'),
                     
+                        array('postcode', 'numerical', 'integerOnly' => true, 'min' => Yii::app()->params['minPostcode']),
 			array('surname, city, address, site', 'length', 'max'=>64),
 			array('sex, ban, ad, news', 'length', 'max'=>1),
                         array('tel1, tel2, icq', 'numerical', 'integerOnly' => true),

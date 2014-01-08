@@ -166,10 +166,16 @@ class MainController extends BackendController
 
             if(isset($_POST['UserCategory']))
             {
-                $_POST['UserCategory']['begin_year'] = date('Y') - $_POST['UserCategory']['begin_year'];
                 $category->attributes = $_POST['UserCategory'];
+                $category->begin_year = date('Y') - $_POST['UserCategory']['begin_year'];
                 if($category->save())
-                        $this->redirect(Yii::app()->request->urlReferrer);
+                {
+                    $this->redirect(Yii::app()->request->urlReferrer);
+                }
+                else
+                {
+                    $category->begin_year = $_POST['UserCategory']['begin_year'];
+                }
             }
             
             $this->render('category',array(
