@@ -29,8 +29,8 @@
                 <ul class="submenu">
                     <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Management'), $this->createUrl('/admin/category/main/admin'));?></li>
                     <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Create'), $this->createUrl('/admin/category/main/create'));?></li>
-                    <li><a href="/">Группы</a></li>
-                    <li><a href="/">Добавить группу</a></li>
+                    <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Groups'), $this->createUrl('/admin/category/group/admin'));?></li>
+                    <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Create group'), $this->createUrl('/admin/category/group/create'));?></li>
                 </ul>
             </li>
             <li>

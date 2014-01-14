@@ -6,13 +6,15 @@ class GroupController extends BackendController
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
-	 */
+
 	public function actionView($id)
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
+         * 
+         */
 
 	/**
 	 * Creates a new model.
@@ -28,8 +30,9 @@ class GroupController extends BackendController
 		if(isset($_POST['Groupcategory']))
 		{
 			$model->attributes=$_POST['Groupcategory'];
+                        $model->scenario = 'create';
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admcats','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -99,6 +102,22 @@ class GroupController extends BackendController
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+        
+	/**
+	 * Manages categories of group.
+	 */
+	public function actionAdmcats($id)
+	{
+//		$model=new Groupcategory('search');
+//		$model->unsetAttributes();  // clear any default values
+//		if(isset($_GET['Groupcategory']))
+//			$model->attributes=$_GET['Groupcategory'];
+//
+//		$this->render('admin',array(
+//			'model'=>$model,
+//		));
+                $this->render('admcats');
 	}
 
 	/**

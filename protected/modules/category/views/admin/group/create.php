@@ -3,16 +3,16 @@
 /* @var $model Groupcategory */
 
 $this->breadcrumbs=array(
-	'Groupcategories'=>array('index'),
-	'Create',
+	Yii::t('CategoryModule.category', 'Categories') => array('admin'),
+	Yii::t('CategoryModule.category', 'Create group'),
 );
 
-$this->menu=array(
-	array('label'=>'List Groupcategory', 'url'=>array('index')),
-	array('label'=>'Manage Groupcategory', 'url'=>array('admin')),
-);
+Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview').'/styles.css');
 ?>
 
-<h1>Create Groupcategory</h1>
+<h5>
+    <?php echo Yii::t('CategoryModule.category', 'Create group');?>
+    <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/category/group/admin'), array('class' => 'butLink'));?>
+</h5>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

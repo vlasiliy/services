@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'groupcategory':
  * @property string $id
  * @property string $name
+ * @property string $url
  *
  * The followings are the available model relations:
  * @property GroupcategoryCategory[] $groupcategoryCategories
@@ -28,11 +29,13 @@ class Groupcategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>64),
+			array('name, url', 'required'),
+			array('name, url', 'length', 'max'=>64),
+                        array('url', 'match', 'pattern' => '/^[a-z\-]+$/', 'message' => Yii::t('CategoryModule.category', 'In the Url using letters and hyphen.')),
+                        array('url', 'unique', 'on' => 'create'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, url', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,7 +58,8 @@ class Groupcategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'name' => Yii::t('CategoryModule.category', 'Name'),
+			'url' => 'Url',
 		);
 	}
 
@@ -79,6 +83,7 @@ class Groupcategory extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
+                $criteria->compare('url',$this->url,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

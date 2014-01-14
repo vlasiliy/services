@@ -179,3 +179,6 @@ h5 .butLink {
 .qq-upload-list, .qq-upload-drop-area {
     display: none;
 }
+.italic {
+    font-style: italic;
+}

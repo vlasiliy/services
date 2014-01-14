@@ -11,6 +11,11 @@ return array(
     'Create' => 'Добавить',
     'Create Category' => 'Добавить категорию',
     'Update Category' => 'Редатирование категории',
+    'Groups' => 'Группы',
+    'Create group' => 'Добавить группу',
+    'Managing groups of categories' => 'Управление группами категорий',
     
+    //error
+    'In the Url using letters and hyphen.' => 'В Url используйте латинские буквы и дефис.'
 );
 ?> 
