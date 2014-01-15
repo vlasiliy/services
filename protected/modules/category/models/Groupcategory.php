@@ -33,6 +33,7 @@ class Groupcategory extends CActiveRecord
 			array('name, url', 'length', 'max'=>64),
                         array('url', 'match', 'pattern' => '/^[a-z\-]+$/', 'message' => Yii::t('CategoryModule.category', 'In the Url using letters and hyphen.')),
                         array('url', 'unique', 'on' => 'create'),
+                        array('url', 'unique', 'criteria' => array('condition' => 'id <> '.$this->id), 'on' => 'update'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, url', 'safe', 'on'=>'search'),

@@ -3,19 +3,17 @@
 /* @var $model Groupcategory */
 
 $this->breadcrumbs=array(
-	'Groupcategories'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('CategoryModule.category', 'Categories') => array('/admin/category/main/admin'),
+	Yii::t('CategoryModule.category', 'Groups') => array('/admin/category/group/admin'),
+	$model->name,
 );
 
-$this->menu=array(
-	array('label'=>'List Groupcategory', 'url'=>array('index')),
-	array('label'=>'Create Groupcategory', 'url'=>array('create')),
-	array('label'=>'View Groupcategory', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Groupcategory', 'url'=>array('admin')),
-);
+Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview').'/styles.css');
 ?>
 
-<h1>Update Groupcategory <?php echo $model->id; ?></h1>
+<h5>
+    <?php echo Yii::t('CategoryModule.category', 'Update group of categories').' - '.$model->name;?>
+    <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/category/group/admin'), array('class' => 'butLink'));?>
+</h5>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

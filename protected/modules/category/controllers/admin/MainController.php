@@ -60,6 +60,7 @@ class MainController extends BackendController
 		if(isset($_POST['Category']))
 		{
 			$model->attributes=$_POST['Category'];
+                        $model->scenario = 'update';
 			if($model->saveNode())
 				$this->redirect(array('admin'));
 		}

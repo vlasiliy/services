@@ -55,8 +55,9 @@ class GroupController extends BackendController
 		if(isset($_POST['Groupcategory']))
 		{
 			$model->attributes=$_POST['Groupcategory'];
+                        $model->scenario = 'update';
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin','id'=>$model->id));
 		}
 
 		$this->render('update',array(
