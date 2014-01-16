@@ -143,7 +143,6 @@ class MainController extends BackendController
 	 */
 	public function actionCategories($id)
 	{
-            
             $categories = new Category('search');
             $categories->unsetAttributes();  // clear any default values
             if(isset($_GET['Category']))

@@ -48,7 +48,8 @@ class Groupcategory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'groupcategoryCategories' => array(self::HAS_MANY, 'GroupcategoryCategory', 'groupcategory_id'),
+			//'groupcategoryCategories' => array(self::HAS_MANY, 'GroupcategoryCategory', 'groupcategory_id'),
+                        'categories' => array(self::MANY_MANY, 'Category', 'groupcategory_category(groupcategory_id, category_id)'),
 		);
 	}
 

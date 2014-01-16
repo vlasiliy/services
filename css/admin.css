@@ -182,3 +182,6 @@ h5 .butLink {
 .italic {
     font-style: italic;
 }
+.underline {
+    border-bottom: solid 1px #ccc;
+}

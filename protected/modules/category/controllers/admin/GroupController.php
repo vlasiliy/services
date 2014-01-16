@@ -51,6 +51,11 @@ class GroupController extends BackendController
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+                
+                $categories = new Category('search');
+                $categories->unsetAttributes();  // clear any default values
+                if(isset($_GET['Category']))
+                        $categories->attributes=$_GET['Category'];
 
 		if(isset($_POST['Groupcategory']))
 		{
@@ -62,6 +67,7 @@ class GroupController extends BackendController
 
 		$this->render('update',array(
 			'model'=>$model,
+                        'categories' => $categories,
 		));
 	}
 
@@ -147,5 +153,30 @@ class GroupController extends BackendController
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+        
+	/**
+	 * Ajax method on/off group categories.
+	 */
+	public function actionCheckCategory($group = 0, $category = 0)
+	{
+            if(Yii::app()->request->isAjaxRequest)
+            {
+                $condition = 'groupcategory_id = '.$group.' AND category_id = '.$category;
+                $model = GroupcategoryCategory::model()->find($condition);
+                if(empty($model))
+                {
+                    $model = new GroupcategoryCategory;
+                    $model->groupcategory_id = $group;
+                    $model->category_id = $category;
+                    $model->save(false);
+                }
+                else
+                {
+                    $model->deleteAll($condition);
+                }
+            }
+            
+            echo "ok";
 	}
 }

@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9deb1.precise~ppa.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Дек 09 2013 г., 17:50
--- Версия сервера: 5.5.34-0ubuntu0.12.04.1
--- Версия PHP: 5.3.10-1ubuntu3.8
+-- Время создания: Янв 16 2014 г., 23:57
+-- Версия сервера: 5.5.34
+-- Версия PHP: 5.3.10-1ubuntu3.9
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -99,9 +99,18 @@ INSERT INTO `category` (`id`, `root`, `name`, `url`, `lft`, `rgt`, `level`) VALU
 CREATE TABLE IF NOT EXISTS `groupcategory` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `groupcategory`
+--
+
+INSERT INTO `groupcategory` (`id`, `name`, `url`) VALUES
+(1, 'День рождения', 'birthday'),
+(2, 'Корпоратив', 'corporate-holiday');
 
 -- --------------------------------------------------------
 
@@ -115,6 +124,18 @@ CREATE TABLE IF NOT EXISTS `groupcategory_category` (
   KEY `groupcategory_id` (`groupcategory_id`),
   KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `groupcategory_category`
+--
+
+INSERT INTO `groupcategory_category` (`groupcategory_id`, `category_id`) VALUES
+(1, 5),
+(1, 6),
+(1, 19),
+(1, 22),
+(1, 38),
+(1, 32);
 
 -- --------------------------------------------------------
 
@@ -223,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `nick` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
-  `avatar` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `avatar` varchar(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `sex` int(1) unsigned NOT NULL COMMENT '0 - жен., 1 - муж.',
@@ -245,16 +266,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ad` int(1) unsigned NOT NULL DEFAULT '0',
   `news` int(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `user`
 --
 
 INSERT INTO `user` (`id`, `role`, `email`, `password`, `nick`, `avatar`, `name`, `surname`, `sex`, `company`, `city`, `postcode`, `address`, `tel1`, `tel2`, `site`, `skype`, `icq`, `lat`, `lng`, `date_create`, `date_update`, `date_last_visit`, `ban`, `ad`, `news`) VALUES
-(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', '', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2013-12-09 12:47:54', 0, 0, 0),
-(2, 'user', 'anli_v@mail.ru', 'b8811d34d454be08f90008373a16c4b7', 'anli', '', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44588815366918000, 30.50958473235391500, '2013-10-18 13:18:52', '2013-11-29 21:51:58', '2013-10-27 12:30:00', 0, 1, 0),
-(3, 'provider', 'test@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'test', '', 'Тест', 'Тестов', 1, '', 'TestCity', '', 'ул. Тестова 15', '0965349865', '', '', '', '', 51.23663988545725000, 33.19478441029787000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 1);
+(1, 'admin', 'vlasiliy@gmail.com', 'b8811d34d454be08f90008373a16c4b7', 'admin', '', 'Василий', 'Пупкин', 1, '', '', '', '', '', '', '', '', '', 0.00000000000000000, 0.00000000000000000, '2013-08-06 09:15:25', '0000-00-00 00:00:00', '2014-01-16 20:13:12', 0, 0, 0),
+(2, 'user', 'anli_v@mail.ru', 'b8811d34d454be08f90008373a16c4b7', 'anli', '4aed04fa9c8b04824f8061c98a8091e6.jpg', 'Анатолий', 'Иванов', 1, '', 'Черкассы', '20700', 'ул. Ленина 123, кв. 10', '096534986523423', '', 'http://www.test.com', 'anli_v', '', 50.44859362534486000, 30.51115114241850000, '2013-10-18 13:18:52', '2014-01-16 21:49:20', '2013-10-27 12:30:00', 0, 1, 0),
+(3, 'provider', 'test@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'test', '', 'Тест', 'Тестов', 1, '', 'TestCity', '', 'ул. Тестова 15', '0965349865', '', '', '', '', 51.23663988545725000, 33.19478441029787000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, 1),
+(7, 'provider', 'pupkin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'pupkina', 'af6922f52a86b40833b197c1d63cdd0f.jpg', 'Василиса', 'Пупкина', 0, '', 'Cмела', '', 'Ленина 43', '06345667398', '', '', '', '', 49.22775384821992600, 31.85170626587933000, '2014-01-05 14:57:07', '2014-01-05 14:57:07', '2014-01-05 14:57:07', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -287,8 +309,10 @@ CREATE TABLE IF NOT EXISTS `user_category` (
 --
 
 INSERT INTO `user_category` (`user_id`, `category_id`, `begin_year`, `area_operations`, `awards`, `agent`, `service`, `description`, `tags`, `price`, `currency`, `unit`, `price_description`, `scheme_work`) VALUES
-(2, 6, 0, '', '', '', '', '', '', 0, 'UAH', '', '', ''),
-(2, 21, 2010, 'только Смела', '', '', 'Тамада, конферансье', '', '', 0, '', '', '', '');
+(2, 6, 2009, 'город Смела', '', '', 'Профи ТАМАДА', '', '', 0, '', '', '', ''),
+(2, 19, 0, '', '', '', '', '', '', 0, 'UAH', '', '', ''),
+(7, 5, 2011, 'Черкассы, Смела', 'Тест '' " &lt;&gt;', '', 'Организатор выставок', '<p>Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test</p>\n\n<ul><li>Test Test Tes<em><strong>t Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test </strong></em></li>\n</ul><p> </p>\n\n<p> </p>\n\n<p> </p>\n\n<p> </p>\n\n<p> </p>\n\n<p> </p>', 'dgfb sa;''GRL EFGR WER', 12, 'USD', 'шт.', '', ''),
+(7, 19, 0, '', '', '', '', '', '', 0, 'UAH', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -310,11 +334,12 @@ CREATE TABLE IF NOT EXISTS `user_region` (
 INSERT INTO `user_region` (`user_id`, `region_id`) VALUES
 (3, 3),
 (3, 7),
+(7, 23),
 (2, 2),
 (2, 4),
 (2, 5),
+(2, 7),
 (2, 8),
-(2, 10),
 (2, 17),
 (2, 19);
 
