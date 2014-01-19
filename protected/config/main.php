@@ -20,14 +20,16 @@ return array(
                 'application.modules.user.*',
                 'application.modules.user.models.*',
                 'application.modules.category.*',
+                'application.modules.project.*',
                 'application.components.ImageHandler.CImageHandler',
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
                 'user',
                 'admin',
                 'category',
+                'project',
+		// uncomment the following to enable the Gii tool
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'337778',
