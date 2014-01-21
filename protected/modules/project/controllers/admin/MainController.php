@@ -109,8 +109,8 @@ class MainController extends BackendController
 	 */
 	public function loadModel($id)
 	{
-		$model=Project::model()->findByPk($id);
-		if($model===null)
+		$model = Project::model()->with('user')->with('category')->findByPk($id);
+		if($model === null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}

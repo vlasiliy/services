@@ -25,7 +25,7 @@
                 </ul>
             </li>
             <li>
-                <a href="<?php echo $this->createUrl('/admin/category/main/admin');?>"><img src="/img/admin/category.png" alt="Категории" /><?php echo Yii::t('CategoryModule.category', 'Categories');?></a>
+                <a href="<?php echo $this->createUrl('/admin/category/main/admin');?>"><img src="/img/admin/category.png" alt="<?php echo Yii::t('CategoryModule.category', 'Categories');?>" /><?php echo Yii::t('CategoryModule.category', 'Categories');?></a>
                 <ul class="submenu">
                     <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Management'), $this->createUrl('/admin/category/main/admin'));?></li>
                     <li><?php echo CHtml::link(Yii::t('CategoryModule.category', 'Create'), $this->createUrl('/admin/category/main/create'));?></li>
@@ -34,9 +34,9 @@
                 </ul>
             </li>
             <li>
-                <a href="/admin/project/admin"><img src="/img/admin/project.png" alt="Проекты" /> Проекты </a>
+                <a href="<?php echo $this->createUrl('/admin/project/main/admin');?>"><img src="/img/admin/project.png" alt="<?php echo Yii::t('ProjectModule.project', 'Projects');?>" /><?php echo Yii::t('ProjectModule.project', 'Projects');?></a>
                 <ul class="submenu">
-                    <li><a href="/">Все</a></li>
+                    <li><?php echo CHtml::link(Yii::t('ProjectModule.project', 'Management'), $this->createUrl('/admin/project/main/admin'));?></li>
                     <li><a href="/">Детальный поиск</a></li>
                 </ul>
             </li>

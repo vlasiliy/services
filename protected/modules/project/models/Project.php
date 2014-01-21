@@ -23,6 +23,36 @@
  */
 class Project extends CActiveRecord
 {
+        private $_userNick = null;
+        private $_categoryName = null;
+        
+        public function getUserNick()
+        {
+            if ($this->_userNick === null && $this->user !== null)
+            {
+                $this->_userNick = $this->user->nick;
+            }
+            return $this->_userNick;
+        }
+        
+        public function setUserNick($value)
+        {
+            $this->_userNick = $value;
+        }
+        
+        public function getCategoryName()
+        {
+            if ($this->_categoryName=== null && $this->category !== null)
+            {
+                $this->_categoryName = $this->category->name;
+            }
+            return $this->_categoryName;
+        }
+        
+        public function setCategoryName($value)
+        {
+            $this->_categoryName = $value;
+        }
 	/**
 	 * @return string the associated database table name
 	 */
@@ -46,7 +76,7 @@ class Project extends CActiveRecord
 			array('date_finished, currency', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, category_id, name, date_finished, price, currency, unit, description, sort', 'safe', 'on'=>'search'),
+			array('id, userNick, categoryName, user_id, category_id, name, date_finished, price, currency, unit, description, sort', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -101,9 +131,14 @@ class Project extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('user_id',$this->user_id,true);
+                
+                $criteria->with = array('user', 'category'); // жадная загрузка
+                $criteria->compare('user.nick', $this->userNick, true); // поиск по связанному полю
+                
 		$criteria->compare('category_id',$this->category_id,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('date_finished',$this->date_finished,true);
@@ -112,9 +147,22 @@ class Project extends CActiveRecord
 		$criteria->compare('unit',$this->unit,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('sort',$this->sort,true);
-
+                
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'sort'=>array('attributes'=>array(
+                            'defaultOrder'=>'id DESC',
+                            'id',
+                            'name',
+                            'userNick'=>array(
+                                'asc'=>'user.nick',
+                                'desc'=>'user.nick DESC',
+                            ),
+                            'categoryName'=>array(
+                                'asc'=>'category.name',
+                                'desc'=>'category.name DESC',
+                            ),
+                        )),
 		));
 	}
 
