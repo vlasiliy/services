@@ -42,12 +42,21 @@ $('.search-form form').submit(function(){
             'dataProvider'=>$model->search(),
             'filter'=>$model,
             'columns'=>array(
-                    'id',
+                    array(
+                        'name' => 'id',
+                        'htmlOptions' => array(
+                            'width' => '30',
+                        ),
+                    ),
                     'name',
-                    'userNick',
+                    array(
+                        'name' => 'userNick',
+                        'value' => 'CHtml::link($data->userNick, "/admin/user/main/update/id/$data->user_id")',
+                        'type' => 'raw',
+                    ),
                     'categoryName',
-                    'date_finished',
                     /*
+                    'date_finished',
                     'price',
                     'currency',
                     'unit',

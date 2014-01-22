@@ -102,14 +102,14 @@ class Project extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
-			'category_id' => 'Category',
-			'name' => 'Name',
+                        'userNick' => Yii::t('UserModule.user', 'Nick'),
+			'categoryName' => Yii::t('ProjectModule.project', 'Name category'),
+			'name' => Yii::t('ProjectModule.project', 'Name project'),
 			'date_finished' => 'Date Finished',
-			'price' => 'Price',
-			'currency' => 'Currency',
-			'unit' => 'Unit',
-			'description' => 'Description',
+			'price' => Yii::t('ProjectModule.project', 'Price'),
+			'currency' => Yii::t('ProjectModule.project', 'Currency'),
+			'unit' => Yii::t('ProjectModule.project', 'For that payment'),
+			'description' => Yii::t('ProjectModule.project', 'Description'),
 			'sort' => 'Sort',
 		);
 	}
@@ -138,6 +138,7 @@ class Project extends CActiveRecord
                 
                 $criteria->with = array('user', 'category'); // жадная загрузка
                 $criteria->compare('user.nick', $this->userNick, true); // поиск по связанному полю
+                $criteria->compare('category.name', $this->categoryName, true); // поиск по связанному полю
                 
 		$criteria->compare('category_id',$this->category_id,true);
 		$criteria->compare('name',$this->name,true);
@@ -151,7 +152,7 @@ class Project extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
                         'sort'=>array('attributes'=>array(
-                            'defaultOrder'=>'id DESC',
+                            'defaultOrder'=>'sort ASC',
                             'id',
                             'name',
                             'userNick'=>array(
