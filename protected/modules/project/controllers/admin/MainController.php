@@ -16,7 +16,7 @@ class MainController extends BackendController
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
+
 	public function actionCreate()
 	{
 		$model=new Project;
@@ -35,6 +35,8 @@ class MainController extends BackendController
 			'model'=>$model,
 		));
 	}
+         * 
+         */
 
 	/**
 	 * Updates a particular model.

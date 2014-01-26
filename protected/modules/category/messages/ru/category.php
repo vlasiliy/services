@@ -5,6 +5,7 @@ return array(
     'Name' => 'Имя',
     
     //
+    'Category' => 'Категория',
     'Categories' => 'Категории',
     'Management' => 'Управление',
     'Management of categories' => 'Управление категориями',

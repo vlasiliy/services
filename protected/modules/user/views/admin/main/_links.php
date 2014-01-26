@@ -9,6 +9,6 @@
                 <?php endforeach;?>
             </ul>
         </li>
-        <li><a href="/">Проекты</a></li>
+        <li>Проекты</li>
     </ul>
 </div>

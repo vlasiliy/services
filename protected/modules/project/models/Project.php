@@ -105,7 +105,7 @@ class Project extends CActiveRecord
                         'userNick' => Yii::t('UserModule.user', 'Nick'),
 			'categoryName' => Yii::t('ProjectModule.project', 'Name category'),
 			'name' => Yii::t('ProjectModule.project', 'Name project'),
-			'date_finished' => 'Date Finished',
+			'date_finished' => Yii::t('ProjectModule.project', 'When the project was executed'),
 			'price' => Yii::t('ProjectModule.project', 'Price'),
 			'currency' => Yii::t('ProjectModule.project', 'Currency'),
 			'unit' => Yii::t('ProjectModule.project', 'For that payment'),

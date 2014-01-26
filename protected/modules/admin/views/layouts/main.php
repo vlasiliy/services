@@ -40,6 +40,7 @@
                     <li><a href="/">Детальный поиск</a></li>
                 </ul>
             </li>
+            <li><a href="/admin/moderation/admin"><img src="/img/admin/moderation.png" alt="Модерация" /> Модерация </a></li>
             <li><a href="/admin/setting/admin"><img src="/img/admin/setting.png" alt="Настройки" /> Настройки </a></li>
         </ul>
         <div id="logout"><a href="/site/logout"> Выход <img src="/img/admin/logout.png" alt="Выход" /></a></div>
