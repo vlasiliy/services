@@ -69,11 +69,14 @@ class Project extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, category_id, name, price, unit, description, sort', 'required'),
+                        array('name, date_finished, unit, description', 'filter', 'filter' => array($obj=new CHtmlPurifier(), 'purify')),
+                        array('name, date_finished, price, unit, description', 'filter', 'filter'=>'trim'),
+			array('user_id, category_id, name, date_finished, sort', 'required'),
+                        array('price', 'numerical', 'integerOnly' => true, 'min' => 1),
 			array('user_id, category_id, price, sort', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>256),
 			array('unit', 'length', 'max'=>32),
-			array('date_finished, currency', 'safe'),
+			array('currency, price, unit, description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, userNick, categoryName, user_id, category_id, name, date_finished, price, currency, unit, description, sort', 'safe', 'on'=>'search'),

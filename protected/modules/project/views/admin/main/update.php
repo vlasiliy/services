@@ -6,6 +6,8 @@ $this->breadcrumbs=array(
 	Yii::t('ProjectModule.project', 'Projects') => array('admin'),
 	$model->name,
 );
+
+Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.widgets.assets').'/detailview').'/styles.css');
 ?>
 
 <h5>
@@ -13,4 +15,4 @@ $this->breadcrumbs=array(
     <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/category/main/admin'), array('class' => 'butLink'));?>
 </h5>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'photos' => $photos, 'videos' => $videos)); ?>

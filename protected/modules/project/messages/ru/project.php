@@ -15,6 +15,8 @@ return array(
     'Management' => 'Управление',
     'Management of projects' => 'Управление проектами',
     'Update project' => 'Редактировать проект',
+    'Photos' => 'Фотографии',
+    'Videos' => 'Видео',
     
     //error
 );

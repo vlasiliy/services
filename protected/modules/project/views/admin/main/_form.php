@@ -6,6 +6,8 @@
 ?>
 <div id="contentController">
 
+    <h6  class="underline"><?php echo Yii::t('app', 'Values');?></h6>
+    
     <div class="form">
 
     <?php $form=$this->beginWidget('CActiveForm', array(
@@ -16,84 +18,121 @@
             // See class documentation of CActiveForm for details on this.
             'enableAjaxValidation'=>false,
     )); ?>
-            <h6  class="underline"><?php echo Yii::t('app', 'Values');?></h6>
-            
+            <?php echo $form->hiddenField($model, 'user_id'); ?>
+            <?php echo $form->hiddenField($model, 'category_id'); ?>
+            <?php echo $form->hiddenField($model, 'sort'); ?>
+        
             <p class="note"><?php echo Yii::t('app', 'Fields with * are required.')?></p>
 
             <?php echo $form->errorSummary($model); ?>
 
-            <div class="row">
-                    <label><?php echo Yii::t('UserModule.user', 'User');?></label>
-                    <div class="textForm">
-                        <a href="#"><?php echo $model->user->name.' '.$model->user->surname;?></a>
-                    </div>
-            </div>
+            <table class="detail-view">
+                <tr class="even">
+                    <td class="label">
+                        <label><?php echo Yii::t('UserModule.user', 'User');?> *</label>
+                    </td>
+                    <td>
+                        <?php echo CHtml::link($model->user->name.' '.$model->user->surname, '/admin/user/main/update/id/'.$model->user_id);?>
+                    </td>
+                </tr>
 
-            <div class="row">
-                    <label><?php echo Yii::t('CategoryModule.category', 'Category');?></label>
-                    <div class="textForm">
+                <tr class="odd">
+                    <td class="label">
+                        <label><?php echo Yii::t('CategoryModule.category', 'Category');?> *</label>
+                    </td>
+                    <td>
                         <?php echo $model->category->name;?>    
-                    </div>
-            </div>
+                    </td>
+                </tr>
 
-            <div class="row">
-                    <?php echo $form->labelEx($model,'name'); ?>
-                    <?php echo $form->textField($model,'name',array('size'=>32,'maxlength'=>256)); ?>
-                    <?php echo $form->error($model,'name'); ?>
-            </div>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->labelEx($model,'name'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($model,'name',array('size'=>52,'maxlength'=>256)); ?>
+                        <?php echo $form->error($model,'name'); ?>
+                    </td>
+                </tr>
 
-            <div class="row">
-                    <?php echo $form->labelEx($model,'date_finished'); ?>
-                    <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
-                                                    $this->widget('CJuiDateTimePicker',
-                                                            array(
-                                                                'model'=>$model,
-                                                                'attribute'=> 'date_finished',
-                                                                'mode'=>'datetime',
-                                                                'options'=>array(
-                                                                    'dateFormat'=>'yy-mm-dd',
-                                                                    'timeFormat' => 'hh:mm:ss',
-                                                                )
-                                                    ));
-                                            ?>
-                    <?php echo $form->error($model,'date_finished'); ?>
-            </div>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->labelEx($model,'date_finished'); ?>
+                    </td>
+                    <td>
+                        <?php Yii::import('application.extensions.CJuiDateTimePicker.CJuiDateTimePicker');
+                                                        $this->widget('CJuiDateTimePicker',
+                                                                array(
+                                                                    'model'=>$model,
+                                                                    'attribute'=> 'date_finished',
+                                                                    'mode'=>'datetime',
+                                                                    'options'=>array(
+                                                                        'dateFormat'=>'yy-mm-dd',
+                                                                        'timeFormat' => 'hh:mm:ss',
+                                                                    )
+                                                        ));
+                                                ?>
+                        <?php echo $form->error($model,'date_finished'); ?>
+                    </td>
+                </tr>
+                
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->labelEx($model,'price'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($model,'price',array('size'=>20,'maxlength'=>10)); ?>
+                        <?php echo $form->error($model,'price'); ?>
+                    </td>
+                </tr>
 
-            <div class="row">
-                    <?php echo $form->labelEx($model,'price'); ?>
-                    <?php echo $form->textField($model,'price',array('size'=>20,'maxlength'=>10)); ?>
-                    <?php echo $form->error($model,'price'); ?>
-            </div>
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->labelEx($model,'currency'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->dropDownList($model, 'currency', array_combine(Yii::app()->params['currency'], Yii::app()->params['currency'])); ?>
+                        <?php echo $form->error($model,'currency'); ?>
+                    </td>
+                </tr>
 
-            <div class="row">
-                    <?php echo $form->labelEx($model,'currency'); ?>
-                    <?php echo $form->textField($model,'currency',array('size'=>0,'maxlength'=>0)); ?>
-                    <?php echo $form->error($model,'currency'); ?>
-            </div>
-
-            <div class="row">
-                    <?php echo $form->labelEx($model,'unit'); ?>
-                    <?php echo $form->textField($model,'unit',array('size'=>32,'maxlength'=>32)); ?>
-                    <?php echo $form->error($model,'unit'); ?>
-            </div>
-
-            <div class="row">
-                    <?php echo $form->labelEx($model,'description'); ?>
-                    <?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-                    <?php echo $form->error($model,'description'); ?>
-            </div>
-
-            <div class="row">
-                    <?php echo $form->labelEx($model,'sort'); ?>
-                    <?php echo $form->textField($model,'sort',array('size'=>10,'maxlength'=>10)); ?>
-                    <?php echo $form->error($model,'sort'); ?>
-            </div>
+                <tr class="even">
+                    <td class="label">
+                        <?php echo $form->labelEx($model,'unit'); ?>
+                    </td>
+                    <td>
+                        <?php echo $form->textField($model,'unit',array('size'=>20,'maxlength'=>32)); ?>
+                        <?php echo $form->error($model,'unit'); ?>
+                    </td>
+                </tr>
+                
+                <tr class="odd">
+                    <td class="label">
+                        <?php echo $form->labelEx($model,'description'); ?>
+                    </td>
+                    <td>
+                        <?php $this->widget('ext.editMe.widgets.ExtEditMe', array(
+                            'model' => $model,
+                            'attribute' => 'description',
+                            'toolbar' => Yii::app()->params['toolBarAdminUserData'],
+                        ));?>
+                        <?php echo $form->error($model,'description'); ?>
+                    </td>
+                </tr>
+            </table>
 
             <div class="row buttons">
-                    <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+                    <?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Save')); ?>
             </div>
 
     <?php $this->endWidget(); ?>
 
     </div><!-- form -->
+    
+    <h6  class="underline"><?php echo Yii::t('ProjectModule.project', 'Photos')?></h6>
+    
+    <?php print_r($photos);?>
+    
+    <h6  class="underline"><?php echo Yii::t('ProjectModule.project', 'Videos')?></h6>
+    
 </div>

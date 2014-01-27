@@ -53,12 +53,13 @@ class MainController extends BackendController
 		if(isset($_POST['Project']))
 		{
 			$model->attributes=$_POST['Project'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        $model->save();
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+			'model' => $model,
+                        'photos' => Photo::model()->find('project_id = :project_id', array(':project_id' => $model->id)),
+                        'videos' => Video::model()->find('project_id = :project_id', array(':project_id' => $model->id)),
 		));
 	}
 
