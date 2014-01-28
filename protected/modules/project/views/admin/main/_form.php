@@ -129,7 +129,39 @@
 
     </div><!-- form -->
     
-    <h6  class="underline"><?php echo Yii::t('ProjectModule.project', 'Photos')?></h6>
+    <h6 class="underline" style="position: relative;">
+        <?php echo Yii::t('ProjectModule.project', 'Photos')?>
+        <?php echo CHtml::link(Yii::t('app', 'Add'), $this->createUrl('/'), array('class' => 'butLink', 'id' => "addPhoto", 'onclick' => 'return false;'));?>
+        <?php $this->widget('application.extensions.EAjaxUpload.EAjaxUpload',
+        array(
+                'id'=>'uploadFile',
+                'config'=>array(
+                       'action' => Yii::app()->createUrl('/admin/project/main/upload/id/'.$model->id),
+                       'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                       'sizeLimit' => 2*1024*1024,// maximum file size in bytes
+                       //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
+                       'onComplete'=>"js:function(id, fileName, responseJSON){"
+                            ."
+                                fullName = '/users/".$model->id."/tmp/'+responseJSON.filename+'?".md5(time())."';
+                                im = document.getElementById('imageId');
+                                im.onload = function(){
+                                    $('#imageHeightId').val(responseJSON.height);
+                                    $('#imageWidthId').val(responseJSON.width).change();                                                
+                                }
+                                im.src = fullName;
+                            "
+                            ."}",
+                       'messages'=>array(
+                                         'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                         'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                         'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                         'emptyError'=>"{file} is empty, please select files again without it.",
+                                         'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                        ),
+                       'showMessage'=>"js:function(message){ alert(message); }"
+                      )
+        )); ?>
+    </h6>
     
     <?php print_r($photos);?>
     

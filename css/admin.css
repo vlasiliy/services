@@ -152,7 +152,7 @@ input, select, textarea {
     list-style: none;
     margin: 0;
 }
-h5 .butLink {
+h5 .butLink, h6 .butLink {
     position: absolute;
     right: 0;
     top: 0;
@@ -167,6 +167,7 @@ h5 .butLink {
     font-weight: normal;
     color: #333333;
     background-color: #E5F1F4;
+    cursor: pointer;
 }
 .butLink:hover {
     color: #111111;

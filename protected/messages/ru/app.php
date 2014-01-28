@@ -4,6 +4,7 @@ return array(
     'Search' => 'Поиск',
     'Fields with * are required.' => 'Поля с * обязательны к заполнению.',
     'Create' => 'Создать',
+    'Add' => 'Добавить',
     'Save' => 'Сохранить',
     'Select all' => 'Отметить все',
     'Unselect all' => 'Сбросить все',

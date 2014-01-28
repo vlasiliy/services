@@ -17,7 +17,7 @@ class MainController extends BackendController
 //        public function actionCreatefolder()
 //	{
 //            //echo Yii::getPathOfAlias('webroot');die;
-//            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/anli/tmp');
+//            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/anli/projects');
 //        }
         
 	/**
@@ -43,6 +43,7 @@ class MainController extends BackendController
                             $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.strtolower($model->nick));
                             $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.strtolower($model->nick).'/tmp');
                             $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.strtolower($model->nick).'/avatar');
+                            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/'.strtolower($model->nick).'/projects');
                             $model->date_update = $model->date_create;
                             $model->date_last_visit = $model->date_create;
                             $model->save(false, array('date_update', 'date_last_visit'));
