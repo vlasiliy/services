@@ -186,3 +186,11 @@ h5 .butLink, h6 .butLink {
 .underline {
     border-bottom: solid 1px #ccc;
 }
+.ttl6 {
+    position: relative;
+}
+.btnBlock6 {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
