@@ -135,5 +135,10 @@ return array(
                         'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Table',
                     ),
                 ),
+                'thumbnailWidth' => 135,
+                'thumbnailHeight' => 135,
+                'imageMaxSize' => 4, // В мегабайтах
+                'imageMaxWidth' => 1000, // В пикселах
+                'imageMaxHeight' => 600, // В пикселах
 	),
 );

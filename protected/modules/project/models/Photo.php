@@ -102,4 +102,26 @@ class Photo extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public static function dimension($maxWidth, $maxHeight, $curWidth, $curHeight)
+        {
+            if($curWidth > $maxWidth || $curHeight > $maxHeight)
+            {
+                if($curWidth > $curHeight)
+                {
+                    $newWidth = $maxWidth;
+                    $newHeight = round($curHeight * $newWidth / $curWidth, 0);
+                }
+                else
+                {
+                    $newHeight = $maxHeight;
+                    $newWidth = round($curWidth * $newHeight / $curHeight, 0);
+                }
+                return array($newWidth, $newHeight);
+            }
+            else
+            {
+                return array($curWidth, $curHeight);
+            }
+        }
 }

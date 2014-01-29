@@ -17,7 +17,7 @@ class MainController extends BackendController
 //        public function actionCreatefolder()
 //	{
 //            //echo Yii::getPathOfAlias('webroot');die;
-//            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/anli/projects');
+//            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/anli/projects/1');
 //        }
         
 	/**
@@ -65,8 +65,6 @@ class MainController extends BackendController
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-                
-                GlobalFunction::delTmpFiles('/users/'.$model->nick.'/tmp/*');
                 
                 //echo "<pre>";
                 //print_r($model);die;
@@ -242,6 +240,13 @@ class MainController extends BackendController
         
         public function actionUpload($nick)
         {
+                if(!Yii::app()->request->isAjaxRequest)
+                {
+                    return false;
+                }
+
+                GlobalFunction::delTmpFiles('/users/'.$nick.'/tmp/*');
+                
                 Yii::import("ext.EAjaxUpload.qqFileUploader");
 
                 $folder = 'users/'.$nick.'/tmp/';// folder for uploaded files
@@ -270,6 +275,11 @@ class MainController extends BackendController
         
         public function actionCropAvatar()
         {
+            if(!Yii::app()->request->isAjaxRequest)
+            {
+                return false;
+            }
+            
             $user = User::model()->findByPk($_POST['userId']);
 
             if(!empty($user))
@@ -280,7 +290,7 @@ class MainController extends BackendController
                 Yii::app()->ih
                     ->load($path.'/tmp/'.$_POST['filename'])
                     ->crop($_POST['width'], $_POST['height'], $_POST['x'], $_POST['y'])
-                    ->resize(135, 135)
+                    ->resize(Yii::app()->params['thumbnailWidth'], Yii::app()->params['thumbnailHeight'])
                     ->save($path.'/avatar/'.$filename);
                 $user->avatar = $filename;
                 $user->save(true, array('avatar'));

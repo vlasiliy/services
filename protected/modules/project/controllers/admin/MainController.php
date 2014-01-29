@@ -46,7 +46,7 @@ class MainController extends BackendController
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+                
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -130,4 +130,96 @@ class MainController extends BackendController
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionUpload($id)
+        {
+            if(!Yii::app()->request->isAjaxRequest)
+            {
+                return false;
+            }
+            
+            Yii::import("ext.EAjaxUpload.qqFileUploader");
+
+            $model = $this->loadModel($id);
+            GlobalFunction::delTmpFiles('/users/'.$model->user->nick.'/tmp/*');
+
+            $folder = 'users/'.$model->user->nick.'/tmp/';// folder for uploaded files
+            $allowedExtensions = array("jpg", "png", "gif");//array("jpg","jpeg","gif","exe","mov" and etc...
+            $sizeLimit = Yii::app()->params['imageMaxSize'] * 1024 * 1024;// maximum file size in bytes
+            $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+            $result = $uploader->handleUpload($folder);
+            if($result['success'] == 1)
+            {   
+                $newName = md5(time()).substr($result['filename'],-4);
+                if(rename($folder.$result['filename'], $folder.$newName))
+                {
+                    $result['filename'] = $newName;
+                }
+                else
+                {
+                    return false;
+                }
+                
+                $param = getimagesize($folder.$result['filename']);
+                $newSize = Photo::dimension(
+                    Yii::app()->params['imageMaxWidth'], 
+                    Yii::app()->params['imageMaxHeight'], 
+                    $param[0], 
+                    $param[1]
+                );
+//                $newSizeThumbnail = Photo::dimensionThumbnail(
+//                    Yii::app()->params['thumbnailWidth'], 
+//                    Yii::app()->params['thumbnailHeight'], 
+//                    $param[0], 
+//                    $param[1]
+//                );
+                
+                //сохраняем рисунок в пропорциях в нужном проекте
+                $path = Yii::getPathOfAlias('webroot').'/users/'.$model->user->nick;
+                Yii::app()->ih
+                    ->load($path.'/tmp/'.$result['filename'])
+                    ->resize($newSize[0], $newSize[1])
+                    ->save($path.'/projects/'.$id.'/'.$result['filename']);
+                $photo = new Photo;
+                $photo->project_id = $id;
+                $photo->filename = $result['filename'];
+                $photo->save(false);
+                $photo->sort = $photo->id;
+                $photo->save(false, array('sort'));
+
+                $result['width'] = $param[0];
+                $result['height'] = $param[1];
+            }
+            $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+
+            //$fileSize = filesize($folder.$result['filename']);//GETTING FILE SIZE
+            //$fileName = $result['filename'];//GETTING FILE NAME
+
+            echo $return;// it's array
+        }
+        
+        public function actionCropPhoto()
+        {
+            if(!Yii::app()->request->isAjaxRequest)
+            {
+                return false;
+            }
+            
+            $user = User::model()->findByPk($_POST['userId']);
+
+            if(!empty($user))
+            {
+                $path = Yii::getPathOfAlias('webroot').'/users/'.$user->nick;
+                $filename = ($user->avatar != '' && file_exists($path.'/avatar/'.$user->avatar)) ? $user->avatar : $_POST['filename'];
+                Yii::app()->ih
+                    ->load($path.'/tmp/'.$_POST['filename'])
+                    ->crop($_POST['width'], $_POST['height'], $_POST['x'], $_POST['y'])
+                    ->resize(Yii::app()->params['thumbnailWidth'], Yii::app()->params['thumbnailHeight'])
+                    ->save($path.'/avatar/'.$filename);
+                $user->avatar = $filename;
+                $user->save(true, array('avatar'));
+                echo $filename;
+            }
+            exit;
+        }        
 }

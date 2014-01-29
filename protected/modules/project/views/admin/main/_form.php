@@ -129,39 +129,91 @@
 
     </div><!-- form -->
     
-    <h6 class="underline" style="position: relative;">
+    <h6 class="underline ttl6">
         <?php echo Yii::t('ProjectModule.project', 'Photos')?>
-        <?php echo CHtml::link(Yii::t('app', 'Add'), $this->createUrl('/'), array('class' => 'butLink', 'id' => "addPhoto", 'onclick' => 'return false;'));?>
-        <?php $this->widget('application.extensions.EAjaxUpload.EAjaxUpload',
-        array(
-                'id'=>'uploadFile',
-                'config'=>array(
-                       'action' => Yii::app()->createUrl('/admin/project/main/upload/id/'.$model->id),
-                       'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
-                       'sizeLimit' => 2*1024*1024,// maximum file size in bytes
-                       //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
-                       'onComplete'=>"js:function(id, fileName, responseJSON){"
-                            ."
-                                fullName = '/users/".$model->id."/tmp/'+responseJSON.filename+'?".md5(time())."';
-                                im = document.getElementById('imageId');
-                                im.onload = function(){
-                                    $('#imageHeightId').val(responseJSON.height);
-                                    $('#imageWidthId').val(responseJSON.width).change();                                                
-                                }
-                                im.src = fullName;
-                            "
-                            ."}",
-                       'messages'=>array(
-                                         'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
-                                         'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
-                                         'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
-                                         'emptyError'=>"{file} is empty, please select files again without it.",
-                                         'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-                                        ),
-                       'showMessage'=>"js:function(message){ alert(message); }"
-                      )
-        )); ?>
+        <div class="btnBlock6">
+            <?php $this->widget('application.extensions.EAjaxUpload.EAjaxUpload',
+            array(
+                    'id'=>'uploadFile',
+                    'config'=>array(
+                           'action' => Yii::app()->createUrl('/admin/project/main/upload/id/'.$model->id),
+                           'allowedExtensions' => array("jpg", "png", "gif"),//array("jpg","jpeg","gif","exe","mov" and etc...
+                           'sizeLimit' => Yii::app()->params['imageMaxSize'] * 1024 * 1024,// maximum file size in bytes
+                           //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
+                           'onComplete'=>"js:function(id, fileName, responseJSON){"
+                                ."
+                                    fullName = '/users/".$model->user->nick."/tmp/'+responseJSON.filename+'?".md5(time())."';
+                                    im = document.getElementById('imageId');
+                                    im.onload = function(){
+                                        $('#imageHeightId').val(responseJSON.height);
+                                        $('#imageWidthId').val(responseJSON.width).change();
+                                    }
+                                    im.src = fullName;
+                                "
+                                ."}",
+                           'messages'=>array(
+                                             'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                             'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                             'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                             'emptyError'=>"{file} is empty, please select files again without it.",
+                                             'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                            ),
+                           'showMessage'=>"js:function(message){ alert(message); }"
+                          )
+            )); ?>
+        </div>    
     </h6>
+    
+        <?php 
+            $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+                'id' => 'imgCropDialog',
+                'options' => array(
+                    'open' => 'js:function(event, ui) {'.
+                            '$("#imgCropDialog").parent().find(".ui-dialog-titlebar-close").hide();'.
+                        '}',
+                    'title' => Yii::t('app', 'Crop image'),
+                    'autoOpen' => false,
+                    'modal' => true,
+                    'resizable'=> false,
+                    //'height' => 400,
+                    'draggable' => false,
+                    'width' => 500,
+                    'closeOnEscape' => false,
+                    'buttons' => array(
+                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");cropAjax();}'),
+                        ),
+                ),
+            ));
+
+            //кроп рисунка
+            $this->widget('ext.Jcrop.Jcrop',array(
+                'idImg' => 'imageId',
+                'idWidthImg' => 'imageWidthId',
+                'idHeightImg' => 'imageHeightId',
+                'htmlWidthImg' => 470,
+                'scriptOpenDialog' => "$('#imgCropDialog').dialog('open');",
+            ));
+
+            $this->endWidget('zii.widgets.jui.CJuiDialog');
+        ?>
+
+        <script type="text/javascript">
+            function cropAjax(){
+                filename = $("#imageId").attr('src').split('/').pop().split('?').shift();
+                dataCrop = "userId=<?php echo $model->id;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
+                $.ajax({
+                  url: "/admin/user/main/cropavatar",
+                  type: "post",
+                  data: dataCrop,
+                  success: function(fn){
+                      if(fn)
+                      {
+                          $('#avatar').attr('src','/users/<?php echo $model->user->nick;?>/avatar/'+fn+'?'+Math.random());
+                      }
+                  }
+                });
+            }
+        </script>
     
     <?php print_r($photos);?>
     
