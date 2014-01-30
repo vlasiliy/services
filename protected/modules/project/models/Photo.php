@@ -124,4 +124,9 @@ class Photo extends CActiveRecord
                 return array($curWidth, $curHeight);
             }
         }
+        
+//        public static function dimensionThumbnail($thumbWidth, $thumbHeight, $curWidth, $curHeight)
+//        {
+//            if()
+//        }
 }

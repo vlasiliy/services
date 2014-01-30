@@ -142,13 +142,16 @@
                            //'minSizeLimit' => 0,1*1024*1024,// minimum file size in bytes
                            'onComplete'=>"js:function(id, fileName, responseJSON){"
                                 ."
-                                    fullName = '/users/".$model->user->nick."/tmp/'+responseJSON.filename+'?".md5(time())."';
-                                    im = document.getElementById('imageId');
-                                    im.onload = function(){
-                                        $('#imageHeightId').val(responseJSON.height);
-                                        $('#imageWidthId').val(responseJSON.width).change();
+                                    if(responseJSON.success)
+                                    {
+                                        fullName = '/users/".$model->user->nick."/tmp/'+responseJSON.filename+'?".md5(time())."';
+                                        im = document.getElementById('imageId');
+                                        im.onload = function(){
+                                            $('#imageHeightId').val(responseJSON.height);
+                                            $('#imageWidthId').val(responseJSON.width).change();
+                                        }
+                                        im.src = fullName;
                                     }
-                                    im.src = fullName;
                                 "
                                 ."}",
                            'messages'=>array(

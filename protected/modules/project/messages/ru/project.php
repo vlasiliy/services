@@ -19,5 +19,6 @@ return array(
     'Videos' => 'Видео',
     
     //error
+    'Image sizes are too small.' => 'Размеры изображения слишком маленькие.'
 );
 ?> 

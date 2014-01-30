@@ -146,9 +146,10 @@ class MainController extends BackendController
             $folder = 'users/'.$model->user->nick.'/tmp/';// folder for uploaded files
             $allowedExtensions = array("jpg", "png", "gif");//array("jpg","jpeg","gif","exe","mov" and etc...
             $sizeLimit = Yii::app()->params['imageMaxSize'] * 1024 * 1024;// maximum file size in bytes
+            //$sizeLimit = 0.1 * 1024 * 1024;// maximum file size in bytes
             $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
             $result = $uploader->handleUpload($folder);
-            if($result['success'] == 1)
+            if(isset($result['success']))
             {   
                 $newName = md5(time()).substr($result['filename'],-4);
                 if(rename($folder.$result['filename'], $folder.$newName))
@@ -161,18 +162,29 @@ class MainController extends BackendController
                 }
                 
                 $param = getimagesize($folder.$result['filename']);
+                if(Yii::app()->params['thumbnailWidth'] > $param[0] || Yii::app()->params['thumbnailHeight'] > $param[1])
+                {
+                    $result['success'] = false;
+                    $result['error'] = Yii::t('ProjectModule.project','Image sizes are too small.');
+                    echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+                    return true;
+                }
+                else
+                {
+//                    $sizeCrop = Photo::dimensionThumbnail(
+//                        Yii::app()->params['thumbnailWidth'], 
+//                        Yii::app()->params['thumbnailHeight'], 
+//                        $param[0], 
+//                        $param[1]
+//                    );
+                }
+                
                 $newSize = Photo::dimension(
                     Yii::app()->params['imageMaxWidth'], 
                     Yii::app()->params['imageMaxHeight'], 
                     $param[0], 
                     $param[1]
                 );
-//                $newSizeThumbnail = Photo::dimensionThumbnail(
-//                    Yii::app()->params['thumbnailWidth'], 
-//                    Yii::app()->params['thumbnailHeight'], 
-//                    $param[0], 
-//                    $param[1]
-//                );
                 
                 //сохраняем рисунок в пропорциях в нужном проекте
                 $path = Yii::getPathOfAlias('webroot').'/users/'.$model->user->nick;
