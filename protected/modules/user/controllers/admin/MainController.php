@@ -17,7 +17,7 @@ class MainController extends BackendController
 //        public function actionCreatefolder()
 //	{
 //            //echo Yii::getPathOfAlias('webroot');die;
-//            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/anli/projects/1');
+//            $succ = mkdir(Yii::getPathOfAlias('webroot').'/users/anli/projects/1/thumbnail');
 //        }
         
 	/**

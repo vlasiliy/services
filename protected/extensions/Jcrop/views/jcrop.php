@@ -1,4 +1,4 @@
-<img src="/img/no_avatar.png" id="<?php echo $idImg;?>" />
+<img src="<?php echo $startImg;?>" id="<?php echo $idImg;?>" />
 
 <input type="hidden" id="<?php echo $idWidthImg;?>" />
 <input type="hidden" id="<?php echo $idHeightImg;?>" />

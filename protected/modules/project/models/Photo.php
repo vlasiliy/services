@@ -89,6 +89,7 @@ class Photo extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => false,
 		));
 	}
 
@@ -125,8 +126,27 @@ class Photo extends CActiveRecord
             }
         }
         
-//        public static function dimensionThumbnail($thumbWidth, $thumbHeight, $curWidth, $curHeight)
-//        {
-//            if()
-//        }
+        public static function dimensionThumbnail($thumbWidth, $thumbHeight, $curWidth, $curHeight)
+        {
+            
+            if(
+                (($curWidth / $curHeight > 1) && ($curWidth / $curHeight) > ($thumbWidth / $thumbHeight)) ||
+                (($curWidth / $curHeight < 1) && ($curWidth / $curHeight) > ($thumbWidth / $thumbHeight))    
+            )
+            {
+                $newHeight = $curHeight;
+                $newWidth = $newHeight * $thumbWidth / $thumbHeight;
+                $x = ceil(($curWidth - $newWidth) / 2);
+                $y = 0;
+            }
+            else
+            {
+                $newWidth = $curWidth;
+                $newHeight = $newWidth * $thumbHeight / $thumbWidth;
+                $y = ceil(($curHeight - $newHeight) / 2);
+                $x = 0;
+            }
+            
+            return array($newWidth, $newHeight, $x, $y);
+        }
 }

@@ -86,6 +86,7 @@
                                 $this->widget(
                                     'ext.Jcrop.Jcrop',
                                     array(
+                                        'startImg' => '/img/no_avatar.png',
                                         'idImg' => 'imageId',
                                         'idWidthImg' => 'imageWidthId',
                                         'idHeightImg' => 'imageHeightId',

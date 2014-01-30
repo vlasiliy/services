@@ -12,6 +12,8 @@
  */
 class Jcrop extends CWidget
 {
+    public $startImg;
+    
     public $idImg;
     
     public $idSetArea;

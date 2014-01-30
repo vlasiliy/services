@@ -190,35 +190,65 @@
 
             //кроп рисунка
             $this->widget('ext.Jcrop.Jcrop',array(
+                'startImg' => '/img/upload.gif',
                 'idImg' => 'imageId',
                 'idWidthImg' => 'imageWidthId',
                 'idHeightImg' => 'imageHeightId',
                 'htmlWidthImg' => 470,
                 'scriptOpenDialog' => "$('#imgCropDialog').dialog('open');",
             ));
-
+        ?>    
+            <input type="text" />
+        <?php    
             $this->endWidget('zii.widgets.jui.CJuiDialog');
         ?>
 
         <script type="text/javascript">
             function cropAjax(){
                 filename = $("#imageId").attr('src').split('/').pop().split('?').shift();
-                dataCrop = "userId=<?php echo $model->id;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
+                dataCrop = "projectId=<?php echo $model->id;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
                 $.ajax({
-                  url: "/admin/user/main/cropavatar",
+                  url: "/admin/project/main/cropPhoto",
                   type: "post",
                   data: dataCrop,
                   success: function(fn){
                       if(fn)
                       {
-                          $('#avatar').attr('src','/users/<?php echo $model->user->nick;?>/avatar/'+fn+'?'+Math.random());
+                          function(data) {$.fn.yiiGridView.update("photos-grid");}
                       }
                   }
                 });
             }
         </script>
     
-    <?php print_r($photos);?>
+        <?php $this->widget('zii.widgets.grid.CGridView', array(
+            'id'=>'photos-grid',
+            'dataProvider'=>$modelPhoto->search(),
+            'filter'=>$modelPhoto,
+            'template' => '{items}',
+            'columns'=>array(
+                    array(
+                        'name' => 'id',
+                        'htmlOptions' => array(
+                            'width' => '30',
+                        ),
+                    ),
+                    'name',
+                    array(
+                        'name' => 'filename',
+                        'htmlOptions' => array(
+                            'width' => '74',
+                        ),
+                        'value' => function($data) use($model) {
+                            echo Chtml::image("/users/".$model->user->nick."/projects/".$model->id."/thumbnail/".$data->filename, '', array('width' => 70));
+                        },
+                        'filter' => false,
+                    ),
+                    array(
+                            'class'=>'CButtonColumn',
+                    ),
+            ),
+    )); ?>
     
     <h6  class="underline"><?php echo Yii::t('ProjectModule.project', 'Videos')?></h6>
     

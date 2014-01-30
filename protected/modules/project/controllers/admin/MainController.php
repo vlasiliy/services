@@ -56,9 +56,12 @@ class MainController extends BackendController
                         $model->save();
 		}
 
+                $modelPhoto = new Photo('search');
+                
 		$this->render('update',array(
 			'model' => $model,
-                        'photos' => Photo::model()->find('project_id = :project_id', array(':project_id' => $model->id)),
+                        //'modelPhoto' => Photo::model()->find('project_id = :project_id', array(':project_id' => $model->id)),
+                        'modelPhoto' => $modelPhoto,
                         'videos' => Video::model()->find('project_id = :project_id', array(':project_id' => $model->id)),
 		));
 	}
@@ -169,29 +172,36 @@ class MainController extends BackendController
                     echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
                     return true;
                 }
-                else
-                {
-//                    $sizeCrop = Photo::dimensionThumbnail(
-//                        Yii::app()->params['thumbnailWidth'], 
-//                        Yii::app()->params['thumbnailHeight'], 
-//                        $param[0], 
-//                        $param[1]
-//                    );
-                }
+
+                $path = Yii::getPathOfAlias('webroot').'/users/'.$model->user->nick;
+                //вычисляем окно кропа (по средине изображения), для миниатюры
+                $dataCrop = Photo::dimensionThumbnail(
+                    Yii::app()->params['thumbnailWidth'], 
+                    Yii::app()->params['thumbnailHeight'], 
+                    $param[0], 
+                    $param[1]
+                );
+                //сохраняем миниатюру
+                Yii::app()->ih
+                    ->load($path.'/tmp/'.$result['filename'])
+                    ->crop($dataCrop[0], $dataCrop[1], $dataCrop[2], $dataCrop[3])
+                    ->resize(Yii::app()->params['thumbnailWidth'], Yii::app()->params['thumbnailHeight'])
+                    ->save($path.'/projects/'.$id.'/thumbnail/'.$result['filename']);
                 
+                //вычисляем новые пропорции рисунка
                 $newSize = Photo::dimension(
                     Yii::app()->params['imageMaxWidth'], 
                     Yii::app()->params['imageMaxHeight'], 
                     $param[0], 
                     $param[1]
                 );
-                
                 //сохраняем рисунок в пропорциях в нужном проекте
-                $path = Yii::getPathOfAlias('webroot').'/users/'.$model->user->nick;
                 Yii::app()->ih
                     ->load($path.'/tmp/'.$result['filename'])
                     ->resize($newSize[0], $newSize[1])
                     ->save($path.'/projects/'.$id.'/'.$result['filename']);
+
+                //сохраняем в базу
                 $photo = new Photo;
                 $photo->project_id = $id;
                 $photo->filename = $result['filename'];
@@ -217,20 +227,22 @@ class MainController extends BackendController
                 return false;
             }
             
-            $user = User::model()->findByPk($_POST['userId']);
-
-            if(!empty($user))
+            $model = $this->loadModel($_POST['projectId']);
+            
+            if(!empty($model))
             {
-                $path = Yii::getPathOfAlias('webroot').'/users/'.$user->nick;
-                $filename = ($user->avatar != '' && file_exists($path.'/avatar/'.$user->avatar)) ? $user->avatar : $_POST['filename'];
+                $path = Yii::getPathOfAlias('webroot').'/users/'.$model->user->nick;
+                $fullName = $path.'/projects/'.$model->id.'/thumbnail/'.$_POST['filename'];
+                if(file_exists($fullName))
+                {
+                    unlink($fullName);
+                }
                 Yii::app()->ih
                     ->load($path.'/tmp/'.$_POST['filename'])
                     ->crop($_POST['width'], $_POST['height'], $_POST['x'], $_POST['y'])
                     ->resize(Yii::app()->params['thumbnailWidth'], Yii::app()->params['thumbnailHeight'])
-                    ->save($path.'/avatar/'.$filename);
-                $user->avatar = $filename;
-                $user->save(true, array('avatar'));
-                echo $filename;
+                    ->save($fullName);
+                echo 'ok';
             }
             exit;
         }        
