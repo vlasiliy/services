@@ -212,15 +212,59 @@
                   type: "post",
                   data: dataCrop,
                   success: function(fn){
-                      if(fn)
-                      {
-                          function(data) {$.fn.yiiGridView.update("photos-grid");}
-                      }
+                      $.fn.yiiGridView.update("photos-grid");
                   }
                 });
             }
         </script>
-    
+
+        <?php 
+            $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+                'id' => 'updPhoto',
+                'options' => array(
+                    'open' => 'js:function(event, ui) {'.
+                            '$("#updPhoto").parent().find(".ui-dialog-titlebar-close").hide();'.
+                        '}',
+                    'title' => Yii::t('app', 'Update photo'),
+                    'autoOpen' => false,
+                    'modal' => true,
+                    'resizable'=> false,
+                    //'height' => 400,
+                    'draggable' => false,
+                    //'width' => 500,
+                    'closeOnEscape' => false,
+                    'buttons' => array(
+                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");updPhotoAjax();}'),
+                        ),
+                ),
+            ));
+        ?>
+            
+        <label><?php echo Yii::t('ProjectModule.project', 'Name');?> *</label>
+        <input type="text" id="photoName" />
+        <input type="hidden" id="photoId" />
+         
+        <?php
+            $this->endWidget('zii.widgets.jui.CJuiDialog');
+        ?>        
+        
+        <script type="text/javascript">
+            function updPhotoAjax(){
+//                dataPhoto = "photoId=<?php echo $model->id;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
+//                $.ajax({
+//                  url: "/admin/project/main/cropPhoto",
+//                  type: "post",
+//                  data: dataCrop,
+//                  success: function(fn){
+//                      if(fn)
+//                      {
+//                          function(data) {$.fn.yiiGridView.update("photos-grid");}
+//                      }
+//                  }
+//                });
+            }
+        </script>
+        
         <?php $this->widget('zii.widgets.grid.CGridView', array(
             'id'=>'photos-grid',
             'dataProvider'=>$modelPhoto->search(),
@@ -237,15 +281,40 @@
                     array(
                         'name' => 'filename',
                         'htmlOptions' => array(
-                            'width' => '74',
+                            'width' => '94',
                         ),
                         'value' => function($data) use($model) {
-                            echo Chtml::image("/users/".$model->user->nick."/projects/".$model->id."/thumbnail/".$data->filename, '', array('width' => 70));
+                            echo Chtml::image("/users/".$model->user->nick."/projects/".$model->id."/thumbnail/".$data->filename, '', array('width' => 90));
                         },
                         'filter' => false,
                     ),
                     array(
-                            'class'=>'CButtonColumn',
+                        'class'=>'CButtonColumn',
+                        'template'=>'{update}{delete}',
+                        'buttons'=>array(
+                            'delete' => array(
+                                'url'=>'"/admin/project/main/delphoto/id/$data->id"',
+                            ),
+                            'update' => array(
+                                'url'=> '"#"',
+                                //'click' => 'function() { alert(1); return false;}',
+                                //'click' => function ($data) { echo Chtml::value($data, 'id');},
+//                                'click' => 'js:'
+//                                    . '$("#photoName").value("$data->name");'
+//                                    . '$("#photoId").value($data->id);'
+//                                    . '$("#updPhoto").dialog("open");'
+//                                    . 'return false;',
+//                                'options' => array(
+//                                    'onclick' => "js:"
+//                                    . "$('#photoName').value('');"
+//                                    . "$('#photoId').value();"
+//                                    . "$('#updPhoto').dialog('open');"
+//                                    . "return false;",
+//                                    'data-name' => '$data->name',
+//                                    'data-id' => '$data->id',
+//                                ),
+                            ),
+                        ),
                     ),
             ),
     )); ?>

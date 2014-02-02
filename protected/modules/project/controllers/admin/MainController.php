@@ -79,6 +79,39 @@ class MainController extends BackendController
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+        
+	/**
+	 * Delete Photo.
+	 * @param integer $id the ID of the model (Photo) to be deleted
+	 */
+	public function actionDelPhoto($id)
+	{
+            if(!Yii::app()->request->isAjaxRequest)
+            {
+                return false;
+            }
+            else
+            {
+                Photo::model()->deleteByPk($id);
+            }
+	}
+        
+	/**
+	 * Update Photo Name.
+	 * @param integer $id the ID of the model (Photo)
+	 * @param string $name the ID of the model (Photo) to be update name
+	 */
+	public function actionUpdPhoto()
+	{
+            if(!Yii::app()->request->isAjaxRequest)
+            {
+                return false;
+            }
+            else
+            {
+                
+            }
+	}
 
 	/**
 	 * Lists all models.

@@ -17,6 +17,9 @@ return array(
     'Update project' => 'Редактировать проект',
     'Photos' => 'Фотографии',
     'Videos' => 'Видео',
+    'Image' => 'Изображение',
+    'Name' => 'Имя',
+    'Order' => 'Порядок',
     
     //error
     'Image sizes are too small.' => 'Размеры изображения слишком маленькие.'

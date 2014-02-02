@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $project_id
  * @property string $name
+ * @property string $filename
  * @property string $sort
  *
  * The followings are the available model relations:
@@ -35,7 +36,7 @@ class Photo extends CActiveRecord
 			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, project_id, name, sort', 'safe', 'on'=>'search'),
+			array('id, project_id, name, filename, sort', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +60,9 @@ class Photo extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'project_id' => 'Project',
-			'name' => 'Name',
-			'sort' => 'Sort',
+			'name' => Yii::t('ProjectModule.project', 'Name'),
+                        'filename' => Yii::t('ProjectModule.project', 'Image'),
+			'sort' => Yii::t('ProjectModule.project', 'Order'),
 		);
 	}
 
