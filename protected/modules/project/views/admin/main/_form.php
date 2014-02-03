@@ -197,8 +197,10 @@
                 'htmlWidthImg' => 470,
                 'scriptOpenDialog' => "$('#imgCropDialog').dialog('open');",
             ));
-        ?>    
-            <input type="text" />
+        ?>  
+            <br />
+            <label><?php echo Yii::t('ProjectModule.project', 'Name');?></label>
+            <input type="text" id="namePht" />
         <?php    
             $this->endWidget('zii.widgets.jui.CJuiDialog');
         ?>
@@ -225,7 +227,7 @@
                     'open' => 'js:function(event, ui) {'.
                             '$("#updPhoto").parent().find(".ui-dialog-titlebar-close").hide();'.
                         '}',
-                    'title' => Yii::t('app', 'Update photo'),
+                    'title' => Yii::t('ProjectModule.project', 'Update name photo'),
                     'autoOpen' => false,
                     'modal' => true,
                     'resizable'=> false,
@@ -241,8 +243,8 @@
         ?>
             
         <label><?php echo Yii::t('ProjectModule.project', 'Name');?> *</label>
-        <input type="text" id="photoName" />
-        <input type="hidden" id="photoId" />
+        <input type="text" id="namePhoto" />
+        <input type="hidden" id="idPhoto" />
          
         <?php
             $this->endWidget('zii.widgets.jui.CJuiDialog');
@@ -277,7 +279,11 @@
                             'width' => '30',
                         ),
                     ),
-                    'name',
+                    array(
+                        'name' => 'name',
+                        'value' => 'Chtml::tag("div", array("id" => "namePhoto$data->id"), $data->name)',
+                        'type' => 'raw',
+                    ),
                     array(
                         'name' => 'filename',
                         'htmlOptions' => array(
@@ -296,23 +302,14 @@
                                 'url'=>'"/admin/project/main/delphoto/id/$data->id"',
                             ),
                             'update' => array(
-                                'url'=> '"#"',
-                                //'click' => 'function() { alert(1); return false;}',
-                                //'click' => function ($data) { echo Chtml::value($data, 'id');},
-//                                'click' => 'js:'
-//                                    . '$("#photoName").value("$data->name");'
-//                                    . '$("#photoId").value($data->id);'
-//                                    . '$("#updPhoto").dialog("open");'
-//                                    . 'return false;',
-//                                'options' => array(
-//                                    'onclick' => "js:"
-//                                    . "$('#photoName').value('');"
-//                                    . "$('#photoId').value();"
-//                                    . "$('#updPhoto').dialog('open');"
-//                                    . "return false;",
-//                                    'data-name' => '$data->name',
-//                                    'data-id' => '$data->id',
-//                                ),
+                                'url'=> '$data->id',
+                                'click' => 'function(){'
+                                    .'idEl = $(this).attr("href");'
+                                    .'$("#namePhoto").val($("#namePhoto"+idEl).html());'
+                                    .'$("#idPhoto").val(idEl);'
+                                    .'$("#updPhoto").dialog("open");'
+                                    .'return false;'
+                                .'}',
                             ),
                         ),
                     ),

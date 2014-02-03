@@ -20,6 +20,7 @@ return array(
     'Image' => 'Изображение',
     'Name' => 'Имя',
     'Order' => 'Порядок',
+    'Update name photo' => 'Редактировать имя фото',
     
     //error
     'Image sizes are too small.' => 'Размеры изображения слишком маленькие.'
