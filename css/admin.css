@@ -194,3 +194,16 @@ h5 .butLink, h6 .butLink {
     right: 0;
     top: 0;
 }
+.ui-widget label.dialog {
+    font-size: 11px;
+    font-weight: bold;
+    padding-top: 8px;
+}
+.ui-widget input.dialog {
+    font-size: 11px;
+    width: 250px;
+}
+.ui-widget .errorMessage {
+    color: #FF0000;
+    font-size: 10px;
+}

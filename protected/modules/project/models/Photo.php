@@ -31,9 +31,12 @@ class Photo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('project_id, name, sort', 'required'),
+                        array('name', 'filter', 'filter' => array($obj=new CHtmlPurifier(), 'purify')),
+                        array('name', 'filter', 'filter'=>'trim'),
+			array('project_id, sort', 'required'),
 			array('project_id, sort', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>128),
+                        array('name', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, project_id, name, filename, sort', 'safe', 'on'=>'search'),
@@ -106,6 +109,7 @@ class Photo extends CActiveRecord
 		return parent::model($className);
 	}
         
+        //расчет новых размеров загружаемого фото
         public static function dimension($maxWidth, $maxHeight, $curWidth, $curHeight)
         {
             if($curWidth > $maxWidth || $curHeight > $maxHeight)
@@ -128,6 +132,7 @@ class Photo extends CActiveRecord
             }
         }
         
+        //расчет координат миниатюры для загружаемого фото
         public static function dimensionThumbnail($thumbWidth, $thumbHeight, $curWidth, $curHeight)
         {
             

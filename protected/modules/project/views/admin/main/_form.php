@@ -199,8 +199,8 @@
             ));
         ?>  
             <br />
-            <label><?php echo Yii::t('ProjectModule.project', 'Name');?></label>
-            <input type="text" id="namePht" />
+            <label class="dialog"><?php echo Yii::t('ProjectModule.project', 'Name');?></label>
+            <input class="dialog" type="text" id="namePht" maxlength="128" />
         <?php    
             $this->endWidget('zii.widgets.jui.CJuiDialog');
         ?>
@@ -208,7 +208,7 @@
         <script type="text/javascript">
             function cropAjax(){
                 filename = $("#imageId").attr('src').split('/').pop().split('?').shift();
-                dataCrop = "projectId=<?php echo $model->id;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
+                dataCrop = "projectId=<?php echo $model->id;?>&photoName="+$("#namePht").val()+"&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
                 $.ajax({
                   url: "/admin/project/main/cropPhoto",
                   type: "post",
@@ -233,17 +233,17 @@
                     'resizable'=> false,
                     //'height' => 400,
                     'draggable' => false,
-                    //'width' => 500,
+                    'width' => 330,
                     'closeOnEscape' => false,
                     'buttons' => array(
-                            array('text'=>'Ok','click'=> 'js:function(){$(this).dialog("close");updPhotoAjax();}'),
+                            array('text'=>'Ok','click'=> 'js:function(){updPhotoAjax();}'),
                         ),
                 ),
             ));
         ?>
-            
-        <label><?php echo Yii::t('ProjectModule.project', 'Name');?> *</label>
-        <input type="text" id="namePhoto" />
+        <label class="dialog"><?php echo Yii::t('ProjectModule.project', 'Name');?> *</label>
+        <input class="dialog" type="text" id="namePhoto" />
+        <div class="errorMessage" id="errorNamePhoto"></div>
         <input type="hidden" id="idPhoto" />
          
         <?php
@@ -252,18 +252,23 @@
         
         <script type="text/javascript">
             function updPhotoAjax(){
-//                dataPhoto = "photoId=<?php echo $model->id;?>&filename="+filename+"&width="+$('#w').val()+"&height="+$('#h').val()+"&x="+$('#x1').val()+"&y="+$('#y1').val();
-//                $.ajax({
-//                  url: "/admin/project/main/cropPhoto",
-//                  type: "post",
-//                  data: dataCrop,
-//                  success: function(fn){
-//                      if(fn)
-//                      {
-//                          function(data) {$.fn.yiiGridView.update("photos-grid");}
-//                      }
-//                  }
-//                });
+                dataPhoto = "photoId="+$("#idPhoto").val()+"&photoName="+$("#namePhoto").val();
+                $.ajax({
+                  url: "/admin/project/main/updPhoto",
+                  type: "post",
+                  data: dataPhoto,
+                  success: function(succ){
+                      if(succ == 'ok')
+                      {
+                          $.fn.yiiGridView.update("photos-grid");
+                          $("#updPhoto").dialog("close");
+                      }
+                      else
+                      {
+                          $("#errorNamePhoto").html(succ);
+                      }
+                  }
+                });
             }
         </script>
         
@@ -271,6 +276,7 @@
             'id'=>'photos-grid',
             'dataProvider'=>$modelPhoto->search(),
             'filter'=>$modelPhoto,
+            'enableSorting' => false,
             'template' => '{items}',
             'columns'=>array(
                     array(

@@ -57,6 +57,9 @@ class MainController extends BackendController
 		}
 
                 $modelPhoto = new Photo('search');
+                $modelPhoto->unsetAttributes();  // clear any default values
+                if(isset($_GET['Photo']))
+                        $modelPhoto->attributes=$_GET['Photo'];
                 
 		$this->render('update',array(
 			'model' => $model,
@@ -96,23 +99,6 @@ class MainController extends BackendController
             }
 	}
         
-	/**
-	 * Update Photo Name.
-	 * @param integer $id the ID of the model (Photo)
-	 * @param string $name the ID of the model (Photo) to be update name
-	 */
-	public function actionUpdPhoto()
-	{
-            if(!Yii::app()->request->isAjaxRequest)
-            {
-                return false;
-            }
-            else
-            {
-                
-            }
-	}
-
 	/**
 	 * Lists all models.
 	 */
@@ -275,7 +261,42 @@ class MainController extends BackendController
                     ->crop($_POST['width'], $_POST['height'], $_POST['x'], $_POST['y'])
                     ->resize(Yii::app()->params['thumbnailWidth'], Yii::app()->params['thumbnailHeight'])
                     ->save($fullName);
+                $photo = Photo::model()->find("project_id = ".$_POST['projectId']." AND filename = '".$_POST['filename']."'");
+                $photo->name = $_POST['photoName'];
+                $photo->save(false, array('name'));
+                
                 echo 'ok';
+            }
+            exit;
+        }
+
+	/**
+	 * Update Photo Name.
+	 * @param integer $id the ID of the model (Photo)
+	 * @param string $name the ID of the model (Photo) to be update name
+	 */
+        public function actionUpdPhoto()
+        {
+            if(!Yii::app()->request->isAjaxRequest)
+            {
+                return false;
+            }
+            
+            $modelPhoto = new Photo;
+            $photo = $modelPhoto->findByPk($_POST['photoId']);
+            
+            if(!empty($photo))
+            {
+                $photo->name = $_POST['photoName'];
+                if($photo->validate(array('name')))
+                {
+                    $photo->save(false, array('name'));
+                    echo 'ok';                    
+                }
+                else
+                {
+                   echo $photo->getError('name');
+                }
             }
             exit;
         }        
