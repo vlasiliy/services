@@ -8,6 +8,7 @@
  * @property string $project_id
  * @property string $name
  * @property string $link
+ * @property string $description
  * @property string $sort
  *
  * The followings are the available model relations:
@@ -31,13 +32,15 @@ class Video extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        array('name, link, description', 'filter', 'filter' => array($obj=new CHtmlPurifier(), 'purify')),
+                        array('name, link, description', 'filter', 'filter'=>'trim'),
 			array('project_id, name, link, sort', 'required'),
 			array('project_id, sort', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>128),
 			array('link', 'length', 'max'=>16),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, project_id, name, link, sort', 'safe', 'on'=>'search'),
+			array('id, project_id, name, link, description, sort', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +66,7 @@ class Video extends CActiveRecord
 			'project_id' => 'Project',
 			'name' => Yii::t('ProjectModule.project', 'Name'),
 			'link' => Yii::t('ProjectModule.project', 'Link'),
+			'description' => Yii::t('ProjectModule.project', 'Description'),
 			'sort' => 'Sort',
 		);
 	}
@@ -84,11 +88,13 @@ class Video extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+                $criteria->order = 'sort ASC';
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('project_id',$this->project_id,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('link',$this->link,true);
+		$criteria->compare('description',$this->link,true);
 		$criteria->compare('sort',$this->sort,true);
 
 		return new CActiveDataProvider($this, array(

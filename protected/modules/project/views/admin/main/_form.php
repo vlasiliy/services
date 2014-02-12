@@ -2,7 +2,8 @@
 /* @var $this MainController */
 /* @var $model Project */
 /* @var $form CActiveForm */
-//echo '<pre>';print_r($model);
+
+$url = CHtml::asset(Yii::getPathOfAlias('ext.assets.adminIcon'));
 ?>
 <div id="contentController">
 
@@ -301,6 +302,39 @@
                         'filter' => false,
                     ),
                     array(
+                            'class' => 'CButtonColumn',
+                            'htmlOptions' => array(
+                                'width' => '30',
+                             ),
+                            'template' => '{up}{down}',
+                            'buttons' => array(
+                                'up' => array(
+                                    'label' => Yii::t("app", "Up"),
+                                    'imageUrl' => $url.'/up.png',
+                                    'url'=>'Yii::app()->createUrl("/admin/project/main/photoMove", array("type" => "photo", "id"=>$data->id, "way" => "up"))',
+                                    'options' => array(
+                                        'ajax' => array(
+                                            'type' => 'get',
+                                            'url'=>'js:$(this).attr("href")',
+                                            'success' => 'js:function(data) {$.fn.yiiGridView.update("photos-grid");}',
+                                        )
+                                    ),
+                                ),
+                                'down' => array(
+                                    'label' => Yii::t("app", "Down"),
+                                    'imageUrl' => $url.'/down.png',
+                                    'url'=>'Yii::app()->createUrl("/admin/project/main/photoMove", array("type" => "photo", "id"=>$data->id, "way" => "down"))',
+                                    'options' => array(
+                                        'ajax' => array(
+                                            'type' => 'get',
+                                            'url'=>'js:$(this).attr("href")',
+                                            'success' => 'js:function(data) {$.fn.yiiGridView.update("photos-grid");}',
+                                        )
+                                    ),
+                                ),
+                            ),
+                    ),
+                    array(
                         'class'=>'CButtonColumn',
                         'template'=>'{update}{delete}',
                         'buttons'=>array(
@@ -329,19 +363,19 @@
         
     <script type="text/javascript">
         $('#addVideo').click(function(){
-            //открыть диалоговое окно
+            $("#updVideo").dialog("open");
             return false;
         });
     </script>
 
         <?php 
             $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-                'id' => 'updPhoto',
+                'id' => 'updVideo',
                 'options' => array(
                     'open' => 'js:function(event, ui) {'.
-                            '$("#updPhoto").parent().find(".ui-dialog-titlebar-close").hide();'.
+                            '$("#updVideo").parent().find(".ui-dialog-titlebar-close").hide();'.
                         '}',
-                    'title' => Yii::t('ProjectModule.project', 'Update name photo'),
+                    'title' => Yii::t('ProjectModule.project', 'Add / Update video'),
                     'autoOpen' => false,
                     'modal' => true,
                     'resizable'=> false,
@@ -350,22 +384,22 @@
                     'width' => 330,
                     'closeOnEscape' => false,
                     'buttons' => array(
-                            array('text'=>'Ok','click'=> 'js:function(){updPhotoAjax();}'),
+                            array('text'=>'Ok','click'=> 'js:function(){updVideoAjax();}'),
                         ),
                 ),
             ));
         ?>
         <label class="dialog"><?php echo Yii::t('ProjectModule.project', 'Name');?> *</label>
-        <input class="dialog" type="text" id="namePhoto" />
-        <div class="errorMessage" id="errorNamePhoto"></div>
-        <input type="hidden" id="idPhoto" />
+        <input class="dialog" type="text" id="nameVideo" />
+        <div class="errorMessage" id="errorNameVideo"></div>
+        <input type="hidden" id="idVideo" />
          
         <?php
             $this->endWidget('zii.widgets.jui.CJuiDialog');
         ?>        
         
         <script type="text/javascript">
-            function updPhotoAjax(){
+            function updVideoAjax(){
                 dataPhoto = "photoId="+$("#idPhoto").val()+"&photoName="+$("#namePhoto").val();
                 $.ajax({
                   url: "/admin/project/main/updPhoto",

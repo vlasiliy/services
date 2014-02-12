@@ -22,6 +22,7 @@ return array(
     'Link' => 'Ссылка',
     'Order' => 'Порядок',
     'Update name photo' => 'Редактировать имя фото',
+    'Add / Update video' => 'Добавить / Редактировать видео',
     
     //error
     'Image sizes are too small.' => 'Размеры изображения слишком маленькие.'

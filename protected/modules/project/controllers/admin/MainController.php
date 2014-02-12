@@ -304,4 +304,48 @@ class MainController extends BackendController
             }
             exit;
         }        
+        
+        public function actionPhotoMove($type, $id, $way)
+        {
+            if(!Yii::app()->request->isAjaxRequest)
+            {
+                return false;
+            }
+            
+            $crit = new CDbCriteria();
+            $crit->select = 'id, sort';
+            $crit->condition = 'id = '.$id;
+            $type = ucfirst(strtolower($type));
+            $media = $type::model()->find($crit);
+            if(empty($media)){exit;}
+            
+            if($way == 'up')
+            {
+                $znak = ' < ';
+                $ord = 'DESC';
+            }
+            else
+            {
+                $znak = ' > ';
+                $ord = 'ASC';
+            }
+            $crit->condition = 'sort'.$znak.$media->sort;
+            $crit->order = 'sort '.$ord;
+            $crit->limit = array(1,0);
+            $mediaAfter = $type::model()->find($crit);
+            if(empty($mediaAfter)){exit;}
+            
+            $tmp = $media->sort;
+            $media->sort = $mediaAfter->sort;
+            $mediaAfter->sort = $tmp;
+                    
+            $media->save(false, array('sort'));
+            $mediaAfter->save(false, array('sort'));
+           
+            echo 'ok';
+            
+            exit;            
+        }
+        
+        
 }
