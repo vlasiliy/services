@@ -19,6 +19,7 @@ return array(
     'Videos' => 'Видео',
     'Image' => 'Изображение',
     'Name' => 'Имя',
+    'Link' => 'Ссылка',
     'Order' => 'Порядок',
     'Update name photo' => 'Редактировать имя фото',
     

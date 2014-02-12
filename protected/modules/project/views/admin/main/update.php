@@ -15,4 +15,4 @@ Yii::app()->clientScript->registerCssFile(CHtml::asset(Yii::getPathOfAlias('zii.
     <?php echo CHtml::link(Yii::t('app', 'Back'), $this->createUrl('/admin/category/main/admin'), array('class' => 'butLink'));?>
 </h5>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'modelPhoto' => $modelPhoto, 'videos' => $videos)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'modelPhoto' => $modelPhoto, 'modelVideo' => $modelVideo)); ?>

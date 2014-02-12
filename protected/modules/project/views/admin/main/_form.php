@@ -322,6 +322,94 @@
             ),
     )); ?>
     
-    <h6  class="underline"><?php echo Yii::t('ProjectModule.project', 'Videos')?></h6>
+    <h6  class="underline">
+        <?php echo Yii::t('ProjectModule.project', 'Videos')?>
+        <?php echo CHtml::link(Yii::t('app', 'Add'), '#', array('class' => 'butLink', 'id' => 'addVideo'));?>
+    </h6>
+        
+    <script type="text/javascript">
+        $('#addVideo').click(function(){
+            //открыть диалоговое окно
+            return false;
+        });
+    </script>
+
+        <?php 
+            $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+                'id' => 'updPhoto',
+                'options' => array(
+                    'open' => 'js:function(event, ui) {'.
+                            '$("#updPhoto").parent().find(".ui-dialog-titlebar-close").hide();'.
+                        '}',
+                    'title' => Yii::t('ProjectModule.project', 'Update name photo'),
+                    'autoOpen' => false,
+                    'modal' => true,
+                    'resizable'=> false,
+                    //'height' => 400,
+                    'draggable' => false,
+                    'width' => 330,
+                    'closeOnEscape' => false,
+                    'buttons' => array(
+                            array('text'=>'Ok','click'=> 'js:function(){updPhotoAjax();}'),
+                        ),
+                ),
+            ));
+        ?>
+        <label class="dialog"><?php echo Yii::t('ProjectModule.project', 'Name');?> *</label>
+        <input class="dialog" type="text" id="namePhoto" />
+        <div class="errorMessage" id="errorNamePhoto"></div>
+        <input type="hidden" id="idPhoto" />
+         
+        <?php
+            $this->endWidget('zii.widgets.jui.CJuiDialog');
+        ?>        
+        
+        <script type="text/javascript">
+            function updPhotoAjax(){
+                dataPhoto = "photoId="+$("#idPhoto").val()+"&photoName="+$("#namePhoto").val();
+                $.ajax({
+                  url: "/admin/project/main/updPhoto",
+                  type: "post",
+                  data: dataPhoto,
+                  success: function(succ){
+                      if(succ == 'ok')
+                      {
+                          $.fn.yiiGridView.update("photos-grid");
+                          $("#updPhoto").dialog("close");
+                      }
+                      else
+                      {
+                          $("#errorNamePhoto").html(succ);
+                      }
+                  }
+                });
+            }
+        </script>
+    
+    <?php $this->widget('zii.widgets.grid.CGridView', array(
+            'id'=>'videos-grid',
+            'dataProvider'=>$modelVideo->search(),
+            'filter'=>$modelVideo,
+            'enableSorting' => false,
+            'template' => '{items}',
+            'columns'=>array(
+                    array(
+                        'name' => 'id',
+                        'htmlOptions' => array(
+                            'width' => '30',
+                        ),
+                    ),
+                    array(
+                        'name' => 'name',
+                        'value' => 'Chtml::tag("div", array("id" => "nameVideo$data->id"), $data->name)',
+                        'type' => 'raw',
+                    ),
+                    array(
+                        'name' => 'link',
+                        'value' => 'Chtml::tag("div", array("id" => "linkVideo$data->id"), $data->link)',
+                        'type' => 'raw',
+                    ),
+            ),
+    ));?>
     
 </div>

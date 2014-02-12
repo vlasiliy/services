@@ -61,11 +61,15 @@ class MainController extends BackendController
                 if(isset($_GET['Photo']))
                         $modelPhoto->attributes=$_GET['Photo'];
                 
+                $modelVideo = new Video('search');
+                $modelVideo->unsetAttributes();  // clear any default values
+                if(isset($_GET['Video']))
+                        $modelVideo->attributes=$_GET['Video'];
+                
 		$this->render('update',array(
 			'model' => $model,
-                        //'modelPhoto' => Photo::model()->find('project_id = :project_id', array(':project_id' => $model->id)),
                         'modelPhoto' => $modelPhoto,
-                        'videos' => Video::model()->find('project_id = :project_id', array(':project_id' => $model->id)),
+                        'modelVideo' => $modelVideo,
 		));
 	}
 

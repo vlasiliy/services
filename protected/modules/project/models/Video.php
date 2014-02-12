@@ -61,8 +61,8 @@ class Video extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'project_id' => 'Project',
-			'name' => 'Name',
-			'link' => 'Link',
+			'name' => Yii::t('ProjectModule.project', 'Name'),
+			'link' => Yii::t('ProjectModule.project', 'Link'),
 			'sort' => 'Sort',
 		);
 	}
